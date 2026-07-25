@@ -1,0 +1,54 @@
+openapi: 3.0.1
+info:
+  title: WeTravel Partner Access token API
+  version: 2.0.0
+  description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: searched
+    source: https://developer.wetravel.com/reference (per-endpoint OpenAPI fragments, merged; paths normalized to the /v2 base)
+    note: Harvested v2 Partner API. Current release is v3 (2026-02-01); see changelog/.
+servers:
+- url: https://api.wetravel.com/v2
+  description: Production
+- url: https://api.demo.wetravel.to/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+- tokenAuth: []
+tags:
+- name: Access token
+paths:
+  /auth/tokens/access:
+    post:
+      tags:
+      - Access token
+      description: Issue new access token
+      summary: Issue new access token
+      operationId: issueAccessToken
+      responses:
+        '201':
+          description: Access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: API access token.
+          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpZCI6NDIsImVtYWlsIjoiam9obkBleGFtcGxlLmNvbSIsImtpbmQiOiJhY2Nlc3MiLCJmaXJzdF9uYW1lIjoiSm9obiIsImxhc3RfbmFtZSI6IkRvZSIsImRpc3BsYXlfbmFtZSI6IkpvaG4gRG9lIiwiYWNjZXNzX3Njb3BlcyI6WyJyZWFkX2FsbCIsIndyaXRlX2FsbCJdLCJleHAiOjE2NjAzMDg0NDgsInByeSI6ImFjY2VzcyJ9.ZQcJFKKwQUA7MotQ1jFYY5ptndZxIWri2-G82Kw6fYCeI2Czxk4NMcajv6tiDn4l0J60v9jKr0xVZhX5SmmcMxun0A1NVanb-ETjT2enYo6UTIBmoNScQyUVCQ4VBK5yDRkkuoOZu_nO2uNtHZkMpilgKPqyXIiVzXwgeQ1NU0ptSxZSJ2BraOcCJrRWfuZeUHEbhkdxL2PZo-sn7T_VcLJkyV2CcxSit3PM3fFk8LrDcSXZXU0aLJnA9_sXAeEdfMA0THzAxZaXR7Y-RMQAQaOrgFQmGbp9KsO7PUGohNfSCoKZp40cpfYxbeCzJbjNKnvbhCrNDFfnEnWJUyoT5l7XtepPrXgluoKlb92R7eAyh-mVF9fOLVnl1SrcMIAmfXvBOeME7Om7JM7nHE3zsPumixc6kjHLDiILG2zHudrAn3kLRbRYILyRMot3YlQMhzr4_CTlxZXgFpmneJRvzx4n8OKWtovq6LtY_NIteCk3LKIp0TdjynFbdVZxZlea
+      description: Token object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

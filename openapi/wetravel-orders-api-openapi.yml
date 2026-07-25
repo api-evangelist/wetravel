@@ -1,0 +1,816 @@
+openapi: 3.0.1
+info:
+  title: WeTravel Partner Access token Orders API
+  version: 2.0.0
+  description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: searched
+    source: https://developer.wetravel.com/reference (per-endpoint OpenAPI fragments, merged; paths normalized to the /v2 base)
+    note: Harvested v2 Partner API. Current release is v3 (2026-02-01); see changelog/.
+servers:
+- url: https://api.wetravel.com/v2
+  description: Production
+- url: https://api.demo.wetravel.to/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+- tokenAuth: []
+tags:
+- name: Orders
+paths:
+  /bookings/orders/{order_id}/edit_payment_plan:
+    put:
+      tags:
+      - Orders
+      summary: Edit payment plan for an order
+      description: Edit payment plan for an existing order
+      operationId: editPaymentPlanByOrderId
+      parameters:
+      - name: order_id
+        in: path
+        description: order identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - payment_plan
+              properties:
+                payment_plan:
+                  type: object
+                  $ref: '#/components/schemas/PaymentPlan'
+                notification_message:
+                  type: string
+                  description: Message to be sent to the participant
+                  example: Hello, this is a notification message
+      responses:
+        '200':
+          description: Get Trip Order
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Order'
+  /bookings/orders/batch/edit_payment_plan:
+    put:
+      tags:
+      - Orders
+      summary: Edit payment plans for multiple orders
+      description: Edit payment plan for an existing order
+      operationId: editPaymentPlanByOrderIds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - batches
+              properties:
+                batches:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - order_id
+                    - payment_plan
+                    properties:
+                      order_id:
+                        type: string
+                      payment_plan:
+                        type: object
+                        $ref: '#/components/schemas/PaymentPlan'
+                      notification_message:
+                        type: string
+                        description: Message to be sent to the participant
+                        example: Hello, this is a notification message
+      responses:
+        '200':
+          description: Get Trip Order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  successful_count:
+                    type: integer
+                    example: 1
+                  failed_count:
+                    type: integer
+                    example: 0
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+                  errors:
+                    type: array
+                    items:
+                      properties:
+                        message:
+                          type: string
+                          example: Order not found
+  /bookings/trips/{trip_uuid}/orders/{order_id}:
+    get:
+      tags:
+      - Orders
+      summary: Get an order
+      description: Get an order
+      operationId: getOrderById
+      parameters:
+      - name: trip_uuid
+        in: path
+        description: Trip Uuid
+        required: true
+        schema:
+          type: string
+      - name: order_id
+        in: path
+        description: Order ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get Trip Order
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Order'
+  /bookings/trips/{trip_uuid}/bookings:
+    get:
+      tags:
+      - Orders
+      summary: List orders
+      description: Get a list of trip orders
+      operationId: getOrders
+      parameters:
+      - name: trip_uuid
+        in: path
+        description: Trip Uuid
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page Number
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Get a list of trip orders
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderSummary'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /bookings/trips/{trip_uuid}/bookings/{buyer_id}:
+    get:
+      tags:
+      - Orders
+      summary: List a buyer's orders
+      description: Get a list of trip orders for a buyer
+      operationId: getOrdersByBuyer
+      parameters:
+      - name: trip_uuid
+        in: path
+        description: Trip Uuid
+        required: true
+        schema:
+          type: string
+      - name: buyer_id
+        in: path
+        description: Id of the buyer
+        required: true
+        schema:
+          type: string
+      - name: departure_date
+        in: query
+        description: Departure date
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Get a list of trip orders for a buyer
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  buyer_id:
+                    type: integer
+                    description: Unique ID of the buyer
+                    format: int32
+                    example: 1
+                  buyer:
+                    $ref: '#/components/schemas/Buyer'
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+  /bookings/orders/{order_id}/set_custom_price:
+    put:
+      tags:
+      - Orders
+      summary: Set a custom price for an order
+      description: Set custom price for an order (if there is a payment plan for this order, the amounts of its payments will be adjusted automatically)
+      operationId: setCustomPriceByOrderId
+      parameters:
+      - name: order_id
+        in: path
+        description: Order ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: '#/components/schemas/CustomPrice'
+      responses:
+        '200':
+          description: Get Trip Order
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Order'
+  /bookings/orders/batch/set_custom_price:
+    put:
+      tags:
+      - Orders
+      summary: Set custom prices for multiple orders
+      description: Set custom price for array of orders (if there is a payment plan for this order, the amounts of its payments will be adjusted automatically)
+      operationId: setCustomPriceByOrderIds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                batches:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/BatchCustomPrice'
+      responses:
+        '200':
+          description: Get Trip Order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  successful_count:
+                    type: integer
+                    example: 1
+                  failed_count:
+                    type: integer
+                    example: 0
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+                  errors:
+                    type: array
+components:
+  schemas:
+    EsignDocumentSummary:
+      type: object
+      properties:
+        document_id:
+          type: integer
+          description: Unique ID of the document
+          example: 3126680263958200300
+        signed_at:
+          type: string
+          format: date-time
+          description: Time at which the document was signed
+          example: '2021-07-30T09:55:46.000Z'
+      description: EsignDocument object
+    Installment:
+      required:
+      - days_before_departure
+      - price
+      type: object
+      properties:
+        price:
+          type: number
+          description: Amount of the installment
+          format: double
+          example: 145.99
+          minimum: 1
+          maximum: 1000000000
+        days_before_departure:
+          type: integer
+          description: "Defines the date on which the installment is due in relation to the trip start date.\n                  E.g. if this setting is set to “5” and the trip starts on January 15, then the installment due date will be January 10."
+          format: int32
+          example: 60
+    Order:
+      type: object
+      properties:
+        pending_amount:
+          type: integer
+          description: Bank payment is still pending confirmation. Clears in 5 business days
+          format: int64
+          example: 0
+        paid_amount:
+          type: integer
+          description: Total gross amount paid through WeTravel - cc or bank payments
+          format: int64
+          example: 200000
+        failed_amount:
+          type: integer
+          description: Attempted bank payments that have failed
+          format: int64
+          example: 0
+        disputed_amount:
+          type: integer
+          description: Disputed payments for the booking
+          format: int64
+          example: 0
+        cash_amount:
+          type: integer
+          description: Cash payments registered for the booking
+          format: int64
+          example: 0
+        refunded_amount:
+          type: integer
+          description: Amount refunded to the participant through WeTravel - cc or bank payments
+          format: int64
+          example: 100000
+        cash_refunded_amount:
+          type: integer
+          description: Cash refund to the participant
+          format: int64
+          example: 0
+        adjusted_amount:
+          type: integer
+          description: Amount withheld upon package or option cancellation
+          format: int64
+          example: 0
+        due_amount:
+          type: integer
+          description: Balance due. Applies to orders without payment plans only
+          format: int64
+          example: 0
+        past_due_amount:
+          type: integer
+          description: Amount due before today. Applies to orders with payment plans only
+          format: int64
+          example: 0
+        due_later_amount:
+          type: integer
+          description: Amount due in later installments. Doesn't include past_due_amount. Applies to orders with payment plans only
+          format: int64
+          example: 0
+        total_due_amount:
+          type: integer
+          description: Total amount due. For orders without payment plans (due_amount), for orders with payment plans (past_due_amount + due_later_amount)
+          format: int64
+          example: 0
+        total_amount:
+          type: integer
+          description: Sum of the price of all packages and add-ons in the booking
+          format: int64
+          example: 100000
+        total_next_installment:
+          type: integer
+          description: All installments due in the next periods, does not include the current due amount. Applies to orders with payment plans only
+          format: int64
+          example: 0
+        id:
+          type: string
+          description: Unique ID of the order
+          example: 1476668026395820000
+        rebooked_from_order_id:
+          type: string
+          description: Unique ID of the order which this order was rebooked from
+          example: 1476668026395820000
+        trip_uuid:
+          type: string
+          description: Unique ID of the trip
+          example: 34732834
+        buyer_id:
+          type: integer
+          description: Unique ID of the buyer
+          format: int32
+          example: 1
+        trip_length:
+          type: integer
+          description: Trip duration
+          format: int32
+          example: 8
+        departure_date:
+          type: string
+          description: Departure date of the trip in ISO 8601 format
+          example: '2021-08-14T00:00:00.000Z'
+        currency:
+          type: string
+          description: Currency of the trip
+          example: EUR
+          enum:
+          - USD
+          - EUR
+          - GBP
+          - CAD
+          - ZAR
+          - AUD
+        total_deposit_due:
+          type: integer
+          description: Total amount to pay for the deposit of the package. Applies for bookings with no payment made yet
+          format: int64
+          example: 0
+        overpaid_amount:
+          type: integer
+          description: Amount that has been overpaid. This can happen if the organizer has set a custom price for an existing booking, which is lower than what the buyer has already paid
+          format: int64
+          example: 100000
+        already_paid:
+          type: integer
+          description: Total paid amount for all items in the booking at this point. Includes both packages and add-ons
+          format: int64
+          example: 200000
+        has_payment_plan:
+          type: boolean
+          description: Whether the package has a payment plan or not
+          example: true
+        allow_auto_payment:
+          type: boolean
+          description: Participants will automatically be auto-billed to their default payment method when each payment is due
+          example: false
+        allow_partial_payment:
+          type: boolean
+          description: Allow participants to make partial payments
+          example: true
+        active_participants_count:
+          type: integer
+          description: Number of active participants in the booking/order
+          format: int32
+          example: 1
+        cancelled_participants_count:
+          type: integer
+          description: Number of canceled participants in the booking/order
+          format: int32
+          example: 0
+        created_at:
+          type: string
+          format: date-time
+          description: Time at which the order was created
+          example: '2021-07-30T09:55:46.000Z'
+        esign_document:
+          $ref: '#/components/schemas/EsignDocumentSummary'
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/Option'
+        donations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Donation'
+        installments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Installment'
+      description: Order object
+    Donation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique ID of the donation
+          example: 1476668027184349200
+        price:
+          type: integer
+          description: Price of the option/package
+          format: int32
+          example: 100000
+        name:
+          type: string
+          description: Name of the donation
+          example: Carbon Offset
+        type:
+          type: string
+          description: Type of the donation
+          example: Carbon Offset
+        active_count:
+          type: integer
+          description: Number of active participants per booking/order
+          format: int32
+          example: 1
+        amount:
+          type: integer
+          description: Amount for the donation
+          format: int32
+          example: 5000
+      description: Donation object
+    CustomPrice:
+      type: object
+      required:
+      - option_id
+      - price
+      properties:
+        option_id:
+          type: integer
+          format: int32
+          example: 1476668027184349200
+        price:
+          type: integer
+          format: int32
+          description: Price of the option/package
+          example: 100000
+        notification_message:
+          type: string
+          description: Message to be sent to the participant
+          example: Hello, this is a notification message
+    BatchCustomPrice:
+      type: object
+      required:
+      - order_id
+      - option_id
+      - price
+      properties:
+        order_id:
+          type: string
+          description: Order ID
+          example: '1476668027184349184'
+        option_id:
+          type: integer
+          format: int32
+          description: Unique ID of the option/package
+          example: 1476668027184349200
+        price:
+          type: integer
+          description: Price of the option/package
+          format: int32
+          example: 100000
+        notification_message:
+          type: string
+          description: Message to be sent to the participant
+          example: Hello, this is a notification message
+    Buyer:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique ID of the buyer
+          format: int32
+          example: 1
+        email:
+          type: string
+          description: Email of the buyer
+          example: maksym+local@wetravel.com
+        full_name:
+          type: string
+          description: Full name of the buyer
+          example: Maks Local
+      description: Buyer object
+    SnowflakeId:
+      type: string
+      description: 64-bit Snowflake identifier encoded as a decimal string
+      pattern: ^[0-9]{1,20}$
+      example: '2354579505229986943'
+    OrderSummary:
+      type: object
+      properties:
+        pending_amount:
+          type: integer
+          description: Bank payment is still pending confirmation. Clears in 5 business days
+          format: int64
+          example: 0
+        paid_amount:
+          type: integer
+          description: Total gross amount paid through WeTravel - cc or bank payments
+          format: int64
+          example: 200000
+        failed_amount:
+          type: integer
+          description: Attempted bank payments that have failed
+          format: int64
+          example: 0
+        disputed_amount:
+          type: integer
+          description: Disputed payments for the booking
+          format: int64
+          example: 0
+        cash_amount:
+          type: integer
+          description: Cash payments registered for the booking
+          format: int64
+          example: 0
+        refunded_amount:
+          type: integer
+          description: Amount refunded to the participant through WeTravel - cc or bank payments
+          format: int64
+          example: 100000
+        cash_refunded_amount:
+          type: integer
+          description: Cash refund to the participant
+          format: int64
+          example: 0
+        adjusted_amount:
+          type: integer
+          description: Amount withheld upon package or option cancellation
+          format: int64
+          example: 0
+        due_amount:
+          type: integer
+          description: Balance due. Applies to orders without payment plans only
+          format: int64
+          example: 0
+        past_due_amount:
+          type: integer
+          description: Amount due in the current period. Applies to orders with payment plans only
+          format: int64
+          example: 0
+        due_later_amount:
+          type: integer
+          description: Amount due in later installments. Doesn't include past_due_amount. Applies to orders with payment plans only
+          format: int64
+          example: 0
+        total_due_amount:
+          type: integer
+          description: Total amount due. For orders without payment plans (due_amount), for orders with payment plans (past_due_amount + due_later_amount)
+          format: int64
+          example: 0
+        total_amount:
+          type: integer
+          description: Sum of the price of all packages and add-ons in the booking
+          format: int64
+          example: 100000
+        buyer_id:
+          type: integer
+          description: Unique ID of the buyer
+          format: int32
+          example: 1
+        departure_date:
+          type: string
+          description: Departure date of the trip in ISO 8601 format
+          example: '2021-08-14T00:00:00.000Z'
+        active_count:
+          type: integer
+          description: Number of active participants per booking/order
+          format: int32
+          example: 1
+        cancelled_count:
+          type: integer
+          description: Number of canceled participants per booking/order
+          format: int32
+          example: 0
+        has_bookings_with_plan:
+          type: boolean
+          description: Whether the buyer has orders with payment plans or not
+          example: true
+        has_bookings_without_plan:
+          type: boolean
+          description: Whether the buyer has orders without payment plans or not
+          example: false
+        created_at:
+          type: string
+          format: date-time
+          description: Time at which the order was created.
+          example: '2021-07-30T09:55:46.000Z'
+        trip_package_ids:
+          type: array
+          description: The list of booked package IDs
+          items:
+            $ref: '#/components/schemas/SnowflakeId'
+          example:
+          - - '1839359406'
+            - '1839359407'
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+      description: OrderSummary object
+    Option:
+      required:
+      - name
+      - price
+      - trip_uuid
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the add-on option
+          example: '2510177931054358528'
+        trip_uuid:
+          type: string
+          description: Unique ID of the trip
+          example: '105544110'
+        name:
+          type: string
+          description: Name of the add-on option
+          example: Special Tour
+          default: Special Tour
+        description:
+          type: string
+          description: Description of the add-on option
+          example: Extra 1 day for hiking
+          default: Extra 1 day for hiking
+        price:
+          type: integer
+          description: Price of the add-on option
+          format: int32
+          example: 2000
+          minimum: 0
+          maximum: 1000000000
+        price_type:
+          type: string
+          description: Type of the add-on option, can be "option" or "personal_option"
+          example: personal_option
+          default: personal_option
+        quantity:
+          type: integer
+          description: 'Quantity of the add-on option. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 5
+          minimum: 0
+          maximum: 999
+        days_before_departure:
+          type: integer
+          description: "Whether this add-on has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
+          format: int32
+          example: 0
+          default: 0
+        created_at:
+          type: integer
+          description: Time at which the object was created. Measured in seconds since the Unix epoch.
+          format: int32
+          example: 155564
+      description: Add-on model
+    PaymentPlan:
+      type: object
+      properties:
+        allow_partial_payment:
+          type: boolean
+          description: Allow participants to make partial payments
+          example: true
+          default: true
+        enable_auto_payment:
+          type: boolean
+          description: Participants will automatically be auto-billed to their default payment method when each payment is due.
+          example: true
+          default: true
+        deposit:
+          type: integer
+          description: Deposit price of the package
+          format: int32
+          example: 150
+          minimum: 0
+          maximum: 1000000000
+        installments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Installment'
+      description: PaymentPlan model
+    Pagination:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of leads
+          format: int32
+          example: 1
+        page:
+          type: integer
+          description: Current page number where the lead is found
+          format: int32
+          example: 1
+        per_page:
+          type: integer
+          description: 'How many lead are per page (default: 25)'
+          format: int32
+          example: 20
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 1
+        has_previous:
+          type: boolean
+          description: Whether the previous page is there or not
+          example: false
+        has_next:
+          type: boolean
+          description: Whether the next page is there or not
+          example: false
+      description: Pagination object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

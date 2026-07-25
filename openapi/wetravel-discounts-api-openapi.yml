@@ -1,0 +1,380 @@
+openapi: 3.0.1
+info:
+  title: WeTravel Partner Access token Discounts API
+  version: 2.0.0
+  description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: searched
+    source: https://developer.wetravel.com/reference (per-endpoint OpenAPI fragments, merged; paths normalized to the /v2 base)
+    note: Harvested v2 Partner API. Current release is v3 (2026-02-01); see changelog/.
+servers:
+- url: https://api.wetravel.com/v2
+  description: Production
+- url: https://api.demo.wetravel.to/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+- tokenAuth: []
+tags:
+- name: Discounts
+paths:
+  /draft_trips/{trip_uuid}/discounts:
+    post:
+      tags:
+      - Discounts
+      summary: Create discount
+      description: Create Discount
+      operationId: createDiscount
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/CreateDiscount'
+        required: true
+      responses:
+        '201':
+          description: Successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Discount'
+    get:
+      tags:
+      - Discounts
+      summary: List discounts
+      description: Get Discounts
+      operationId: getDiscounts
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get Discounts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Discount'
+  /draft_trips/{trip_uuid}/discounts/{id}:
+    delete:
+      tags:
+      - Discounts
+      summary: Delete discount
+      description: Delete Discount
+      operationId: deleteV1DiscountsId
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the discount
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Delete Discount
+          content: {}
+    get:
+      tags:
+      - Discounts
+      summary: Get discount
+      description: Get Discount
+      operationId: getDiscountById
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the discount
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get Discount
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Discount'
+    patch:
+      tags:
+      - Discounts
+      summary: Update discount
+      description: Update Discount
+      operationId: updateDiscount
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the discount
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/UpdateDiscount'
+        required: true
+      responses:
+        '200':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Discount'
+components:
+  schemas:
+    UpdateDiscount:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the discount code
+          example: TRIPDISCOUNT
+        amount:
+          type: integer
+          description: Amount of the discount code
+          format: int32
+          example: 40
+        quantity:
+          type: integer
+          description: 'How many times this discount code can be used. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 10
+          minimum: 0
+          maximum: 99
+        discount_type:
+          type: string
+          description: Type of discount code
+          example: percentage
+          enum:
+          - amount
+          - percentage
+        duration:
+          type: object
+          description: Discount duration details
+          properties:
+            duration_reference:
+              type: string
+              description: 'Reference for applying offsets or selecting dates.
+
+                If `trip_start_date` is selected, the discount will be applied based on the start date of the trip. Either `start_offset_days` or `end_offset_days` must be provided.
+
+                If `absolute` is selected, the discount will be applied based on the absolute start and end dates provided. Either `start_date` or `end_date` must be provided.'
+              enum:
+              - trip_start_date
+              - absolute
+              example: absolute
+            start_date:
+              type: string
+              format: date
+              description: Start date of the discount.
+              example: '2025-08-01'
+            end_date:
+              type: string
+              format: date
+              description: End date of the discount
+              example: '2025-08-15'
+            start_offset_days:
+              type: integer
+              description: Number of days before the reference to start the discount
+              example: 30
+            end_offset_days:
+              type: integer
+              description: Number of days before the reference to end the discount
+              example: 20
+      description: Update Discount
+    CreateDiscount:
+      required:
+      - amount
+      - discount_type
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Allows you to set the discount code
+          example: TRIPDISCOUNT
+        amount:
+          type: integer
+          description: Allows you to set the amount of the discount
+          format: int32
+          example: 40
+        quantity:
+          type: integer
+          description: 'Allows you to set how many times this discount code can be used. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 10
+          minimum: 0
+          maximum: 99
+        discount_type:
+          type: string
+          description: Allows you to set the type of discount code. Available options are amount for absolute values and percentage for pecentage discounts
+          example: percentage
+          enum:
+          - amount
+          - percentage
+        duration:
+          type: object
+          description: Discount duration details
+          required:
+          - duration_reference
+          properties:
+            duration_reference:
+              type: string
+              description: 'Reference for applying offsets or selecting dates.
+
+                If `trip_start_date` is selected, the discount will be applied based on the start date of the trip. Either `start_offset_days` or `end_offset_days` must be provided.
+
+                If `absolute` is selected, the discount will be applied based on the absolute start and end dates provided. Either `start_date` or `end_date` must be provided.'
+              enum:
+              - trip_start_date
+              - absolute
+              example: absolute
+            start_date:
+              type: string
+              format: date
+              description: Start date of the discount.
+              example: '2025-08-01'
+            end_date:
+              type: string
+              format: date
+              description: End date of the discount
+              example: '2025-08-15'
+            start_offset_days:
+              type: integer
+              description: Number of days before the reference to start the discount
+              example: 30
+            end_offset_days:
+              type: integer
+              description: Number of days before the reference to end the discount
+              example: 20
+      description: Create Discount
+    Discount:
+      required:
+      - amount
+      - discount_type
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the discount code
+          example: '2510177931054358528'
+        name:
+          type: string
+          description: Name of the discount code
+          example: TRIPDISCOUNT
+          default: TRIPDISCOUNT
+        amount:
+          type: integer
+          description: Amount of the discount code
+          format: int32
+          example: 40
+          default: 40
+        quantity:
+          type: integer
+          description: 'How many times this discount code can be used. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 10
+          minimum: 0
+          maximum: 99
+        discount_type:
+          type: string
+          description: Type of discount code
+          example: percentage
+          default: percentage
+          enum:
+          - amount
+          - percentage
+        duration:
+          type: object
+          description: Discount duration details
+          required:
+          - duration_reference
+          properties:
+            duration_reference:
+              type: string
+              description: 'Reference for applying offsets or selecting dates.
+
+                If `trip_start_date` is selected, the discount will be applied based on the start date of the trip. Either `start_offset_days` or `end_offset_days` must be provided.
+
+                If `absolute` is selected, the discount will be applied based on the absolute start and end dates provided. Either `start_date` or `end_date` must be provided.'
+              enum:
+              - trip_start_date
+              - absolute
+              example: absolute
+            start_date:
+              type: string
+              format: date
+              description: Start date of the discount.
+              example: '2025-08-01'
+            end_date:
+              type: string
+              format: date
+              description: End date of the discount
+              example: '2025-08-15'
+            start_offset_days:
+              type: integer
+              description: Number of days before the reference to start the discount
+              example: 30
+            end_offset_days:
+              type: integer
+              description: Number of days before the reference to end the discount
+              example: 20
+        created_at:
+          type: integer
+          description: Time at which the object was created. Measured in seconds since the Unix epoch.
+          format: int32
+          example: 1445443
+      description: Discount model
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

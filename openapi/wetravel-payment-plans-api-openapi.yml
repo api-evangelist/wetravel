@@ -1,0 +1,303 @@
+openapi: 3.0.1
+info:
+  title: WeTravel Partner Access token Payment Plans API
+  version: 2.0.0
+  description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: searched
+    source: https://developer.wetravel.com/reference (per-endpoint OpenAPI fragments, merged; paths normalized to the /v2 base)
+    note: Harvested v2 Partner API. Current release is v3 (2026-02-01); see changelog/.
+servers:
+- url: https://api.wetravel.com/v2
+  description: Production
+- url: https://api.demo.wetravel.to/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+- tokenAuth: []
+tags:
+- name: Payment Plans
+paths:
+  /draft_trips/{trip_uuid}/options/{option_id}/payment_plan:
+    post:
+      tags:
+      - Payment Plans
+      summary: Create or update add-on payment plan
+      description: Create new payment plan or update the existing one for the add-on
+      operationId: createOptionPaymentPlan
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: option_id
+        in: path
+        description: ID of the add-on
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/CreateOptionPaymentPlan'
+        required: true
+      responses:
+        '201':
+          description: Successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PaymentPlan'
+    delete:
+      tags:
+      - Payment Plans
+      summary: Delete add-on payment plan
+      description: Delete payment plan for the add-on
+      operationId: deleteOptionPaymentPlan
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: option_id
+        in: path
+        description: ID of the add-on
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Delete PaymentPlan
+          content: {}
+    get:
+      tags:
+      - Payment Plans
+      summary: Get add-on payment plan
+      description: Get payment plan for the add-on
+      operationId: getOptionPaymentPlans
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: option_id
+        in: path
+        description: ID of the add-on
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get PaymentPlan
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PaymentPlan'
+  /draft_trips/{trip_uuid}/packages/{package_id}/payment_plan:
+    post:
+      tags:
+      - Payment Plans
+      summary: Create or update package payment plan
+      description: Create new payment plan or update the existing one for the package
+      operationId: createPackagePaymentPlan
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: package_id
+        in: path
+        description: ID of the package
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/CreatePackagePaymentPlan'
+        required: true
+      responses:
+        '201':
+          description: Successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PaymentPlan'
+    delete:
+      tags:
+      - Payment Plans
+      summary: Delete package payment plan
+      description: Delete payment plan for the package
+      operationId: deletePackagePaymentPlan
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: package_id
+        in: path
+        description: ID of the package
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Delete PaymentPlan
+          content: {}
+    get:
+      tags:
+      - Payment Plans
+      summary: Get package payment plan
+      description: Get payment plan for the package
+      operationId: getPackagePaymentPlans
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: package_id
+        in: path
+        description: ID of the package
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get PaymentPlan
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PaymentPlan'
+components:
+  schemas:
+    Installment:
+      required:
+      - days_before_departure
+      - price
+      type: object
+      properties:
+        price:
+          type: number
+          description: Amount of the installment
+          format: double
+          example: 145.99
+          minimum: 1
+          maximum: 1000000000
+        days_before_departure:
+          type: integer
+          description: "Defines the date on which the installment is due in relation to the trip start date.\n                  E.g. if this setting is set to “5” and the trip starts on January 15, then the installment due date will be January 10."
+          format: int32
+          example: 60
+    CreatePackagePaymentPlan:
+      required:
+      - allow_partial_payment
+      - enable_auto_payment
+      type: object
+      properties:
+        allow_partial_payment:
+          type: boolean
+          description: Allow participants to make partial payments
+          example: true
+        enable_auto_payment:
+          type: boolean
+          description: Participants will automatically be auto-billed to their default payment method when each payment is due.
+          example: true
+        deposit:
+          type: integer
+          description: Deposit price of the package
+          format: int32
+          minimum: 0
+          maximum: 1000000000
+          example: 150
+        installments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Installment'
+      description: Create PaymentPlan
+    CreateOptionPaymentPlan:
+      required:
+      - allow_partial_payment
+      - enable_auto_payment
+      type: object
+      properties:
+        allow_partial_payment:
+          type: boolean
+          description: Allow participants to make partial payments
+          example: true
+        enable_auto_payment:
+          type: boolean
+          description: Participants will automatically be auto-billed to their default payment method when each payment is due.
+          example: true
+        deposit:
+          type: integer
+          description: Deposit price of the add-on option
+          format: int32
+          minimum: 0
+          maximum: 1000000000
+          example: 150
+        installments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Installment'
+      description: Create PaymentPlan
+    PaymentPlan:
+      type: object
+      properties:
+        allow_partial_payment:
+          type: boolean
+          description: Allow participants to make partial payments
+          example: true
+          default: true
+        enable_auto_payment:
+          type: boolean
+          description: Participants will automatically be auto-billed to their default payment method when each payment is due.
+          example: true
+          default: true
+        deposit:
+          type: integer
+          description: Deposit price of the package
+          format: int32
+          example: 150
+          minimum: 0
+          maximum: 1000000000
+        installments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Installment'
+      description: PaymentPlan model
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

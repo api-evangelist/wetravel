@@ -1,0 +1,320 @@
+openapi: 3.0.1
+info:
+  title: WeTravel Partner Access token Packages API
+  version: 2.0.0
+  description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: searched
+    source: https://developer.wetravel.com/reference (per-endpoint OpenAPI fragments, merged; paths normalized to the /v2 base)
+    note: Harvested v2 Partner API. Current release is v3 (2026-02-01); see changelog/.
+servers:
+- url: https://api.wetravel.com/v2
+  description: Production
+- url: https://api.demo.wetravel.to/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+- tokenAuth: []
+tags:
+- name: Packages
+paths:
+  /draft_trips/{trip_uuid}/packages:
+    post:
+      tags:
+      - Packages
+      summary: Create package
+      description: Create Package
+      operationId: createPackage
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/CreatePackage'
+        required: true
+      responses:
+        '201':
+          description: Successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Package'
+    get:
+      tags:
+      - Packages
+      summary: List packages
+      description: Get Packages
+      operationId: getPackages
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get Packages
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Package'
+  /draft_trips/{trip_uuid}/packages/{id}:
+    delete:
+      tags:
+      - Packages
+      summary: Delete package
+      description: Delete Package
+      operationId: deletePackage
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the package
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Delete Package
+          content: {}
+    get:
+      tags:
+      - Packages
+      summary: Get package
+      description: Get Package
+      operationId: getPackageById
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the package
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get Package
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Package'
+    patch:
+      tags:
+      - Packages
+      summary: Update package
+      description: Update Package
+      operationId: updatePackage
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the package
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/UpdatePackage'
+        required: true
+      responses:
+        '200':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Package'
+components:
+  schemas:
+    UpdatePackage:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the package
+          example: Early bird
+        deposit:
+          type: integer
+          description: Deposit price of the package, please use the payment plan field instead
+          format: int32
+          example: 150
+          deprecated: true
+        price:
+          type: integer
+          description: Price of the package
+          format: int32
+          example: 450
+          minimum: 0
+          maximum: 1000000000
+        quantity:
+          type: integer
+          description: 'Max available quantity of the package. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 7
+          minimum: 0
+          maximum: 9999
+        description:
+          type: string
+          description: Description of the package
+          example: Early bird package
+        participants_per_package:
+          type: integer
+          description: Number of participants per package.
+          format: int32
+          default: 1
+          example: 1
+        days_before_departure:
+          type: integer
+          description: "Whether this package has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
+          format: int32
+          example: 0
+      description: Update Package
+    CreatePackage:
+      required:
+      - name
+      - price
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the package
+          example: Early bird
+        deposit:
+          type: integer
+          description: Deposit price of the package, please use the payment plan field instead
+          format: int32
+          example: 150
+          deprecated: true
+        price:
+          type: integer
+          description: Price of the package
+          format: int32
+          example: 450
+          minimum: 0
+          maximum: 1000000000
+        quantity:
+          type: integer
+          description: 'Max available quantity of the package. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 7
+          minimum: 0
+          maximum: 9999
+        description:
+          type: string
+          description: Description of the package
+          example: Early bird package
+        participants_per_package:
+          type: integer
+          description: Number of participants per package.
+          format: int32
+          default: 1
+          example: 1
+        days_before_departure:
+          type: integer
+          description: "Whether this package has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
+          format: int32
+          example: 0
+      description: Create Package
+    Package:
+      required:
+      - description
+      - name
+      - price
+      - trip_uuid
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the package
+          example: '2510177931054358528'
+        trip_uuid:
+          type: string
+          description: Unique ID of the trip
+          example: '105544110'
+        name:
+          type: string
+          description: Name of the package
+          example: Early bird
+        deposit:
+          type: integer
+          description: Deposit price of the package, please use the payment plan field instead
+          format: int32
+          example: 150
+          deprecated: true
+        price:
+          type: integer
+          description: Price of the package
+          format: int32
+          example: 450
+          minimum: 0
+          maximum: 1000000000
+        quantity:
+          type: integer
+          description: 'Max available quantity of the package. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 7
+          minimum: 0
+          maximum: 9999
+        description:
+          type: string
+          description: Description of the package
+          example: Early bird package
+        days_before_departure:
+          type: integer
+          description: "Whether this package has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
+          format: int32
+          example: 0
+        created_at:
+          type: integer
+          description: Time at which the object was created. Measured in seconds since the Unix epoch.
+          format: int32
+          example: 144445
+      description: Package model
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

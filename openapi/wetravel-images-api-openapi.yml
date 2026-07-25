@@ -1,0 +1,220 @@
+openapi: 3.0.1
+info:
+  title: WeTravel Partner Access token Images API
+  version: 2.0.0
+  description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: searched
+    source: https://developer.wetravel.com/reference (per-endpoint OpenAPI fragments, merged; paths normalized to the /v2 base)
+    note: Harvested v2 Partner API. Current release is v3 (2026-02-01); see changelog/.
+servers:
+- url: https://api.wetravel.com/v2
+  description: Production
+- url: https://api.demo.wetravel.to/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+- tokenAuth: []
+tags:
+- name: Images
+paths:
+  /draft_trips/{trip_uuid}/images:
+    post:
+      tags:
+      - Images
+      summary: Create image
+      description: Create Image
+      operationId: createImage
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/CreateImage'
+        required: true
+      responses:
+        '201':
+          description: Successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Image'
+    get:
+      tags:
+      - Images
+      summary: List images
+      description: Get Images
+      operationId: getImages
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get Images
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Image'
+  /draft_trips/{trip_uuid}/images/{id}:
+    delete:
+      tags:
+      - Images
+      summary: Delete image
+      description: Delete Image
+      operationId: deleteImage
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the image
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Delete Image
+          content: {}
+    get:
+      tags:
+      - Images
+      summary: Get image
+      description: Get Image
+      operationId: getImageById
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the image
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get Image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Image'
+    patch:
+      tags:
+      - Images
+      summary: Update image
+      description: Update Image
+      operationId: updateImage
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the image
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/UpdateImage'
+        required: true
+      responses:
+        '200':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Image'
+components:
+  schemas:
+    UpdateImage:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL of the image
+          example: https://filestack/12345
+      description: Update Image
+    Image:
+      required:
+      - trip_uuid
+      - url
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the image
+          format: int32
+          example: 80
+        trip_uuid:
+          type: string
+          description: Unique ID of the trip
+          example: '105544110'
+        url:
+          type: string
+          description: URL of the image
+          example: https://filestack/12345
+          default: https://filestack/12345
+        created_at:
+          type: integer
+          description: Time at which the object was created. Measured in seconds since the Unix epoch.
+          format: int32
+          example: 1444543
+      description: Image model
+    CreateImage:
+      required:
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+          description: Allows you to set the URL of the image to upload
+          example: https://filestack/12345
+      description: Create Image
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

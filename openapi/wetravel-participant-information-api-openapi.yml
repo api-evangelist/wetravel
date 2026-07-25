@@ -1,0 +1,302 @@
+openapi: 3.0.1
+info:
+  title: WeTravel Partner Access token Participant Information API
+  version: 2.0.0
+  description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: searched
+    source: https://developer.wetravel.com/reference (per-endpoint OpenAPI fragments, merged; paths normalized to the /v2 base)
+    note: Harvested v2 Partner API. Current release is v3 (2026-02-01); see changelog/.
+servers:
+- url: https://api.wetravel.com/v2
+  description: Production
+- url: https://api.demo.wetravel.to/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+- tokenAuth: []
+tags:
+- name: Participant Information
+paths:
+  /draft_trips/{trip_uuid}/surveys:
+    post:
+      tags:
+      - Participant Information
+      summary: Create question
+      description: Create Participant Question
+      operationId: createSurvey
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/CreateSurvey'
+        required: true
+      responses:
+        '201':
+          description: Successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Survey'
+    get:
+      tags:
+      - Participant Information
+      summary: List questions
+      description: Get Participant Questions
+      operationId: getSurveys
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get Participant Questions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Survey'
+  /draft_trips/{trip_uuid}/surveys/{id}:
+    delete:
+      tags:
+      - Participant Information
+      summary: Delete question
+      description: Delete Survey
+      operationId: deleteSurvey
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the question
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Delete Survey
+          content: {}
+    get:
+      tags:
+      - Participant Information
+      summary: Get question
+      description: Get Survey
+      operationId: getSurveyById
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the question
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get Survey
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Survey'
+    patch:
+      tags:
+      - Participant Information
+      summary: Update question
+      description: Update Survey
+      operationId: updateSurvey
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the question
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/UpdateSurvey'
+        required: true
+      responses:
+        '200':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Survey'
+components:
+  schemas:
+    Survey:
+      required:
+      - question
+      - question_type
+      - trip_uuid
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the question
+          example: '2510177931054358528'
+        trip_uuid:
+          type: string
+          description: Unique ID of the trip
+          example: '12345678'
+        question:
+          type: string
+          description: Text of the question
+          example: What's your favorite meal?
+          default: What's your favorite meal?
+        question_type:
+          type: string
+          description: "The question type is either “text”, “checkbox”, “radio”, \"dropdown\", \"phone\", \"country\", “date” and “file”.\n              Text prompts a text response from the participant. Checkbox allows the participant to select among several options. “Radio” prompts the participant to choose one option. “Date” prompts the participant to enter a date. “File” prompts the participant to upload a file. “Dropdown” prompts the participant to select one option from a list of choices presented in a collapsible menu. “Phone” prompts the participant to enter a valid phone number. “Country” prompts the participant to select a country from a standardized list, provided as a dropdown menu."
+          example: text
+          default: text
+          enum:
+          - text
+          - checkbox
+          - radio
+          - file
+          - date
+          - phone
+          - country
+          - dropdown
+        required:
+          type: boolean
+          description: Is this a required question or not
+          example: true
+          default: true
+        answer_options:
+          type: array
+          description: Answer options for “checkbox” and “radio” questions. E.g. The question “What’s your T-Shirt size?” can be answered as ['Medium', 'Large']
+          items:
+            type: string
+        other_option:
+          type: boolean
+          description: Whether there is a “Other” answer option for “checkbox” and “radio” questions.
+          example: false
+          default: false
+        created_at:
+          type: integer
+          description: Time at which the object was created. Measured in seconds since the Unix epoch.
+          format: int32
+          example: 123133
+      description: Participant Question model
+    CreateSurvey:
+      required:
+      - question
+      - question_type
+      type: object
+      properties:
+        question:
+          type: string
+          description: Text of the question
+          example: What's your favorite meal?
+        question_type:
+          type: string
+          description: "The question type is either “text”, “checkbox”, “radio”, \"dropdown\", \"phone\", \"country\", “date” and “file”.\n              Text prompts a text response from the participant. Checkbox allows the participant to select among several options. “Radio” prompts the participant to choose one option. “Date” prompts the participant to enter a date. “File” prompts the participant to upload a file. “Dropdown” prompts the participant to select one option from a list of choices presented in a collapsible menu. “Phone” prompts the participant to enter a valid phone number. “Country” prompts the participant to select a country from a standardized list, provided as a dropdown menu."
+          example: text
+          enum:
+          - text
+          - checkbox
+          - radio
+          - file
+          - date
+          - phone
+          - country
+          - dropdown
+        required:
+          type: boolean
+          description: Is this a required question or not
+          example: true
+          default: true
+        answer_options:
+          type: array
+          description: Answer options for “checkbox” and “radio” questions. E.g. The question “What’s your T-Shirt size?” can be answered as ['Medium', 'Large']
+          items:
+            type: string
+        other_option:
+          type: boolean
+          description: Whether there is a “Other” answer option for “checkbox” and “radio” questions.
+      description: Create Participant Question
+    UpdateSurvey:
+      type: object
+      properties:
+        question:
+          type: string
+          description: Text of the question
+          example: What's your favorite meal?
+        question_type:
+          type: string
+          description: "The question type is either “text”, “checkbox”, “radio”, \"dropdown\", \"phone\", \"country\", “date” and “file”.\n              Text prompts a text response from the participant. Checkbox allows the participant to select among several options. “Radio” prompts the participant to choose one option. “Date” prompts the participant to enter a date. “File” prompts the participant to upload a file. “Dropdown” prompts the participant to select one option from a list of choices presented in a collapsible menu. “Phone” prompts the participant to enter a valid phone number. “Country” prompts the participant to select a country from a standardized list, provided as a dropdown menu."
+          example: text
+          enum:
+          - text
+          - checkbox
+          - radio
+          - file
+          - date
+          - phone
+          - country
+          - dropdown
+        required:
+          type: boolean
+          description: Is this a required question or not
+          example: true
+          default: true
+        answer_options:
+          type: array
+          description: Answer options for “checkbox” and “radio” questions. E.g. The question “What’s your T-Shirt size?” can be answered as ['Medium', 'Large']
+          items:
+            type: string
+        other_option:
+          type: boolean
+          description: Whether there is a “Other” answer option for “checkbox” and “radio” questions.
+      description: Update Participant Question
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

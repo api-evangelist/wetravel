@@ -1,0 +1,142 @@
+openapi: 3.0.1
+info:
+  title: WeTravel Partner Access token Suppliers API
+  version: 2.0.0
+  description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: searched
+    source: https://developer.wetravel.com/reference (per-endpoint OpenAPI fragments, merged; paths normalized to the /v2 base)
+    note: Harvested v2 Partner API. Current release is v3 (2026-02-01); see changelog/.
+servers:
+- url: https://api.wetravel.com/v2
+  description: Production
+- url: https://api.demo.wetravel.to/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+- tokenAuth: []
+tags:
+- name: Suppliers
+paths:
+  /suppliers/{supplier_id}:
+    get:
+      tags:
+      - Suppliers
+      description: Get a supplier
+      summary: Get supplier
+      operationId: getSupplierById
+      parameters:
+      - name: supplier_id
+        in: path
+        description: Supplier ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Get a supplier
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Supplier'
+  /suppliers:
+    get:
+      tags:
+      - Suppliers
+      description: Get a list of suppliers
+      summary: List suppliers
+      operationId: getSuppliers
+      parameters:
+      - name: page
+        in: query
+        description: Page Number
+        schema:
+          type: integer
+      - name: per_page
+        in: query
+        description: Suppliers per page
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Get a list of suppliers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Supplier'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+components:
+  schemas:
+    Supplier:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique ID of supplier
+          example: ve-a4183a5c-c838-419b-a520-b1b4d1e2e426
+        supplier_id:
+          type: integer
+          description: ID of supplier. It's a reference created once a supplier accepts the invitation
+          example: 12345
+        name:
+          type: string
+          description: Name of the supplier
+          example: John Doe
+        email:
+          type: string
+          description: Email of the supplier
+          example: john.doe@wetravel.com
+        verified:
+          type: boolean
+          description: Whether the supplier is verified or not
+          example: true
+      description: Supplier object
+    Pagination:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of leads
+          format: int32
+          example: 1
+        page:
+          type: integer
+          description: Current page number where the lead is found
+          format: int32
+          example: 1
+        per_page:
+          type: integer
+          description: 'How many lead are per page (default: 25)'
+          format: int32
+          example: 20
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 1
+        has_previous:
+          type: boolean
+          description: Whether the previous page is there or not
+          example: false
+        has_next:
+          type: boolean
+          description: Whether the next page is there or not
+          example: false
+      description: Pagination object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key

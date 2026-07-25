@@ -1,0 +1,255 @@
+openapi: 3.0.1
+info:
+  title: WeTravel Partner Access token Trip Overview API
+  version: 2.0.0
+  description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
+  x-apievangelist:
+    generated: '2026-07-21'
+    method: searched
+    source: https://developer.wetravel.com/reference (per-endpoint OpenAPI fragments, merged; paths normalized to the /v2 base)
+    note: Harvested v2 Partner API. Current release is v3 (2026-02-01); see changelog/.
+servers:
+- url: https://api.wetravel.com/v2
+  description: Production
+- url: https://api.demo.wetravel.to/v2
+  description: Sandbox
+security:
+- bearerAuth: []
+- tokenAuth: []
+tags:
+- name: Trip Overview
+paths:
+  /draft_trips/{trip_uuid}/itineraries:
+    post:
+      tags:
+      - Trip Overview
+      summary: Create overview event
+      description: Create Overview Event
+      operationId: createItinerary
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/CreateItinerary'
+        required: true
+      responses:
+        '201':
+          description: Successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Itinerary'
+    get:
+      tags:
+      - Trip Overview
+      summary: List overview events
+      description: Get Trip Overview
+      operationId: getItineraries
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get Trip Overview
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Itinerary'
+  /draft_trips/{trip_uuid}/itineraries/{id}:
+    delete:
+      tags:
+      - Trip Overview
+      summary: Delete overview event
+      description: Delete Overview Event
+      operationId: deleteV1ItinerariesId
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the overview event
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Delete Overview Event
+          content: {}
+    get:
+      tags:
+      - Trip Overview
+      summary: Get overview event
+      description: Get Overview Event
+      operationId: getItineraryById
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the overview event
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get Overview Event
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Itinerary'
+    patch:
+      tags:
+      - Trip Overview
+      summary: Update overview event
+      description: Update Overview Event
+      operationId: updateItinerary
+      parameters:
+      - name: trip_uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: ID of the overview event
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/UpdateItinerary'
+        required: true
+      responses:
+        '200':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Itinerary'
+components:
+  schemas:
+    CreateItinerary:
+      required:
+      - name
+      - photo_url
+      - title
+      type: object
+      properties:
+        title:
+          type: string
+          description: Allows you to set the title of the overview event
+          example: Day 1
+        name:
+          type: string
+          description: Allows you to set the name of the overview event
+          example: Day 1 - Arrival
+        description:
+          type: string
+          description: Allows you to set the description of the itinerary event. This field allows HTML tags(b, i, a) for better formatting.
+          example: Tour of city
+        photo_url:
+          type: string
+          description: Allows you to set the image URL of the itinerary event
+          example: https://filestack/123456
+      description: Create Overview Event
+    Itinerary:
+      required:
+      - name
+      - photo_url
+      - title
+      - trip_uuid
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the itinerary event
+          format: int32
+          example: 78
+        trip_uuid:
+          type: string
+          description: Unique ID of the trip
+          example: '12345678'
+        title:
+          type: string
+          description: Title of the itinerary event
+          example: Day 1
+          default: Day 1
+        name:
+          type: string
+          description: Name of the itinerary event
+          example: Day 1 itinerary
+          default: Day 1 itinerary
+        description:
+          type: string
+          description: Description of the itinerary event
+          example: Tour of city
+          default: Tour of city
+        photo_url:
+          type: string
+          description: Image url of the itinerary event
+          example: https://filestack/123456
+          default: https://filestack/123456
+      description: Itinerary model
+    UpdateItinerary:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the overview event
+          example: Day 1
+        name:
+          type: string
+          description: Name of the overview event
+          example: Day 1 - Arrival
+        description:
+          type: string
+          description: Description of the overview event
+          example: Tour of city
+        photo_url:
+          type: string
+          description: Image url of the overview event
+          example: https://filestack/123456
+      description: Update Overview Event
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key
