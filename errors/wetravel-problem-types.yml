@@ -1,0 +1,56 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/wetravel-partner-openapi.json
+format: json
+note: >-
+  WeTravel returns errors as application/json (not RFC 9457 problem+json). Statuses derived
+  from the harvested OpenAPI 4xx/5xx responses across 40 paths / 77 operations. 429 is
+  documented separately in the Rate Limits reference with a Retry-After header.
+envelope:
+  content_type: application/json
+docs: https://developer.wetravel.com/reference/authentication
+problems:
+  - status: 400
+    title: Bad Request
+    meaning: The request body or parameters failed validation.
+    remediation: Validate the request payload/parameters against the endpoint schema before retrying.
+    operation_count: 6
+    example_operations:
+      - openapi/wetravel-partner-openapi.json#createPaymentLink
+      - openapi/wetravel-partner-openapi.json#createTrip
+      - openapi/wetravel-partner-openapi.json#updatePaymentLink
+      - openapi/wetravel-partner-openapi.json#updateTrip
+  - status: 401
+    title: Unauthorized
+    meaning: Missing, invalid, or expired credentials.
+    remediation: >-
+      Issue a fresh access token via POST /v2/auth/tokens/access (access tokens expire after
+      1 hour) and send it as a Bearer token, or send the API key as the X-Api-Key header.
+    operation_count: 8
+    example_operations:
+      - openapi/wetravel-partner-openapi.json#getPaymentLinks
+      - openapi/wetravel-partner-openapi.json#createPaymentLink
+      - openapi/wetravel-partner-openapi.json#getTrips
+      - openapi/wetravel-partner-openapi.json#createTrip
+  - status: 404
+    title: Not Found
+    meaning: The referenced resource (trip, payment link, order, etc.) does not exist or is not accessible to your account.
+    remediation: Verify the resource UUID/id exists and belongs to your account.
+    operation_count: 8
+    example_operations:
+      - openapi/wetravel-partner-openapi.json#getPaymentLinkById
+      - openapi/wetravel-partner-openapi.json#getTripById
+      - openapi/wetravel-partner-openapi.json#deletePaymentLink
+      - openapi/wetravel-partner-openapi.json#updateTrip
+  - status: 500
+    title: Internal Server Error
+    meaning: An unexpected server-side error occurred.
+    remediation: Transient server error - retry with backoff; contact info@wetravel.com if it persists.
+    operation_count: 1
+    example_operations:
+      - openapi/wetravel-partner-openapi.json#publishTrip
+  - status: 429
+    title: Too Many Requests
+    meaning: Global rate limit exceeded (200 requests per minute, rolling 60-second window across all endpoints).
+    remediation: Honor the Retry-After response header (seconds) before retrying.
+    source: https://developer.wetravel.com/reference/rate-limits

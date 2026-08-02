@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of WeTravel API and web hosts
+note: >-
+  Probed the /.well-known/ discovery surface on the API and web hosts. No documents were served
+  (all 404 / not present). Recorded for auditability; no WellKnown/SecurityTxt pointer is wired
+  because nothing was found.
+hosts:
+  - host: https://api.wetravel.com
+    documents:
+      - { path: /.well-known/security.txt, status: 404 }
+      - { path: /.well-known/openid-configuration, status: 404 }
+      - { path: /.well-known/oauth-authorization-server, status: 404 }
+      - { path: /.well-known/api-catalog, status: 404 }
+      - { path: /.well-known/ai-plugin.json, status: 404 }
+  - host: https://www.wetravel.com
+    documents:
+      - { path: /.well-known/security.txt, status: 404 }
+      - { path: /.well-known/openid-configuration, status: 404 }
+      - { path: /.well-known/ai-plugin.json, status: 404 }
+  - host: https://developer.wetravel.com
+    documents:
+      - { path: /.well-known/security.txt, status: 404 }
+      - { path: /.well-known/ai-plugin.json, status: 404 }

@@ -1,0 +1,47 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.wetravel.com/docs/webhooks
+type: Webhooks
+note: >-
+  WeTravel publishes a webhook event surface (no AsyncAPI document). Webhooks are disabled by
+  default and enabled per account under Profile > Edit Profile > Webhooks (an API key must be
+  generated first). Endpoints are managed under "Manage Webhooks"; each endpoint can subscribe
+  to a specific event or all events. Full event structures/examples live in the in-product
+  "Event Catalog". Delivery is HTTP POST to the configured endpoint URL(s).
+enablement:
+  default: disabled
+  ui_path: Profile > Edit Profile > Webhooks
+  prerequisite: An API key must be generated to reveal the Webhooks section.
+event_types:
+  - name: booking.created
+    description: Fired when a new booking is created.
+    triggers: New booking on trip page or embedded widgets; new booking in Manage Trip via Add Participant.
+  - name: booking.updated
+    description: Fired when a booking is updated.
+    triggers: >-
+      Departure date change, refund issued, booking canceled, Add Participant, participant info
+      updated, custom price set, package switched, bulk action, eSignature received, new payment,
+      payment failed/disputed, trip details updated, balance due adjusted, rebooking.
+  - name: payment.created
+    description: Fired when a new payment is made.
+    triggers: A new payment is initiated.
+  - name: payment.updated
+    description: Fired when a payment is updated.
+    triggers: Status pending -> successful/failed; successful -> refunded/disputed; rebooking transfers payment details.
+  - name: transaction.created
+    description: Fired when a new transaction occurs.
+    triggers: >-
+      Payment received, refund initiated, dispute processed, payout/instant payout initiated,
+      card transfer, vendor payment, wire transfer, top-up payment received, balance adjusted by WeTravel.
+  - name: transaction.updated
+    description: Fired when a transaction is updated.
+    triggers: A rebooking transfers transaction details to the new trip.
+  - name: trip.published
+    description: Fired when a new trip is published.
+    triggers: Trip published in the WeTravel trip builder or via the Trip Builder API.
+  - name: lead.created
+    description: Fired when a new lead is created.
+    triggers: Brochure downloaded (website/trip page); question asked on trip or profile page.
+  - name: lead.updated
+    description: Fired when a lead is updated.
+    triggers: Repeat brochure download or another question from the same lead.

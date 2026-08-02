@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.wetravel.com/reference
+note: >-
+  WeTravel publishes a dedicated sandbox/demo environment alongside production. Each Partner API
+  service exposes a Sandbox server in its OpenAPI (host api.demo.wetravel.to). Credentials are
+  account-specific and issued from the WeTravel demo profile; WeTravel does not publish shared
+  magic test values, so none are recorded here.
+environments:
+  - name: production
+    base_url: https://api.wetravel.com/v2
+    auth_base_url: https://api.wetravel.com/v2/auth
+  - name: sandbox
+    base_url: https://api.demo.wetravel.to/v2
+    auth_base_url: https://api.demo.wetravel.to/v2/auth
+    description: Demo environment for integration testing; use a demo-account API key to issue access tokens.
+test_data:
+  published_magic_values: false
+  note: Test data (trips, bookings, payments) is created against your own demo account; WeTravel does not document shared test cards or fixture tokens in the public Partner API docs.

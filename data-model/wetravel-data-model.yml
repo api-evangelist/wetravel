@@ -1,0 +1,109 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/wetravel-partner-openapi.json
+note: >-
+  Entity-relationship graph derived from the harvested OpenAPI path structure and 56 component
+  schemas. Trips are the aggregate root of the Trip Builder API: sub-resources hang off
+  /draft_trips/{trip_uuid}/... . Bookings/Orders, Transactions, Payment Links, Suppliers and
+  Leads are top-level domains. Trip/PaymentLink UUIDs are the primary external identifiers.
+entity_count: 56
+entities:
+  - name: Trip
+    id: trip_uuid
+    path_root: /draft_trips
+    relationships:
+      - field: packages
+        kind: has_many
+        target: Package
+        via: /draft_trips/{trip_uuid}/packages
+      - field: options
+        kind: has_many
+        target: Option
+        via: /draft_trips/{trip_uuid}/options
+      - field: discounts
+        kind: has_many
+        target: Discount
+        via: /draft_trips/{trip_uuid}/discounts
+      - field: images
+        kind: has_many
+        target: Image
+        via: /draft_trips/{trip_uuid}/images
+      - field: paragraphs
+        kind: has_many
+        target: Paragraph
+        via: /draft_trips/{trip_uuid}/paragraphs
+      - field: included_items
+        kind: has_many
+        target: IncludedItem
+        via: /draft_trips/{trip_uuid}/includes
+      - field: not_included_items
+        kind: has_many
+        target: NotIncludedItem
+        via: /draft_trips/{trip_uuid}/not_includes
+      - field: itinerary
+        kind: has_many
+        target: OverviewEvent
+        via: /draft_trips/{trip_uuid}/itineraries
+      - field: questions
+        kind: has_many
+        target: Survey
+        via: /draft_trips/{trip_uuid}/surveys
+      - field: orders
+        kind: has_many
+        target: Order
+        via: /bookings/trips/{trip_uuid}/orders
+      - field: bookings
+        kind: has_many
+        target: Booking
+        via: /bookings/trips/{trip_uuid}/bookings
+  - name: Package
+    relationships:
+      - field: payment_plan
+        kind: has_one
+        target: PaymentPlan
+  - name: Option
+    note: Trip add-on.
+    relationships:
+      - field: payment_plan
+        kind: has_one
+        target: PaymentPlan
+  - name: Order
+    id: order_id
+    relationships:
+      - field: trip_uuid
+        kind: belongs_to
+        target: Trip
+      - field: buyer_id
+        kind: belongs_to
+        target: Buyer
+      - field: payment_plan
+        kind: has_one
+        target: PaymentPlan
+  - name: Booking
+    relationships:
+      - field: trip_uuid
+        kind: belongs_to
+        target: Trip
+      - field: buyer_id
+        kind: belongs_to
+        target: Buyer
+  - name: Transaction
+    relationships:
+      - field: order
+        kind: belongs_to
+        target: Order
+  - name: PaymentLink
+    id: uuid
+    path_root: /payment_links
+    relationships:
+      - field: package
+        kind: has_one
+        target: Package
+  - name: Supplier
+    path_root: /suppliers
+  - name: Lead
+    path_root: /leads
+    relationships:
+      - field: trip
+        kind: belongs_to
+        target: Trip

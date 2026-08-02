@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/wetravel-partner-openapi.json
+note: Agent Skills for marquee WeTravel Partner API flows. Every step is grounded in a real operationId from the harvested OpenAPI.
+skills:
+  - file: wetravel-create-and-publish-trip.md
+    name: Create and publish a WeTravel trip
+    api: openapi/wetravel-partner-openapi.json
+    operations: [issueAccessToken, createTrip, getTripById, createPackage, updateTrip, publishTrip]
+  - file: wetravel-create-payment-link.md
+    name: Create and publish a WeTravel payment link
+    api: openapi/wetravel-partner-openapi.json
+    operations: [issueAccessToken, createPaymentLink, getPaymentLinkById, updatePaymentLink, publishPaymentLink, getPaymentLinks]
+  - file: wetravel-sync-bookings-transactions.md
+    name: Sync WeTravel bookings and transactions
+    api: openapi/wetravel-partner-openapi.json
+    operations: [issueAccessToken, getTrips, getOrders, getOrdersByBuyer, getOrderById, getTransactions, getTransaction, getLeads]

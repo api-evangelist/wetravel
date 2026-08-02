@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/wetravel-partner-openapi.json
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/wetravel-partner-openapi.json
+- name: tokenAuth
+  type: apiKey
+  in: header
+  parameter: X-Api-Key
+  sources:
+  - openapi/wetravel-partner-openapi.json

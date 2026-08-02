@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.wetravel.com/changelog
+scheme: dated + semver-major (v1/v2/v3)
+current_version: v3
+note: Recent window of the WeTravel Partner API changelog. Full detail lives at the source URL.
+entries:
+  - title: Owner filtering for Trips and Payment Links
+    release_type: minor
+    breaking: false
+    affected: [Trips, Payment Links]
+    highlights:
+      - Added owner_id query parameter to GET /v3/trips and GET /v3/payment_links for owner-based filtering.
+      - Ability to update owner_id via PATCH /v3/trips/:uuid and PATCH /v3/payment_links/:uuid (to a team member who already has access).
+  - version: v3
+    date: '2026-02-01'
+    title: Partner API v3 Release
+    release_type: major
+    breaking: true
+    affected: [Trips, Payment Links]
+    highlights:
+      - "Base path changed /v2 -> /v3; responses no longer wrapped in a data envelope."
+      - Draft and publish concepts removed - trips/payment links are usable immediately on create/update.
+      - Trips per_page default reduced 1000 -> 25; new filters (archived, deactivated, currency, departure_date, recurring, visibility); exclude_payment_links removed.
+      - Sub-resources (packages, options, discounts, images, ...) consolidated into nested trip payload; several field renames (trip_id -> external_id, group_min -> min_people).
+      - Payment Links update method PUT -> PATCH; pricing grouped under a unified package object.
+      - Unchanged - auth flow/scopes, 1-hour access token, minor-unit currency; Bookings, Transactions, Suppliers, Leads APIs.
+  - date: '2025-09-09'
+    title: Sep 9, 2025
+    breaking: false
+  - date: '2024-10-21'
+    title: Oct 21, 2024
+    breaking: false
+  - date: '2024-06-17'
+    title: Jun 17, 2024
+    breaking: false

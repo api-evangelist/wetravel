@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.wetravel.com/changelog
+note: >-
+  WeTravel versions the Partner API by URI path (v1 / v2 / v3). v3 (released 2026-02-01) is the
+  current major and is a breaking redesign of Trips and Payment Links; v2 remains documented with
+  a published v2 -> v3 migration guide. Access tokens are short-lived (1 hour). A public status
+  page is available.
+versioning:
+  scheme: uri-path
+  current: v3
+  supported: [v1, v2, v3]
+  docs: https://developer.wetravel.com/changelog
+deprecation:
+  policy: >-
+    Major versions are introduced as new base paths; the prior version (v2) remains available with
+    a documented migration path rather than immediate removal. v3 announced Trips/Payment Links
+    breaking changes with a dedicated migration guide.
+  migration_guide: https://developer.wetravel.com/reference/migration-v2-to-v3
+status_page: https://status.wetravel.com/
+token_lifetime: 1 hour (access token)

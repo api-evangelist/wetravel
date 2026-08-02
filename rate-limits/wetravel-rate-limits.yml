@@ -1,0 +1,14 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.wetravel.com/reference/rate-limits
+note: >-
+  Global rate limit applied collectively across all Partner API endpoints, calculated on a
+  rolling 60-second window. Exceeding it returns HTTP 429 with a Retry-After header (seconds to wait).
+rate_limits:
+  - scope: global
+    limit_count: 200
+    interval: minute
+    window: rolling-60s
+    applies_to: all endpoints (collective)
+    exceeded_status: 429
+    retry_header: Retry-After

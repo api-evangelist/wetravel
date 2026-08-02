@@ -1,0 +1,27 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for WeTravel Partner API
+  version: 1.0.0
+extends: openapi/wetravel-partner-openapi.json
+x-apievangelist:
+  generated: '2026-07-21'
+  method: generated
+  note: >-
+    Non-mutating enhancements over the harvested WeTravel Partner API spec: contact/license/docs
+    metadata and a rating annotation. The original harvested spec is never modified.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-rating: 3
+      contact:
+        name: WeTravel Developer Team
+        email: info@wetravel.com
+        url: https://developer.wetravel.com/
+      x-docs: https://developer.wetravel.com/docs/getting-started
+      x-changelog: https://developer.wetravel.com/changelog
+      x-status-page: https://status.wetravel.com/
+  - target: $
+    update:
+      externalDocs:
+        description: WeTravel Developer Hub
+        url: https://developer.wetravel.com/

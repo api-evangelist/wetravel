@@ -1,28 +1,347 @@
 aid: wetravel
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/wetravel.png
 name: WeTravel
-description: 'WeTravel is a company surfaced as a portfolio company of index-ventures, sapphire-ventures
-  and added to the API Evangelist network as a stub for enrichment. Sector: business-applications. This
-  profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  WeTravel is a booking and payments platform for the multi-day and group travel industry - tour
+  operators, retreat and adventure-travel organizers, and travel agencies. Its Partner API (Trip
+  Builder, Bookings, Payments/Payment Links, Transactions, Suppliers and Leads) lets travel companies
+  programmatically create WeTravel trip and booking pages from their own IT systems and sync customer,
+  order, payment and transaction data, while WeTravel handles the customer-facing booking experience,
+  automated payment plans and low-cost payment processing. A Zapier integration extends the same data
+  to 8000+ services, and a documented webhook catalog streams booking, payment, transaction, trip and
+  lead events. Backed by Index Ventures and Sapphire Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/wetravel/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - index-ventures
 - sapphire-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-developer-hub
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Business Applications
-apis: []
+- Travel
+- Booking
+- Payments
+- Trip Management
+- Tour Operators
+- Travel Technology
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: wetravel:wetravel-access-token-api
+  name: WeTravel Access token API
+  description: The Access token API from WeTravel — 1 operation(s) for access token.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Access token
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-access-token-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-add-ons-api
+  name: WeTravel Add-ons API
+  description: The Add-ons API from WeTravel — 2 operation(s) for add-ons.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Add-ons
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-add-ons-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-discounts-api
+  name: WeTravel Discounts API
+  description: The Discounts API from WeTravel — 2 operation(s) for discounts.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Discounts
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-discounts-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-images-api
+  name: WeTravel Images API
+  description: The Images API from WeTravel — 2 operation(s) for images.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-images-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-included-items-api
+  name: WeTravel Included items API
+  description: The Included items API from WeTravel — 2 operation(s) for included items.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Included items
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-included-items-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-leads-api
+  name: WeTravel Leads API
+  description: The Leads API from WeTravel — 2 operation(s) for leads.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Leads
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-leads-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-not-included-items-api
+  name: WeTravel Not Included items API
+  description: The Not Included items API from WeTravel — 2 operation(s) for not included items.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Not Included items
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-not-included-items-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-orders-api
+  name: WeTravel Orders API
+  description: The Orders API from WeTravel — 7 operation(s) for orders.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-packages-api
+  name: WeTravel Packages API
+  description: The Packages API from WeTravel — 2 operation(s) for packages.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-packages-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-paragraphs-api
+  name: WeTravel Paragraphs API
+  description: The Paragraphs API from WeTravel — 2 operation(s) for paragraphs.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Paragraphs
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-paragraphs-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-participant-information-api
+  name: WeTravel Participant Information API
+  description: >-
+    The Participant Information API from WeTravel — 2 operation(s) for participant information.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Participant Information
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-participant-information-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-payment-links-api
+  name: WeTravel Payment Links API
+  description: The Payment Links API from WeTravel — 3 operation(s) for payment links.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Payment Links
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-payment-links-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-payment-plans-api
+  name: WeTravel Payment Plans API
+  description: The Payment Plans API from WeTravel — 2 operation(s) for payment plans.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Payment Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-payment-plans-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-suppliers-api
+  name: WeTravel Suppliers API
+  description: The Suppliers API from WeTravel — 2 operation(s) for suppliers.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Suppliers
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-suppliers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-transactions-api
+  name: WeTravel Transactions API
+  description: The Transactions API from WeTravel — 2 operation(s) for transactions.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-trip-overview-api
+  name: WeTravel Trip Overview API
+  description: The Trip Overview API from WeTravel — 2 operation(s) for trip overview.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Trip Overview
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-trip-overview-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
+- aid: wetravel:wetravel-trips-api
+  name: WeTravel Trips API
+  description: The Trips API from WeTravel — 3 operation(s) for trips.
+  humanURL: https://developer.wetravel.com/
+  baseURL: https://api.wetravel.com/v2
+  tags:
+  - Trips
+  properties:
+  - type: OpenAPI
+    url: openapi/wetravel-trips-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wetravel.com/docs/getting-started
+  - type: APIReference
+    url: https://developer.wetravel.com/reference
 common:
+- type: DeveloperPortal
+  url: https://developer.wetravel.com/
+- type: Documentation
+  url: https://developer.wetravel.com/docs/getting-started
+- type: APIReference
+  url: https://developer.wetravel.com/reference
+- type: GettingStarted
+  url: https://developer.wetravel.com/docs/getting-started
+- type: Support
+  url: https://help.wetravel.com/en/
+- type: StatusPage
+  url: https://status.wetravel.com/
+- type: GitHubOrganization
+  url: https://github.com/wetravel-com
+- type: ChangeLog
+  url: changelog/wetravel-changelog.yml
+- type: Deprecation
+  url: https://developer.wetravel.com/reference/migration-v2-to-v3
+- type: Lifecycle
+  url: lifecycle/wetravel-lifecycle.yml
+- type: Authentication
+  url: authentication/wetravel-authentication.yml
+- type: Conventions
+  url: conventions/wetravel-conventions.yml
+- type: ErrorCatalog
+  url: errors/wetravel-problem-types.yml
+- type: DataModel
+  url: data-model/wetravel-data-model.yml
+- type: Conformance
+  url: conformance/wetravel-conformance.yml
+- type: RateLimits
+  url: rate-limits/wetravel-rate-limits.yml
+- type: Webhooks
+  url: asyncapi/wetravel-webhooks.yml
+- type: MCPServer
+  url: mcp/wetravel-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/wetravel-agentic-access.yml
+- type: LLMsTxt
+  url: llms/wetravel-llms.txt
+- type: Sandbox
+  url: sandbox/wetravel-sandbox.yml
+- type: Security
+  url: https://www.wetravel.com/disclosure
+- type: VulnerabilityDisclosure
+  url: security/wetravel-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/wetravel-domain-security.yml
 - type: Website
   url: https://www.wetravel.com/
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1

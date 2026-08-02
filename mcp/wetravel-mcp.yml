@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://developer.wetravel.com/mcp
+note: >-
+  WeTravel's Developer Hub (ReadMe-hosted) exposes a hosted MCP server at
+  https://developer.wetravel.com/mcp (HTTP; "This URL can only be accessed with a MCP client").
+  It surfaces the documentation and the Partner API OpenAPI to MCP clients via ReadMe's standard
+  documentation/OpenAPI tool set (search docs, list/get/search endpoints, execute requests against
+  the live API). Tool list below is ReadMe's published reserved tool surface.
+server:
+  name: wetravel
+  transport: http
+  url: https://developer.wetravel.com/mcp
+  provider: ReadMe Developer Hub
+tools:
+  - name: search
+    description: Search the WeTravel developer documentation.
+  - name: fetch
+    description: Fetch a documentation page.
+  - name: list-endpoints
+    description: List available Partner API endpoints from the OpenAPI.
+  - name: get-endpoint
+    description: Get the definition of a specific Partner API endpoint.
+  - name: search-endpoints
+    description: Search Partner API endpoints.
+  - name: get-server-variables
+    description: Get server variables/base URLs for the API.
+  - name: execute-request
+    description: Execute a request against the live Partner API (requires credentials).

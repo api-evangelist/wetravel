@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.wetravel.com/reference
+note: >-
+  Cross-cutting request/response semantics for the WeTravel Partner API, captured from the
+  developer hub and the harvested OpenAPI. Cross-links authentication/, errors/, lifecycle/
+  and rate-limits/.
+authentication:
+  style: two-step
+  detail: >-
+    The Partner API key (from the WeTravel profile page) is a refresh token and cannot call the
+    API directly. Exchange it at POST /v2/auth/tokens/access for a short-lived (1 hour) JWT access
+    token, then send that as `Authorization: Bearer <access_token>`. An `X-Api-Key` header
+    (tokenAuth) is also accepted on API operations.
+  see: authentication/wetravel-authentication.yml
+idempotency:
+  supported: false
+  note: WeTravel does not document an idempotency-key mechanism for the Partner API.
+pagination:
+  style: page-number
+  params:
+    - { name: page, in: query, description: 1-based page number. }
+    - { name: per_page, in: query, description: "Page size. v2 default 1000; v3 default reduced to 25." }
+  applies_to: list endpoints (getTrips, getPaymentLinks, getOrders, getTransactions, getSuppliers, getLeads, ...)
+identifiers:
+  scheme: uuid
+  note: Trips and Payment Links are addressed by UUID; orders and transactions by id.
+currency:
+  units: minor
+  detail: >-
+    All currency amounts use minor units. The Payment Links API supports full-cents precision.
+    See https://developer.wetravel.com/reference/pricing-and-currency-units
+versioning:
+  scheme: uri-path
+  current: v3
+  also_available: [v2, v1]
+  detail: Version is carried in the base path (/v2, /v3). v3 (2026-02-01) is the current release.
+  see: lifecycle/wetravel-lifecycle.yml
+error_envelope:
+  content_type: application/json
+  format: non-rfc9457
+  see: errors/wetravel-problem-types.yml
+rate_limit_signaling:
+  limit: 200 requests / minute (global, rolling 60s)
+  exceeded_status: 429
+  header: Retry-After
+  see: rate-limits/wetravel-rate-limits.yml
+webhooks:
+  supported: true
+  see: asyncapi/wetravel-webhooks.yml
