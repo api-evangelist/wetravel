@@ -288,6 +288,8 @@ apis:
   - type: APIReference
     url: https://developer.wetravel.com/reference
 common:
+- type: Overlay
+  url: overlays/wetravel-partner-overlay.yaml
 - type: DeveloperPortal
   url: https://developer.wetravel.com/
 - type: Documentation
