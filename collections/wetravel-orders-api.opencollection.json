@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WeTravel Partner Access token Orders API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Edit payment plan for an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.wetravel.com/v2/bookings/orders/:order_id/edit_payment_plan",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "order identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit payment plan for an existing order"
+        },
+        {
+          "info": {
+            "name": "Edit payment plans for multiple orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.wetravel.com/v2/bookings/orders/batch/edit_payment_plan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit payment plan for an existing order"
+        },
+        {
+          "info": {
+            "name": "Get an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/bookings/trips/:trip_uuid/orders/:order_id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path",
+                "description": "Trip Uuid"
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "Order ID"
+              }
+            ]
+          },
+          "docs": "Get an order"
+        },
+        {
+          "info": {
+            "name": "List orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/bookings/trips/:trip_uuid/bookings",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path",
+                "description": "Trip Uuid"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page Number"
+              }
+            ]
+          },
+          "docs": "Get a list of trip orders"
+        },
+        {
+          "info": {
+            "name": "List a buyer's orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/bookings/trips/:trip_uuid/bookings/:buyer_id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path",
+                "description": "Trip Uuid"
+              },
+              {
+                "name": "buyer_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the buyer"
+              },
+              {
+                "name": "departure_date",
+                "value": "",
+                "type": "query",
+                "description": "Departure date"
+              }
+            ]
+          },
+          "docs": "Get a list of trip orders for a buyer"
+        },
+        {
+          "info": {
+            "name": "Set a custom price for an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.wetravel.com/v2/bookings/orders/:order_id/set_custom_price",
+            "params": [
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "path",
+                "description": "Order ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set custom price for an order (if there is a payment plan for this order, the amounts of its payments will be adjusted automatically)"
+        },
+        {
+          "info": {
+            "name": "Set custom prices for multiple orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.wetravel.com/v2/bookings/orders/batch/set_custom_price",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set custom price for array of orders (if there is a payment plan for this order, the amounts of its payments will be adjusted automatically)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

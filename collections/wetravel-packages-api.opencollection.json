@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WeTravel Partner Access token Packages API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/packages",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Packages"
+        },
+        {
+          "info": {
+            "name": "Create package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/packages",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Package"
+        },
+        {
+          "info": {
+            "name": "Get package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/packages/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the package"
+              }
+            ]
+          },
+          "docs": "Get Package"
+        },
+        {
+          "info": {
+            "name": "Update package",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/packages/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the package"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Package"
+        },
+        {
+          "info": {
+            "name": "Delete package",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/packages/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the package"
+              }
+            ]
+          },
+          "docs": "Delete Package"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WeTravel Partner Access token Discounts API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List discounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/discounts",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Discounts"
+        },
+        {
+          "info": {
+            "name": "Create discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/discounts",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Discount"
+        },
+        {
+          "info": {
+            "name": "Get discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/discounts/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the discount"
+              }
+            ]
+          },
+          "docs": "Get Discount"
+        },
+        {
+          "info": {
+            "name": "Update discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/discounts/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the discount"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Discount"
+        },
+        {
+          "info": {
+            "name": "Delete discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/discounts/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the discount"
+              }
+            ]
+          },
+          "docs": "Delete Discount"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

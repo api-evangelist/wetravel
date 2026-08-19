@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WeTravel Partner Access token API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Issue new access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wetravel.com/v2/auth/tokens/access"
+          },
+          "docs": "Issue new access token"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

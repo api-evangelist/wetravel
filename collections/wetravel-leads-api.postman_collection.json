@@ -1,0 +1,236 @@
+{
+  "item": [
+    {
+      "id": "2befffac-1d9a-4c79-b3cc-e60f106acb73",
+      "name": "Leads",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72f82fe6-2007-40a8-8135-5968d58cdf10",
+          "name": "Get lead",
+          "request": {
+            "name": "Get lead",
+            "description": {
+              "content": "Get a lead",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lead",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique global ID of the lead"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3caf308-a532-4f90-ab7a-83a0c387eb5e",
+              "name": "Get a lead",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lead",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique global ID of the lead"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"trip_uuid\": \"1234567890\",\n  \"email\": \"johndoe@mailinator.com\",\n  \"name\": \"John Doe\",\n  \"phone\": \"+1 123 456 7890\",\n  \"organizer_id\": 1,\n  \"is_booked\": false,\n  \"questions\": [\n    {\n      \"content\": \"What is your name?\",\n      \"created_at\": \"2017-01-01 00:00:00\"\n    },\n    {\n      \"content\": \"What is your name?\",\n      \"created_at\": \"2017-01-01 00:00:00\"\n    }\n  ],\n  \"recent_requested_at\": \"2017-01-01 00:00:00\",\n  \"lead_type\": \"brochure\",\n  \"trip\": {\n    \"can_contribute\": true,\n    \"currency\": \"USD\",\n    \"destination\": \"London, Uk\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_max\": 15,\n    \"group_min\": 5,\n    \"listing_status\": \"private\",\n    \"participant_fees\": \"all\",\n    \"participant_list_show_type\": \"everyone\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"title\": \"Epic London Trip\",\n    \"waiting_list_enabled\": true,\n    \"uuid\": \"12345678\",\n    \"created_at\": \"2017-07-21T17:32:28.000Z\",\n    \"trip_id\": \"TRIP20\",\n    \"url\": \"https://wetravel.com/trips/123456\",\n    \"welcome_message\": \"YAY!!!\",\n    \"published\": 7296,\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29a5eeec-188d-4fa1-8baf-37f772dec054",
+          "name": "List Leads",
+          "request": {
+            "name": "List Leads",
+            "description": {
+              "content": "Get a list of Leads",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lead"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trip_uuids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_booked\": \"<boolean>\",\n  \"sort_by\": \"recent_requested_at\",\n  \"sort_dir\": \"desc\",\n  \"lead_type\": \"<string>\",\n  \"before\": \"<date>\",\n  \"after\": \"<date>\",\n  \"page\": 1,\n  \"per_page\": 25\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7095e6bb-9552-4e9e-881e-ee85834540c7",
+              "name": "Get a list of leads",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lead"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"trip_uuids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_booked\": \"<boolean>\",\n  \"sort_by\": \"recent_requested_at\",\n  \"sort_dir\": \"desc\",\n  \"lead_type\": \"<string>\",\n  \"before\": \"<date>\",\n  \"after\": \"<date>\",\n  \"page\": 1,\n  \"per_page\": 25\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"trip_uuid\": \"1234567890\",\n      \"email\": \"johndoe@mailinator.com\",\n      \"name\": \"John Doe\",\n      \"phone\": \"+1 123 456 7890\",\n      \"organizer_id\": 1,\n      \"is_booked\": false,\n      \"questions\": [\n        {\n          \"content\": \"What is your name?\",\n          \"created_at\": \"2017-01-01 00:00:00\"\n        },\n        {\n          \"content\": \"What is your name?\",\n          \"created_at\": \"2017-01-01 00:00:00\"\n        }\n      ],\n      \"recent_requested_at\": \"2017-01-01 00:00:00\",\n      \"lead_type\": \"brochure\",\n      \"trip\": {\n        \"can_contribute\": true,\n        \"currency\": \"USD\",\n        \"destination\": \"London, Uk\",\n        \"end_date\": \"2021-05-07T00:00:00.000Z\",\n        \"group_max\": 15,\n        \"group_min\": 5,\n        \"listing_status\": \"private\",\n        \"participant_fees\": \"all\",\n        \"participant_list_show_type\": \"everyone\",\n        \"start_date\": \"2021-05-07T00:00:00.000Z\",\n        \"title\": \"Epic London Trip\",\n        \"waiting_list_enabled\": true,\n        \"uuid\": \"12345678\",\n        \"created_at\": \"2017-07-21T17:32:28.000Z\",\n        \"trip_id\": \"TRIP20\",\n        \"url\": \"https://wetravel.com/trips/123456\",\n        \"welcome_message\": \"YAY!!!\",\n        \"published\": 7445,\n        \"carbon_offset\": {\n          \"enabled\": true,\n          \"percentage\": 2.5,\n          \"paid_by_participant\": true\n        }\n      }\n    },\n    {\n      \"id\": 1,\n      \"trip_uuid\": \"1234567890\",\n      \"email\": \"johndoe@mailinator.com\",\n      \"name\": \"John Doe\",\n      \"phone\": \"+1 123 456 7890\",\n      \"organizer_id\": 1,\n      \"is_booked\": false,\n      \"questions\": [\n        {\n          \"content\": \"What is your name?\",\n          \"created_at\": \"2017-01-01 00:00:00\"\n        },\n        {\n          \"content\": \"What is your name?\",\n          \"created_at\": \"2017-01-01 00:00:00\"\n        }\n      ],\n      \"recent_requested_at\": \"2017-01-01 00:00:00\",\n      \"lead_type\": \"brochure\",\n      \"trip\": {\n        \"can_contribute\": true,\n        \"currency\": \"USD\",\n        \"destination\": \"London, Uk\",\n        \"end_date\": \"2021-05-07T00:00:00.000Z\",\n        \"group_max\": 15,\n        \"group_min\": 5,\n        \"listing_status\": \"private\",\n        \"participant_fees\": \"all\",\n        \"participant_list_show_type\": \"everyone\",\n        \"start_date\": \"2021-05-07T00:00:00.000Z\",\n        \"title\": \"Epic London Trip\",\n        \"waiting_list_enabled\": true,\n        \"uuid\": \"12345678\",\n        \"created_at\": \"2017-07-21T17:32:28.000Z\",\n        \"trip_id\": \"TRIP20\",\n        \"url\": \"https://wetravel.com/trips/123456\",\n        \"welcome_message\": \"YAY!!!\",\n        \"published\": 3481,\n        \"carbon_offset\": {\n          \"enabled\": true,\n          \"percentage\": 2.5,\n          \"paid_by_participant\": true\n        }\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total_count\": 1,\n    \"page\": 1,\n    \"per_page\": 20,\n    \"total_pages\": 1,\n    \"has_previous\": false,\n    \"has_next\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wetravel.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eed5871b-fcb1-42b5-a121-be4f7904761a",
+    "name": "WeTravel Partner Access token Leads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.",
+      "type": "text/plain"
+    }
+  }
+}

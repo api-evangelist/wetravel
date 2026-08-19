@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WeTravel Partner Access token Payment Links API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payment links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/payment_links",
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of trips per page"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum:1)"
+              },
+              {
+                "name": "publish_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter payment links by publish status"
+              }
+            ]
+          },
+          "docs": "Get the list of all payment links"
+        },
+        {
+          "info": {
+            "name": "Create payment link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wetravel.com/v2/payment_links",
+            "params": [
+              {
+                "name": "publish_immediately",
+                "value": "",
+                "type": "query",
+                "description": "Whether to publish the payment link immediately upon creation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new payment link"
+        },
+        {
+          "info": {
+            "name": "Get payment link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/payment_links/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the payment link"
+              },
+              {
+                "name": "publish_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter payment link by publish status"
+              }
+            ]
+          },
+          "docs": "Get a payment link by UUID"
+        },
+        {
+          "info": {
+            "name": "Update payment link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.wetravel.com/v2/payment_links/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the payment link"
+              },
+              {
+                "name": "publish_immediately",
+                "value": "",
+                "type": "query",
+                "description": "Whether to publish the payment link immediately upon update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a payment link"
+        },
+        {
+          "info": {
+            "name": "Delete payment link",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wetravel.com/v2/payment_links/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the payment link"
+              }
+            ]
+          },
+          "docs": "Delete a payment link"
+        },
+        {
+          "info": {
+            "name": "Publish payment link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wetravel.com/v2/payment_links/:uuid/publish",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the payment link"
+              }
+            ]
+          },
+          "docs": "Publish Payment Link"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

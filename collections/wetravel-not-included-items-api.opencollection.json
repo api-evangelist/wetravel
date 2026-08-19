@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WeTravel Partner Access token Not Included items API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Not Included items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List not included items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/not_included_items",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Not Included items"
+        },
+        {
+          "info": {
+            "name": "Create not included item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/not_included_items",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create NotIncluded"
+        },
+        {
+          "info": {
+            "name": "Get not included item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/not_included_items/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the not included item"
+              }
+            ]
+          },
+          "docs": "Get NotIncluded"
+        },
+        {
+          "info": {
+            "name": "Update not included item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/not_included_items/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the not included item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update NotIncluded"
+        },
+        {
+          "info": {
+            "name": "Delete not included item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/not_included_items/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the not included item"
+              }
+            ]
+          },
+          "docs": "Delete NotIncluded"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

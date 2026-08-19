@@ -1,0 +1,611 @@
+{
+  "item": [
+    {
+      "id": "e949e1d2-b1b1-49cd-9fa1-d21d42fd8281",
+      "name": "Packages",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6169d3d-4587-4260-99f6-4bd5491024f1",
+          "name": "Create package",
+          "request": {
+            "name": "Create package",
+            "description": {
+              "content": "Create Package",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"price\": \"<integer>\",\n    \"deposit\": \"<integer>\",\n    \"quantity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"participants_per_package\": 1,\n    \"days_before_departure\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbbc999b-ad3c-4ff6-a49b-f60b16c61d46",
+              "name": "Successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"name\": \"Early bird\",\n    \"price\": 450,\n    \"deposit\": 150,\n    \"quantity\": 7,\n    \"description\": \"Early bird package\",\n    \"participants_per_package\": 1,\n    \"days_before_departure\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"description\": \"Early bird package\",\n    \"name\": \"Early bird\",\n    \"price\": 450,\n    \"trip_uuid\": \"105544110\",\n    \"id\": \"2510177931054358528\",\n    \"deposit\": 150,\n    \"quantity\": 7,\n    \"days_before_departure\": 0,\n    \"created_at\": 144445\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13d8c322-911c-42eb-82ba-ab7926770353",
+          "name": "List packages",
+          "request": {
+            "name": "List packages",
+            "description": {
+              "content": "Get Packages",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dbb0db18-09c7-4378-9321-8b4b02decf58",
+              "name": "Get Packages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"description\": \"Early bird package\",\n      \"name\": \"Early bird\",\n      \"price\": 450,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"deposit\": 150,\n      \"quantity\": 7,\n      \"days_before_departure\": 0,\n      \"created_at\": 144445\n    },\n    {\n      \"description\": \"Early bird package\",\n      \"name\": \"Early bird\",\n      \"price\": 450,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"deposit\": 150,\n      \"quantity\": 7,\n      \"days_before_departure\": 0,\n      \"created_at\": 144445\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24c20152-3050-4117-a4ae-ad68eeb4f47c",
+          "name": "Delete package",
+          "request": {
+            "name": "Delete package",
+            "description": {
+              "content": "Delete Package",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "packages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the package"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10318ee0-c862-43f7-a944-9e077a807c95",
+              "name": "Delete Package",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "packages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the package"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b907617-38c0-40dd-abf7-1ee22761f03a",
+          "name": "Get package",
+          "request": {
+            "name": "Get package",
+            "description": {
+              "content": "Get Package",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "packages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the package"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "083b1157-69e8-4cd3-aace-8b1344d96d81",
+              "name": "Get Package",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "packages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the package"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"description\": \"Early bird package\",\n    \"name\": \"Early bird\",\n    \"price\": 450,\n    \"trip_uuid\": \"105544110\",\n    \"id\": \"2510177931054358528\",\n    \"deposit\": 150,\n    \"quantity\": 7,\n    \"days_before_departure\": 0,\n    \"created_at\": 144445\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a288dcfd-fc4e-4905-ab35-557367b6b3d7",
+          "name": "Update package",
+          "request": {
+            "name": "Update package",
+            "description": {
+              "content": "Update Package",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "packages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the package"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"deposit\": \"<integer>\",\n    \"price\": \"<integer>\",\n    \"quantity\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"participants_per_package\": 1,\n    \"days_before_departure\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ec612a7-28ed-43bc-8106-4cde54923cc8",
+              "name": "Successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "packages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the package"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"name\": \"Early bird\",\n    \"deposit\": 150,\n    \"price\": 450,\n    \"quantity\": 7,\n    \"description\": \"Early bird package\",\n    \"participants_per_package\": 1,\n    \"days_before_departure\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"description\": \"Early bird package\",\n    \"name\": \"Early bird\",\n    \"price\": 450,\n    \"trip_uuid\": \"105544110\",\n    \"id\": \"2510177931054358528\",\n    \"deposit\": 150,\n    \"quantity\": 7,\n    \"days_before_departure\": 0,\n    \"created_at\": 144445\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wetravel.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5c185ce6-ee54-4eff-8e9f-a0daae766b2d",
+    "name": "WeTravel Partner Access token Packages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.",
+      "type": "text/plain"
+    }
+  }
+}

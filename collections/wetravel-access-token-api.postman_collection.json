@@ -1,0 +1,123 @@
+{
+  "item": [
+    {
+      "id": "8428117a-2e85-4b41-b0c0-ac34ed4c63c5",
+      "name": "Access token",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "60bd0148-366d-402e-bd1f-302341ae1149",
+          "name": "Issue new access token",
+          "request": {
+            "name": "Issue new access token",
+            "description": {
+              "content": "Issue new access token",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "tokens",
+                "access"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b69df31-60d1-499b-b3a5-32c863b4d8cb",
+              "name": "Access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "tokens",
+                    "access"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpZCI6NDIsImVtYWlsIjoiam9obkBleGFtcGxlLmNvbSIsImtpbmQiOiJhY2Nlc3MiLCJmaXJzdF9uYW1lIjoiSm9obiIsImxhc3RfbmFtZSI6IkRvZSIsImRpc3BsYXlfbmFtZSI6IkpvaG4gRG9lIiwiYWNjZXNzX3Njb3BlcyI6WyJyZWFkX2FsbCIsIndyaXRlX2FsbCJdLCJleHAiOjE2NjAzMDg0NDgsInByeSI6ImFjY2VzcyJ9.ZQcJFKKwQUA7MotQ1jFYY5ptndZxIWri2-G82Kw6fYCeI2Czxk4NMcajv6tiDn4l0J60v9jKr0xVZhX5SmmcMxun0A1NVanb-ETjT2enYo6UTIBmoNScQyUVCQ4VBK5yDRkkuoOZu_nO2uNtHZkMpilgKPqyXIiVzXwgeQ1NU0ptSxZSJ2BraOcCJrRWfuZeUHEbhkdxL2PZo-sn7T_VcLJkyV2CcxSit3PM3fFk8LrDcSXZXU0aLJnA9_sXAeEdfMA0THzAxZaXR7Y-RMQAQaOrgFQmGbp9KsO7PUGohNfSCoKZp40cpfYxbeCzJbjNKnvbhCrNDFfnEnWJUyoT5l7XtepPrXgluoKlb92R7eAyh-mVF9fOLVnl1SrcMIAmfXvBOeME7Om7JM7nHE3zsPumixc6kjHLDiILG2zHudrAn3kLRbRYILyRMot3YlQMhzr4_CTlxZXgFpmneJRvzx4n8OKWtovq6LtY_NIteCk3LKIp0TdjynFbdVZxZlea\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wetravel.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "726078cc-420f-4c4f-a3e3-6be631e00dfb",
+    "name": "WeTravel Partner Access token API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.",
+      "type": "text/plain"
+    }
+  }
+}

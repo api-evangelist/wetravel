@@ -1,0 +1,611 @@
+{
+  "item": [
+    {
+      "id": "9ebded3b-ca22-452f-b9dd-b9800ef1f3c1",
+      "name": "Participant Information",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c4bf406-2aa3-4c18-9683-243f43829fec",
+          "name": "Create question",
+          "request": {
+            "name": "Create question",
+            "description": {
+              "content": "Create Participant Question",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "surveys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"question\": \"<string>\",\n    \"question_type\": \"<string>\",\n    \"required\": true,\n    \"answer_options\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"other_option\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b31a3ca-51f8-47d7-b636-c3631ebf4e8c",
+              "name": "Successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "surveys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"question\": \"What's your favorite meal?\",\n    \"question_type\": \"text\",\n    \"required\": true,\n    \"answer_options\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"other_option\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"question\": \"What's your favorite meal?\",\n    \"question_type\": \"text\",\n    \"trip_uuid\": \"12345678\",\n    \"id\": \"2510177931054358528\",\n    \"required\": true,\n    \"answer_options\": [\n      \"string\",\n      \"string\"\n    ],\n    \"other_option\": false,\n    \"created_at\": 123133\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84235161-471d-4386-b500-c9ebbf75d2e4",
+          "name": "List questions",
+          "request": {
+            "name": "List questions",
+            "description": {
+              "content": "Get Participant Questions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "surveys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a8c5b4e-01e1-4ca8-a96a-f543acc81b96",
+              "name": "Get Participant Questions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "surveys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"question\": \"What's your favorite meal?\",\n      \"question_type\": \"text\",\n      \"trip_uuid\": \"12345678\",\n      \"id\": \"2510177931054358528\",\n      \"required\": true,\n      \"answer_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"other_option\": false,\n      \"created_at\": 123133\n    },\n    {\n      \"question\": \"What's your favorite meal?\",\n      \"question_type\": \"text\",\n      \"trip_uuid\": \"12345678\",\n      \"id\": \"2510177931054358528\",\n      \"required\": true,\n      \"answer_options\": [\n        \"string\",\n        \"string\"\n      ],\n      \"other_option\": false,\n      \"created_at\": 123133\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e177aa0a-4632-416d-9ffc-1f89b7a853b2",
+          "name": "Delete question",
+          "request": {
+            "name": "Delete question",
+            "description": {
+              "content": "Delete Survey",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "surveys",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the question"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c141ba21-e5e3-461a-bf4e-82bb7bda73ea",
+              "name": "Delete Survey",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "surveys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the question"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8a558b5-8458-49c0-8f4c-70dafd7f0d40",
+          "name": "Get question",
+          "request": {
+            "name": "Get question",
+            "description": {
+              "content": "Get Survey",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "surveys",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the question"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6c8539e-de81-41d6-9dfd-a865db1b283e",
+              "name": "Get Survey",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "surveys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the question"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"question\": \"What's your favorite meal?\",\n    \"question_type\": \"text\",\n    \"trip_uuid\": \"12345678\",\n    \"id\": \"2510177931054358528\",\n    \"required\": true,\n    \"answer_options\": [\n      \"string\",\n      \"string\"\n    ],\n    \"other_option\": false,\n    \"created_at\": 123133\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0b900b2-a8b7-45fd-829a-11c26a96e5b4",
+          "name": "Update question",
+          "request": {
+            "name": "Update question",
+            "description": {
+              "content": "Update Survey",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "surveys",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the question"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"question\": \"<string>\",\n    \"question_type\": \"<string>\",\n    \"required\": true,\n    \"answer_options\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"other_option\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "120295e0-d9e9-4b89-85fc-dcb869f4efa7",
+              "name": "Successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "surveys",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the question"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"question\": \"What's your favorite meal?\",\n    \"question_type\": \"text\",\n    \"required\": true,\n    \"answer_options\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"other_option\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"question\": \"What's your favorite meal?\",\n    \"question_type\": \"text\",\n    \"trip_uuid\": \"12345678\",\n    \"id\": \"2510177931054358528\",\n    \"required\": true,\n    \"answer_options\": [\n      \"string\",\n      \"string\"\n    ],\n    \"other_option\": false,\n    \"created_at\": 123133\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wetravel.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "381a7804-2c87-459d-9aeb-61575db0bf57",
+    "name": "WeTravel Partner Access token Participant Information API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.",
+      "type": "text/plain"
+    }
+  }
+}

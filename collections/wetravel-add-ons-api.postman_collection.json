@@ -1,0 +1,611 @@
+{
+  "item": [
+    {
+      "id": "742456c8-0af7-458f-bb86-98b2f6862fb6",
+      "name": "Add-ons",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cdbab2e2-dcf3-40b3-ba34-5c0761171286",
+          "name": "Create add-on",
+          "request": {
+            "name": "Create add-on",
+            "description": {
+              "content": "Create Add-on",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"price\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"price_type\": \"<string>\",\n    \"quantity\": \"<integer>\",\n    \"days_before_departure\": 0\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91037108-47a8-442b-8be3-fd6f3509d725",
+              "name": "Successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"name\": \"Special Tour\",\n    \"price\": 2000,\n    \"description\": \"Extra 1 day for hiking\",\n    \"price_type\": \"personal_option\",\n    \"quantity\": 5,\n    \"days_before_departure\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"name\": \"Special Tour\",\n    \"price\": 2000,\n    \"trip_uuid\": \"105544110\",\n    \"id\": \"2510177931054358528\",\n    \"description\": \"Extra 1 day for hiking\",\n    \"price_type\": \"personal_option\",\n    \"quantity\": 5,\n    \"days_before_departure\": 0,\n    \"created_at\": 155564\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "884770c8-cc27-44eb-9a38-7169520d7a7c",
+          "name": "List add-ons",
+          "request": {
+            "name": "List add-ons",
+            "description": {
+              "content": "Get Add-ons",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33c84697-4627-493d-b453-760cb4dbd6ee",
+              "name": "Get Add-ons",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"Special Tour\",\n      \"price\": 2000,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"description\": \"Extra 1 day for hiking\",\n      \"price_type\": \"personal_option\",\n      \"quantity\": 5,\n      \"days_before_departure\": 0,\n      \"created_at\": 155564\n    },\n    {\n      \"name\": \"Special Tour\",\n      \"price\": 2000,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"description\": \"Extra 1 day for hiking\",\n      \"price_type\": \"personal_option\",\n      \"quantity\": 5,\n      \"days_before_departure\": 0,\n      \"created_at\": 155564\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe09179b-1bf8-468f-bb2b-b4dfd8a254c8",
+          "name": "Delete add-on",
+          "request": {
+            "name": "Delete add-on",
+            "description": {
+              "content": "Delete Add-on",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "options",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the add-on"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4b34d20-a6cb-4eed-be82-81177d291a4d",
+              "name": "Delete Add-on",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "options",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the add-on"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3b9c972-5078-486d-9ce6-a0d69d60b7e3",
+          "name": "Get add-on",
+          "request": {
+            "name": "Get add-on",
+            "description": {
+              "content": "Get Add-on",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "options",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the add-on"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd3a4f83-501b-48af-b046-405dee5f1496",
+              "name": "Get Add-on",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "options",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the add-on"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"name\": \"Special Tour\",\n    \"price\": 2000,\n    \"trip_uuid\": \"105544110\",\n    \"id\": \"2510177931054358528\",\n    \"description\": \"Extra 1 day for hiking\",\n    \"price_type\": \"personal_option\",\n    \"quantity\": 5,\n    \"days_before_departure\": 0,\n    \"created_at\": 155564\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff50ff1f-0a2b-4d84-9e37-77945872eb30",
+          "name": "Update add-on",
+          "request": {
+            "name": "Update add-on",
+            "description": {
+              "content": "Update Add-on",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "options",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the add-on"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"price\": \"<integer>\",\n    \"price_type\": \"<string>\",\n    \"quantity\": \"<integer>\",\n    \"days_before_departure\": 0\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe530ce3-95fa-4928-9914-2c5bc61cdea1",
+              "name": "Successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "options",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the add-on"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"name\": \"Special Tour\",\n    \"description\": \"Extra 1 day for hiking\",\n    \"price\": 2000,\n    \"price_type\": \"personal_option\",\n    \"quantity\": 5,\n    \"days_before_departure\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"name\": \"Special Tour\",\n    \"price\": 2000,\n    \"trip_uuid\": \"105544110\",\n    \"id\": \"2510177931054358528\",\n    \"description\": \"Extra 1 day for hiking\",\n    \"price_type\": \"personal_option\",\n    \"quantity\": 5,\n    \"days_before_departure\": 0,\n    \"created_at\": 155564\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wetravel.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "02f297e3-53e5-41be-b8a2-7dafcfe9d6f2",
+    "name": "WeTravel Partner Access token Add-ons API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.",
+      "type": "text/plain"
+    }
+  }
+}

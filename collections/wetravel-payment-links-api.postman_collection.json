@@ -1,0 +1,1429 @@
+{
+  "item": [
+    {
+      "id": "9c2e0ca1-7e7b-492f-a0bc-898aafb2d1e5",
+      "name": "Payment Links",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ecfad2a-0c97-4ea0-83eb-e43c8af2c037",
+          "name": "Create payment link",
+          "request": {
+            "name": "Create payment link",
+            "description": {
+              "content": "Create a new payment link",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment_links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "publish_immediately",
+                  "value": "true",
+                  "description": "Whether to publish the payment link immediately upon creation."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"trip\": {\n      \"title\": \"<string>\",\n      \"start_date\": \"<string>\",\n      \"end_date\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"participant_fees\": \"all\",\n      \"trip_id\": \"<string>\"\n    },\n    \"pricing\": {\n      \"price\": \"<double>\",\n      \"days_before_departure\": \"<integer>\",\n      \"payment_plan\": {\n        \"deposit\": \"<double>\",\n        \"allow_auto_payment\": \"<boolean>\",\n        \"allow_partial_payment\": \"<boolean>\",\n        \"installments\": [\n          {\n            \"days_before_departure\": \"<integer>\",\n            \"price\": \"<double>\"\n          },\n          {\n            \"days_before_departure\": \"<integer>\",\n            \"price\": \"<double>\"\n          }\n        ]\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cfa0fb3b-a2e9-4147-a824-19c7e062e6bd",
+              "name": "Successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publish_immediately",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"trip\": {\n      \"title\": \"Amazing London Adventure\",\n      \"trip_id\": \"TRIP20\",\n      \"start_date\": \"2026-05-07\",\n      \"end_date\": \"2026-05-14\",\n      \"currency\": \"USD\",\n      \"participant_fees\": \"all\"\n    },\n    \"pricing\": {\n      \"price\": 800,\n      \"days_before_departure\": 0,\n      \"payment_plan\": {\n        \"allow_auto_payment\": false,\n        \"allow_partial_payment\": false,\n        \"deposit\": 200,\n        \"installments\": [\n          {\n            \"price\": 350,\n            \"days_before_departure\": 60\n          },\n          {\n            \"price\": 250,\n            \"days_before_departure\": 30\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"trip\": {\n      \"uuid\": \"12345678\",\n      \"title\": \"Amazing London Adventure\",\n      \"trip_id\": \"TRIP20\",\n      \"url\": \"https://example.com/trips/123456\",\n      \"defaultImageUrl\": \"https://example.com/trip-123.jpg\",\n      \"start_date\": \"2026-05-07\",\n      \"end_date\": \"2026-05-14\",\n      \"currency\": \"USD\",\n      \"participant_fees\": \"all\"\n    },\n    \"pricing\": {\n      \"price\": 800,\n      \"days_before_departure\": 0,\n      \"payment_plan\": {\n        \"allow_auto_payment\": false,\n        \"allow_partial_payment\": false,\n        \"deposit\": 654,\n        \"installments\": [\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          },\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          }\n        ]\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f647ce9-c695-41b7-bddd-792b0e3d145b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publish_immediately",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"trip\": {\n      \"title\": \"Amazing London Adventure\",\n      \"trip_id\": \"TRIP20\",\n      \"start_date\": \"2026-05-07\",\n      \"end_date\": \"2026-05-14\",\n      \"currency\": \"USD\",\n      \"participant_fees\": \"all\"\n    },\n    \"pricing\": {\n      \"price\": 800,\n      \"days_before_departure\": 0,\n      \"payment_plan\": {\n        \"allow_auto_payment\": false,\n        \"allow_partial_payment\": false,\n        \"deposit\": 200,\n        \"installments\": [\n          {\n            \"price\": 350,\n            \"days_before_departure\": 60\n          },\n          {\n            \"price\": 250,\n            \"days_before_departure\": 30\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"field_name\": [\n      \"is missing\",\n      \"is missing\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f23077af-46a6-4773-a7b3-9cfb5a162dec",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publish_immediately",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"trip\": {\n      \"title\": \"Amazing London Adventure\",\n      \"trip_id\": \"TRIP20\",\n      \"start_date\": \"2026-05-07\",\n      \"end_date\": \"2026-05-14\",\n      \"currency\": \"USD\",\n      \"participant_fees\": \"all\"\n    },\n    \"pricing\": {\n      \"price\": 800,\n      \"days_before_departure\": 0,\n      \"payment_plan\": {\n        \"allow_auto_payment\": false,\n        \"allow_partial_payment\": false,\n        \"deposit\": 200,\n        \"installments\": [\n          {\n            \"price\": 350,\n            \"days_before_departure\": 60\n          },\n          {\n            \"price\": 250,\n            \"days_before_departure\": 30\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"A token is not valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31172c04-2d4b-4498-95af-716944b0475d",
+          "name": "List payment links",
+          "request": {
+            "name": "List payment links",
+            "description": {
+              "content": "Get the list of all payment links",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment_links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "1000",
+                  "description": "Number of trips per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (minimum:1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "publish_status",
+                  "value": "published",
+                  "description": "Filter payment links by publish status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f50bd4fc-d6f2-41be-8373-0730855559d2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "publish_status",
+                      "value": "published"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"trip\": {\n        \"uuid\": \"12345678\",\n        \"title\": \"Amazing London Adventure\",\n        \"trip_id\": \"TRIP20\",\n        \"url\": \"https://example.com/trips/123456\",\n        \"defaultImageUrl\": \"https://example.com/trip-123.jpg\",\n        \"start_date\": \"2026-05-07\",\n        \"end_date\": \"2026-05-14\",\n        \"currency\": \"USD\",\n        \"participant_fees\": \"all\"\n      },\n      \"pricing\": {\n        \"price\": 800,\n        \"days_before_departure\": 0,\n        \"payment_plan\": {\n          \"allow_auto_payment\": false,\n          \"allow_partial_payment\": false,\n          \"deposit\": 654,\n          \"installments\": [\n            {\n              \"days_before_departure\": 60,\n              \"price\": 145.99\n            },\n            {\n              \"days_before_departure\": 60,\n              \"price\": 145.99\n            }\n          ]\n        }\n      }\n    },\n    {\n      \"trip\": {\n        \"uuid\": \"12345678\",\n        \"title\": \"Amazing London Adventure\",\n        \"trip_id\": \"TRIP20\",\n        \"url\": \"https://example.com/trips/123456\",\n        \"defaultImageUrl\": \"https://example.com/trip-123.jpg\",\n        \"start_date\": \"2026-05-07\",\n        \"end_date\": \"2026-05-14\",\n        \"currency\": \"USD\",\n        \"participant_fees\": \"all\"\n      },\n      \"pricing\": {\n        \"price\": 800,\n        \"days_before_departure\": 0,\n        \"payment_plan\": {\n          \"allow_auto_payment\": false,\n          \"allow_partial_payment\": false,\n          \"deposit\": 654,\n          \"installments\": [\n            {\n              \"days_before_departure\": 60,\n              \"price\": 145.99\n            },\n            {\n              \"days_before_departure\": 60,\n              \"price\": 145.99\n            }\n          ]\n        }\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total_count\": 1,\n    \"page\": 1,\n    \"per_page\": 20,\n    \"total_pages\": 1,\n    \"has_previous\": false,\n    \"has_next\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16c5896a-3896-4ee8-b4c2-3a16bc171182",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "publish_status",
+                      "value": "published"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"A token is not valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9197cd5-a0d4-4495-84a9-14f74b447164",
+          "name": "Delete payment link",
+          "request": {
+            "name": "Delete payment link",
+            "description": {
+              "content": "Delete a payment link",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment_links",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) UUID of the payment link"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f4d2fcc-23c4-4bae-9d67-6d60e4ea4a60",
+              "name": "Successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac4e9de2-156d-4c4d-8e83-f97262366af6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"A token is not valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a7c16ae-2ef0-4236-a4b4-a2be737bf1b9",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Payment Link {uuid} not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9ef985a-57d7-4425-9d0e-c31840e95aec",
+          "name": "Get payment link",
+          "request": {
+            "name": "Get payment link",
+            "description": {
+              "content": "Get a payment link by UUID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment_links",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "publish_status",
+                  "value": "published",
+                  "description": "Filter payment link by publish status"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) UUID of the payment link"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f98e65f5-44e7-4872-9c4c-4c06b478ccbb",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publish_status",
+                      "value": "published"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"trip\": {\n      \"uuid\": \"12345678\",\n      \"title\": \"Amazing London Adventure\",\n      \"trip_id\": \"TRIP20\",\n      \"url\": \"https://example.com/trips/123456\",\n      \"defaultImageUrl\": \"https://example.com/trip-123.jpg\",\n      \"start_date\": \"2026-05-07\",\n      \"end_date\": \"2026-05-14\",\n      \"currency\": \"USD\",\n      \"participant_fees\": \"all\"\n    },\n    \"pricing\": {\n      \"price\": 800,\n      \"days_before_departure\": 0,\n      \"payment_plan\": {\n        \"allow_auto_payment\": false,\n        \"allow_partial_payment\": false,\n        \"deposit\": 654,\n        \"installments\": [\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          },\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          }\n        ]\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b01f4a22-8991-4339-9681-1168afe9dfd4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publish_status",
+                      "value": "published"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"A token is not valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d906a67d-31c5-45c1-80c9-da2fe24b1808",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publish_status",
+                      "value": "published"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Payment Link {uuid} not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5821787d-1b2d-41ba-ae87-dfaca22ce4d7",
+          "name": "Update payment link",
+          "request": {
+            "name": "Update payment link",
+            "description": {
+              "content": "Update a payment link",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment_links",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "publish_immediately",
+                  "value": "true",
+                  "description": "Whether to publish the payment link immediately upon update"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) UUID of the payment link"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"trip\": {\n      \"title\": \"<string>\",\n      \"trip_id\": \"<string>\",\n      \"start_date\": \"<string>\",\n      \"end_date\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"participant_fees\": \"<string>\"\n    },\n    \"pricing\": {\n      \"price\": \"<double>\",\n      \"days_before_departure\": \"<integer>\",\n      \"payment_plan\": {\n        \"deposit\": \"<double>\",\n        \"allow_auto_payment\": \"<boolean>\",\n        \"allow_partial_payment\": \"<boolean>\",\n        \"installments\": [\n          {\n            \"days_before_departure\": \"<integer>\",\n            \"price\": \"<double>\"\n          },\n          {\n            \"days_before_departure\": \"<integer>\",\n            \"price\": \"<double>\"\n          }\n        ]\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8f965f1b-18f5-4e0e-ac9c-c8b889c05e21",
+              "name": "Successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publish_immediately",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"trip\": {\n      \"title\": \"Updated London Adventure\",\n      \"trip_id\": \"TRIP21\",\n      \"start_date\": \"2026-06-01\",\n      \"end_date\": \"2026-06-08\",\n      \"currency\": \"EUR\",\n      \"participant_fees\": \"all\"\n    },\n    \"pricing\": {\n      \"price\": 950,\n      \"days_before_departure\": 7,\n      \"payment_plan\": {\n        \"allow_auto_payment\": false,\n        \"allow_partial_payment\": false,\n        \"deposit\": 250,\n        \"installments\": [\n          {\n            \"price\": 400,\n            \"days_before_departure\": 45\n          },\n          {\n            \"price\": 300,\n            \"days_before_departure\": 15\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"trip\": {\n      \"uuid\": \"12345678\",\n      \"title\": \"Amazing London Adventure\",\n      \"trip_id\": \"TRIP20\",\n      \"url\": \"https://example.com/trips/123456\",\n      \"defaultImageUrl\": \"https://example.com/trip-123.jpg\",\n      \"start_date\": \"2026-05-07\",\n      \"end_date\": \"2026-05-14\",\n      \"currency\": \"USD\",\n      \"participant_fees\": \"all\"\n    },\n    \"pricing\": {\n      \"price\": 800,\n      \"days_before_departure\": 0,\n      \"payment_plan\": {\n        \"allow_auto_payment\": false,\n        \"allow_partial_payment\": false,\n        \"deposit\": 654,\n        \"installments\": [\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          },\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          }\n        ]\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "274d2c9f-dc7e-439f-b96c-c8033f90b55a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publish_immediately",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"trip\": {\n      \"title\": \"Updated London Adventure\",\n      \"trip_id\": \"TRIP21\",\n      \"start_date\": \"2026-06-01\",\n      \"end_date\": \"2026-06-08\",\n      \"currency\": \"EUR\",\n      \"participant_fees\": \"all\"\n    },\n    \"pricing\": {\n      \"price\": 950,\n      \"days_before_departure\": 7,\n      \"payment_plan\": {\n        \"allow_auto_payment\": false,\n        \"allow_partial_payment\": false,\n        \"deposit\": 250,\n        \"installments\": [\n          {\n            \"price\": 400,\n            \"days_before_departure\": 45\n          },\n          {\n            \"price\": 300,\n            \"days_before_departure\": 15\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"field_name\": [\n      \"is missing\",\n      \"is missing\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da8d6ee4-3458-4c66-a2d9-3042fe34aa69",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publish_immediately",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"trip\": {\n      \"title\": \"Updated London Adventure\",\n      \"trip_id\": \"TRIP21\",\n      \"start_date\": \"2026-06-01\",\n      \"end_date\": \"2026-06-08\",\n      \"currency\": \"EUR\",\n      \"participant_fees\": \"all\"\n    },\n    \"pricing\": {\n      \"price\": 950,\n      \"days_before_departure\": 7,\n      \"payment_plan\": {\n        \"allow_auto_payment\": false,\n        \"allow_partial_payment\": false,\n        \"deposit\": 250,\n        \"installments\": [\n          {\n            \"price\": 400,\n            \"days_before_departure\": 45\n          },\n          {\n            \"price\": 300,\n            \"days_before_departure\": 15\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"A token is not valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd986b56-934e-49bf-a713-792ef923a02f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "publish_immediately",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"trip\": {\n      \"title\": \"Updated London Adventure\",\n      \"trip_id\": \"TRIP21\",\n      \"start_date\": \"2026-06-01\",\n      \"end_date\": \"2026-06-08\",\n      \"currency\": \"EUR\",\n      \"participant_fees\": \"all\"\n    },\n    \"pricing\": {\n      \"price\": 950,\n      \"days_before_departure\": 7,\n      \"payment_plan\": {\n        \"allow_auto_payment\": false,\n        \"allow_partial_payment\": false,\n        \"deposit\": 250,\n        \"installments\": [\n          {\n            \"price\": 400,\n            \"days_before_departure\": 45\n          },\n          {\n            \"price\": 300,\n            \"days_before_departure\": 15\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Payment Link {uuid} not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc9bcef6-13cd-4fb4-84ff-9a010bcafcd3",
+          "name": "Publish payment link",
+          "request": {
+            "name": "Publish payment link",
+            "description": {
+              "content": "Publish Payment Link",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment_links",
+                ":uuid",
+                "publish"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) UUID of the payment link"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83e1dada-7ac3-463c-a1a4-4e7b813f8e3c",
+              "name": "Successfully published",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"trip\": {\n      \"uuid\": \"12345678\",\n      \"title\": \"Amazing London Adventure\",\n      \"trip_id\": \"TRIP20\",\n      \"url\": \"https://example.com/trips/123456\",\n      \"defaultImageUrl\": \"https://example.com/trip-123.jpg\",\n      \"start_date\": \"2026-05-07\",\n      \"end_date\": \"2026-05-14\",\n      \"currency\": \"USD\",\n      \"participant_fees\": \"all\"\n    },\n    \"pricing\": {\n      \"price\": 800,\n      \"days_before_departure\": 0,\n      \"payment_plan\": {\n        \"allow_auto_payment\": false,\n        \"allow_partial_payment\": false,\n        \"deposit\": 654,\n        \"installments\": [\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          },\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          }\n        ]\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01b17823-a963-4d9b-8a81-dadca6532d95",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid request or validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6bb0e7c-fe04-4ae3-b9ac-6c3a969c13f3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"A token is not valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd9fa143-4bdd-4ae8-a976-61c3a82a43c6",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_links",
+                    ":uuid",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) UUID of the payment link"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Payment Link {uuid} not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wetravel.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f0e6a333-6f82-4c60-8dbe-f70dec1690c4",
+    "name": "WeTravel Partner Access token Payment Links API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.",
+      "type": "text/plain"
+    }
+  }
+}

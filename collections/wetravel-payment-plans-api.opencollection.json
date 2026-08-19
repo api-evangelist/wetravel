@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WeTravel Partner Access token Payment Plans API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get add-on payment plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/options/:option_id/payment_plan",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "option_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the add-on"
+              }
+            ]
+          },
+          "docs": "Get payment plan for the add-on"
+        },
+        {
+          "info": {
+            "name": "Create or update add-on payment plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/options/:option_id/payment_plan",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "option_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the add-on"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new payment plan or update the existing one for the add-on"
+        },
+        {
+          "info": {
+            "name": "Delete add-on payment plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/options/:option_id/payment_plan",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "option_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the add-on"
+              }
+            ]
+          },
+          "docs": "Delete payment plan for the add-on"
+        },
+        {
+          "info": {
+            "name": "Get package payment plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/packages/:package_id/payment_plan",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "package_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the package"
+              }
+            ]
+          },
+          "docs": "Get payment plan for the package"
+        },
+        {
+          "info": {
+            "name": "Create or update package payment plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/packages/:package_id/payment_plan",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "package_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the package"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new payment plan or update the existing one for the package"
+        },
+        {
+          "info": {
+            "name": "Delete package payment plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/packages/:package_id/payment_plan",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "package_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the package"
+              }
+            ]
+          },
+          "docs": "Delete payment plan for the package"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

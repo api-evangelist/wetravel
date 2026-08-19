@@ -1,0 +1,849 @@
+{
+  "item": [
+    {
+      "id": "697e1b11-f955-4647-9ac1-7ea0f4c4c337",
+      "name": "Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4df0e086-97a7-4407-9feb-acae09a7f532",
+          "name": "Edit payment plan for an order",
+          "request": {
+            "name": "Edit payment plan for an order",
+            "description": {
+              "content": "Edit payment plan for an existing order",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                "orders",
+                ":order_id",
+                "edit_payment_plan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) order identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_plan\": {\n    \"allow_partial_payment\": true,\n    \"enable_auto_payment\": true,\n    \"deposit\": \"<integer>\",\n    \"installments\": [\n      {\n        \"days_before_departure\": \"<integer>\",\n        \"price\": \"<double>\"\n      },\n      {\n        \"days_before_departure\": \"<integer>\",\n        \"price\": \"<double>\"\n      }\n    ]\n  },\n  \"notification_message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1f4dcecb-5fdc-4e67-9637-11fa2176f681",
+              "name": "Get Trip Order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    "orders",
+                    ":order_id",
+                    "edit_payment_plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_plan\": {\n    \"allow_partial_payment\": true,\n    \"enable_auto_payment\": true,\n    \"deposit\": 150,\n    \"installments\": [\n      {\n        \"days_before_departure\": 60,\n        \"price\": 145.99\n      },\n      {\n        \"days_before_departure\": 60,\n        \"price\": 145.99\n      }\n    ]\n  },\n  \"notification_message\": \"Hello, this is a notification message\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pending_amount\": 0,\n  \"paid_amount\": 200000,\n  \"failed_amount\": 0,\n  \"disputed_amount\": 0,\n  \"cash_amount\": 0,\n  \"refunded_amount\": 100000,\n  \"cash_refunded_amount\": 0,\n  \"adjusted_amount\": 0,\n  \"due_amount\": 0,\n  \"past_due_amount\": 0,\n  \"due_later_amount\": 0,\n  \"total_due_amount\": 0,\n  \"total_amount\": 100000,\n  \"total_next_installment\": 0,\n  \"id\": \"string\",\n  \"rebooked_from_order_id\": \"string\",\n  \"trip_uuid\": \"string\",\n  \"buyer_id\": 1,\n  \"trip_length\": 8,\n  \"departure_date\": \"2021-08-14T00:00:00.000Z\",\n  \"currency\": \"EUR\",\n  \"total_deposit_due\": 0,\n  \"overpaid_amount\": 100000,\n  \"already_paid\": 200000,\n  \"has_payment_plan\": true,\n  \"allow_auto_payment\": false,\n  \"allow_partial_payment\": true,\n  \"active_participants_count\": 1,\n  \"cancelled_participants_count\": 0,\n  \"created_at\": \"2021-07-30T09:55:46.000Z\",\n  \"esign_document\": {\n    \"document_id\": 3126680263958200300,\n    \"signed_at\": \"2021-07-30T09:55:46.000Z\"\n  },\n  \"options\": [\n    {\n      \"name\": \"Special Tour\",\n      \"price\": 2000,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"description\": \"Extra 1 day for hiking\",\n      \"price_type\": \"personal_option\",\n      \"quantity\": 5,\n      \"days_before_departure\": 0,\n      \"created_at\": 155564\n    },\n    {\n      \"name\": \"Special Tour\",\n      \"price\": 2000,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"description\": \"Extra 1 day for hiking\",\n      \"price_type\": \"personal_option\",\n      \"quantity\": 5,\n      \"days_before_departure\": 0,\n      \"created_at\": 155564\n    }\n  ],\n  \"donations\": [\n    {\n      \"id\": \"string\",\n      \"price\": 100000,\n      \"name\": \"Carbon Offset\",\n      \"type\": \"Carbon Offset\",\n      \"active_count\": 1,\n      \"amount\": 5000\n    },\n    {\n      \"id\": \"string\",\n      \"price\": 100000,\n      \"name\": \"Carbon Offset\",\n      \"type\": \"Carbon Offset\",\n      \"active_count\": 1,\n      \"amount\": 5000\n    }\n  ],\n  \"installments\": [\n    {\n      \"days_before_departure\": 60,\n      \"price\": 145.99\n    },\n    {\n      \"days_before_departure\": 60,\n      \"price\": 145.99\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4804c6b3-63b3-4ecb-8a72-2b55301797fa",
+          "name": "Edit payment plans for multiple orders",
+          "request": {
+            "name": "Edit payment plans for multiple orders",
+            "description": {
+              "content": "Edit payment plan for an existing order",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                "orders",
+                "batch",
+                "edit_payment_plan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"batches\": [\n    {\n      \"order_id\": \"<string>\",\n      \"payment_plan\": {\n        \"allow_partial_payment\": true,\n        \"enable_auto_payment\": true,\n        \"deposit\": \"<integer>\",\n        \"installments\": [\n          {\n            \"days_before_departure\": \"<integer>\",\n            \"price\": \"<double>\"\n          },\n          {\n            \"days_before_departure\": \"<integer>\",\n            \"price\": \"<double>\"\n          }\n        ]\n      },\n      \"notification_message\": \"<string>\"\n    },\n    {\n      \"order_id\": \"<string>\",\n      \"payment_plan\": {\n        \"allow_partial_payment\": true,\n        \"enable_auto_payment\": true,\n        \"deposit\": \"<integer>\",\n        \"installments\": [\n          {\n            \"days_before_departure\": \"<integer>\",\n            \"price\": \"<double>\"\n          },\n          {\n            \"days_before_departure\": \"<integer>\",\n            \"price\": \"<double>\"\n          }\n        ]\n      },\n      \"notification_message\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5278a65f-4df4-47ea-8e6d-b3cbdd79151a",
+              "name": "Get Trip Order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    "orders",
+                    "batch",
+                    "edit_payment_plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"batches\": [\n    {\n      \"order_id\": \"<string>\",\n      \"payment_plan\": {\n        \"allow_partial_payment\": true,\n        \"enable_auto_payment\": true,\n        \"deposit\": 150,\n        \"installments\": [\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          },\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          }\n        ]\n      },\n      \"notification_message\": \"Hello, this is a notification message\"\n    },\n    {\n      \"order_id\": \"<string>\",\n      \"payment_plan\": {\n        \"allow_partial_payment\": true,\n        \"enable_auto_payment\": true,\n        \"deposit\": 150,\n        \"installments\": [\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          },\n          {\n            \"days_before_departure\": 60,\n            \"price\": 145.99\n          }\n        ]\n      },\n      \"notification_message\": \"Hello, this is a notification message\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"successful_count\": 1,\n  \"failed_count\": 0,\n  \"data\": [\n    {\n      \"pending_amount\": 0,\n      \"paid_amount\": 200000,\n      \"failed_amount\": 0,\n      \"disputed_amount\": 0,\n      \"cash_amount\": 0,\n      \"refunded_amount\": 100000,\n      \"cash_refunded_amount\": 0,\n      \"adjusted_amount\": 0,\n      \"due_amount\": 0,\n      \"past_due_amount\": 0,\n      \"due_later_amount\": 0,\n      \"total_due_amount\": 0,\n      \"total_amount\": 100000,\n      \"total_next_installment\": 0,\n      \"id\": \"string\",\n      \"rebooked_from_order_id\": \"string\",\n      \"trip_uuid\": \"string\",\n      \"buyer_id\": 1,\n      \"trip_length\": 8,\n      \"departure_date\": \"2021-08-14T00:00:00.000Z\",\n      \"currency\": \"EUR\",\n      \"total_deposit_due\": 0,\n      \"overpaid_amount\": 100000,\n      \"already_paid\": 200000,\n      \"has_payment_plan\": true,\n      \"allow_auto_payment\": false,\n      \"allow_partial_payment\": true,\n      \"active_participants_count\": 1,\n      \"cancelled_participants_count\": 0,\n      \"created_at\": \"2021-07-30T09:55:46.000Z\",\n      \"esign_document\": {\n        \"document_id\": 3126680263958200300,\n        \"signed_at\": \"2021-07-30T09:55:46.000Z\"\n      },\n      \"options\": [\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        },\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        }\n      ],\n      \"donations\": [\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        },\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        }\n      ],\n      \"installments\": [\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        },\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        }\n      ]\n    },\n    {\n      \"pending_amount\": 0,\n      \"paid_amount\": 200000,\n      \"failed_amount\": 0,\n      \"disputed_amount\": 0,\n      \"cash_amount\": 0,\n      \"refunded_amount\": 100000,\n      \"cash_refunded_amount\": 0,\n      \"adjusted_amount\": 0,\n      \"due_amount\": 0,\n      \"past_due_amount\": 0,\n      \"due_later_amount\": 0,\n      \"total_due_amount\": 0,\n      \"total_amount\": 100000,\n      \"total_next_installment\": 0,\n      \"id\": \"string\",\n      \"rebooked_from_order_id\": \"string\",\n      \"trip_uuid\": \"string\",\n      \"buyer_id\": 1,\n      \"trip_length\": 8,\n      \"departure_date\": \"2021-08-14T00:00:00.000Z\",\n      \"currency\": \"EUR\",\n      \"total_deposit_due\": 0,\n      \"overpaid_amount\": 100000,\n      \"already_paid\": 200000,\n      \"has_payment_plan\": true,\n      \"allow_auto_payment\": false,\n      \"allow_partial_payment\": true,\n      \"active_participants_count\": 1,\n      \"cancelled_participants_count\": 0,\n      \"created_at\": \"2021-07-30T09:55:46.000Z\",\n      \"esign_document\": {\n        \"document_id\": 3126680263958200300,\n        \"signed_at\": \"2021-07-30T09:55:46.000Z\"\n      },\n      \"options\": [\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        },\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        }\n      ],\n      \"donations\": [\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        },\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        }\n      ],\n      \"installments\": [\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        },\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"message\": \"Order not found\"\n    },\n    {\n      \"message\": \"Order not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c60de4d-3efc-4370-bed2-2a988bdcc317",
+          "name": "Get an order",
+          "request": {
+            "name": "Get an order",
+            "description": {
+              "content": "Get an order",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                "trips",
+                ":trip_uuid",
+                "orders",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) Trip Uuid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) Order ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4be542ae-3b77-425b-902a-ed4579ba1bf6",
+              "name": "Get Trip Order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    "trips",
+                    ":trip_uuid",
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) Trip Uuid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pending_amount\": 0,\n  \"paid_amount\": 200000,\n  \"failed_amount\": 0,\n  \"disputed_amount\": 0,\n  \"cash_amount\": 0,\n  \"refunded_amount\": 100000,\n  \"cash_refunded_amount\": 0,\n  \"adjusted_amount\": 0,\n  \"due_amount\": 0,\n  \"past_due_amount\": 0,\n  \"due_later_amount\": 0,\n  \"total_due_amount\": 0,\n  \"total_amount\": 100000,\n  \"total_next_installment\": 0,\n  \"id\": \"string\",\n  \"rebooked_from_order_id\": \"string\",\n  \"trip_uuid\": \"string\",\n  \"buyer_id\": 1,\n  \"trip_length\": 8,\n  \"departure_date\": \"2021-08-14T00:00:00.000Z\",\n  \"currency\": \"EUR\",\n  \"total_deposit_due\": 0,\n  \"overpaid_amount\": 100000,\n  \"already_paid\": 200000,\n  \"has_payment_plan\": true,\n  \"allow_auto_payment\": false,\n  \"allow_partial_payment\": true,\n  \"active_participants_count\": 1,\n  \"cancelled_participants_count\": 0,\n  \"created_at\": \"2021-07-30T09:55:46.000Z\",\n  \"esign_document\": {\n    \"document_id\": 3126680263958200300,\n    \"signed_at\": \"2021-07-30T09:55:46.000Z\"\n  },\n  \"options\": [\n    {\n      \"name\": \"Special Tour\",\n      \"price\": 2000,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"description\": \"Extra 1 day for hiking\",\n      \"price_type\": \"personal_option\",\n      \"quantity\": 5,\n      \"days_before_departure\": 0,\n      \"created_at\": 155564\n    },\n    {\n      \"name\": \"Special Tour\",\n      \"price\": 2000,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"description\": \"Extra 1 day for hiking\",\n      \"price_type\": \"personal_option\",\n      \"quantity\": 5,\n      \"days_before_departure\": 0,\n      \"created_at\": 155564\n    }\n  ],\n  \"donations\": [\n    {\n      \"id\": \"string\",\n      \"price\": 100000,\n      \"name\": \"Carbon Offset\",\n      \"type\": \"Carbon Offset\",\n      \"active_count\": 1,\n      \"amount\": 5000\n    },\n    {\n      \"id\": \"string\",\n      \"price\": 100000,\n      \"name\": \"Carbon Offset\",\n      \"type\": \"Carbon Offset\",\n      \"active_count\": 1,\n      \"amount\": 5000\n    }\n  ],\n  \"installments\": [\n    {\n      \"days_before_departure\": 60,\n      \"price\": 145.99\n    },\n    {\n      \"days_before_departure\": 60,\n      \"price\": 145.99\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2625d4e7-6db4-4eb5-8359-e65c3fb7a143",
+          "name": "List orders",
+          "request": {
+            "name": "List orders",
+            "description": {
+              "content": "Get a list of trip orders",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                "trips",
+                ":trip_uuid",
+                "bookings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page Number"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) Trip Uuid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "594f2898-61b5-4a94-959f-8c49f35752f5",
+              "name": "Get a list of trip orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    "trips",
+                    ":trip_uuid",
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) Trip Uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"pending_amount\": 0,\n      \"paid_amount\": 200000,\n      \"failed_amount\": 0,\n      \"disputed_amount\": 0,\n      \"cash_amount\": 0,\n      \"refunded_amount\": 100000,\n      \"cash_refunded_amount\": 0,\n      \"adjusted_amount\": 0,\n      \"due_amount\": 0,\n      \"past_due_amount\": 0,\n      \"due_later_amount\": 0,\n      \"total_due_amount\": 0,\n      \"total_amount\": 100000,\n      \"buyer_id\": 1,\n      \"departure_date\": \"2021-08-14T00:00:00.000Z\",\n      \"active_count\": 1,\n      \"cancelled_count\": 0,\n      \"has_bookings_with_plan\": true,\n      \"has_bookings_without_plan\": false,\n      \"created_at\": \"2021-07-30T09:55:46.000Z\",\n      \"trip_package_ids\": [\n        \"2354579505229986943\",\n        \"2354579505229986943\"\n      ],\n      \"buyer\": {\n        \"id\": 1,\n        \"email\": \"maksym+local@wetravel.com\",\n        \"full_name\": \"Maks Local\"\n      }\n    },\n    {\n      \"pending_amount\": 0,\n      \"paid_amount\": 200000,\n      \"failed_amount\": 0,\n      \"disputed_amount\": 0,\n      \"cash_amount\": 0,\n      \"refunded_amount\": 100000,\n      \"cash_refunded_amount\": 0,\n      \"adjusted_amount\": 0,\n      \"due_amount\": 0,\n      \"past_due_amount\": 0,\n      \"due_later_amount\": 0,\n      \"total_due_amount\": 0,\n      \"total_amount\": 100000,\n      \"buyer_id\": 1,\n      \"departure_date\": \"2021-08-14T00:00:00.000Z\",\n      \"active_count\": 1,\n      \"cancelled_count\": 0,\n      \"has_bookings_with_plan\": true,\n      \"has_bookings_without_plan\": false,\n      \"created_at\": \"2021-07-30T09:55:46.000Z\",\n      \"trip_package_ids\": [\n        \"2354579505229986943\",\n        \"2354579505229986943\"\n      ],\n      \"buyer\": {\n        \"id\": 1,\n        \"email\": \"maksym+local@wetravel.com\",\n        \"full_name\": \"Maks Local\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total_count\": 1,\n    \"page\": 1,\n    \"per_page\": 20,\n    \"total_pages\": 1,\n    \"has_previous\": false,\n    \"has_next\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "edca9fef-35ed-46cd-aa71-7d07d2dfad63",
+          "name": "List a buyer's orders",
+          "request": {
+            "name": "List a buyer's orders",
+            "description": {
+              "content": "Get a list of trip orders for a buyer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                "trips",
+                ":trip_uuid",
+                "bookings",
+                ":buyer_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "departure_date",
+                  "value": "<date>",
+                  "description": "Departure date"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) Trip Uuid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "buyer_id",
+                  "description": "(Required) Id of the buyer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9283c76a-0ddd-4267-8bff-7029ea297167",
+              "name": "Get a list of trip orders for a buyer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    "trips",
+                    ":trip_uuid",
+                    "bookings",
+                    ":buyer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "departure_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) Trip Uuid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "buyer_id",
+                      "description": "(Required) Id of the buyer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"buyer_id\": 1,\n  \"buyer\": {\n    \"id\": 1,\n    \"email\": \"maksym+local@wetravel.com\",\n    \"full_name\": \"Maks Local\"\n  },\n  \"orders\": [\n    {\n      \"pending_amount\": 0,\n      \"paid_amount\": 200000,\n      \"failed_amount\": 0,\n      \"disputed_amount\": 0,\n      \"cash_amount\": 0,\n      \"refunded_amount\": 100000,\n      \"cash_refunded_amount\": 0,\n      \"adjusted_amount\": 0,\n      \"due_amount\": 0,\n      \"past_due_amount\": 0,\n      \"due_later_amount\": 0,\n      \"total_due_amount\": 0,\n      \"total_amount\": 100000,\n      \"total_next_installment\": 0,\n      \"id\": \"string\",\n      \"rebooked_from_order_id\": \"string\",\n      \"trip_uuid\": \"string\",\n      \"buyer_id\": 1,\n      \"trip_length\": 8,\n      \"departure_date\": \"2021-08-14T00:00:00.000Z\",\n      \"currency\": \"EUR\",\n      \"total_deposit_due\": 0,\n      \"overpaid_amount\": 100000,\n      \"already_paid\": 200000,\n      \"has_payment_plan\": true,\n      \"allow_auto_payment\": false,\n      \"allow_partial_payment\": true,\n      \"active_participants_count\": 1,\n      \"cancelled_participants_count\": 0,\n      \"created_at\": \"2021-07-30T09:55:46.000Z\",\n      \"esign_document\": {\n        \"document_id\": 3126680263958200300,\n        \"signed_at\": \"2021-07-30T09:55:46.000Z\"\n      },\n      \"options\": [\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        },\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        }\n      ],\n      \"donations\": [\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        },\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        }\n      ],\n      \"installments\": [\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        },\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        }\n      ]\n    },\n    {\n      \"pending_amount\": 0,\n      \"paid_amount\": 200000,\n      \"failed_amount\": 0,\n      \"disputed_amount\": 0,\n      \"cash_amount\": 0,\n      \"refunded_amount\": 100000,\n      \"cash_refunded_amount\": 0,\n      \"adjusted_amount\": 0,\n      \"due_amount\": 0,\n      \"past_due_amount\": 0,\n      \"due_later_amount\": 0,\n      \"total_due_amount\": 0,\n      \"total_amount\": 100000,\n      \"total_next_installment\": 0,\n      \"id\": \"string\",\n      \"rebooked_from_order_id\": \"string\",\n      \"trip_uuid\": \"string\",\n      \"buyer_id\": 1,\n      \"trip_length\": 8,\n      \"departure_date\": \"2021-08-14T00:00:00.000Z\",\n      \"currency\": \"EUR\",\n      \"total_deposit_due\": 0,\n      \"overpaid_amount\": 100000,\n      \"already_paid\": 200000,\n      \"has_payment_plan\": true,\n      \"allow_auto_payment\": false,\n      \"allow_partial_payment\": true,\n      \"active_participants_count\": 1,\n      \"cancelled_participants_count\": 0,\n      \"created_at\": \"2021-07-30T09:55:46.000Z\",\n      \"esign_document\": {\n        \"document_id\": 3126680263958200300,\n        \"signed_at\": \"2021-07-30T09:55:46.000Z\"\n      },\n      \"options\": [\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        },\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        }\n      ],\n      \"donations\": [\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        },\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        }\n      ],\n      \"installments\": [\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        },\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "268bfd4e-7bb6-4bbf-bd16-3dd1b1816dad",
+          "name": "Set a custom price for an order",
+          "request": {
+            "name": "Set a custom price for an order",
+            "description": {
+              "content": "Set custom price for an order (if there is a payment plan for this order, the amounts of its payments will be adjusted automatically)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                "orders",
+                ":order_id",
+                "set_custom_price"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) Order ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"option_id\": \"<integer>\",\n  \"price\": \"<integer>\",\n  \"notification_message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b197b256-5f57-438b-92b4-ac62eb72fe9f",
+              "name": "Get Trip Order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    "orders",
+                    ":order_id",
+                    "set_custom_price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"option_id\": \"<integer>\",\n  \"price\": 100000,\n  \"notification_message\": \"Hello, this is a notification message\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pending_amount\": 0,\n  \"paid_amount\": 200000,\n  \"failed_amount\": 0,\n  \"disputed_amount\": 0,\n  \"cash_amount\": 0,\n  \"refunded_amount\": 100000,\n  \"cash_refunded_amount\": 0,\n  \"adjusted_amount\": 0,\n  \"due_amount\": 0,\n  \"past_due_amount\": 0,\n  \"due_later_amount\": 0,\n  \"total_due_amount\": 0,\n  \"total_amount\": 100000,\n  \"total_next_installment\": 0,\n  \"id\": \"string\",\n  \"rebooked_from_order_id\": \"string\",\n  \"trip_uuid\": \"string\",\n  \"buyer_id\": 1,\n  \"trip_length\": 8,\n  \"departure_date\": \"2021-08-14T00:00:00.000Z\",\n  \"currency\": \"EUR\",\n  \"total_deposit_due\": 0,\n  \"overpaid_amount\": 100000,\n  \"already_paid\": 200000,\n  \"has_payment_plan\": true,\n  \"allow_auto_payment\": false,\n  \"allow_partial_payment\": true,\n  \"active_participants_count\": 1,\n  \"cancelled_participants_count\": 0,\n  \"created_at\": \"2021-07-30T09:55:46.000Z\",\n  \"esign_document\": {\n    \"document_id\": 3126680263958200300,\n    \"signed_at\": \"2021-07-30T09:55:46.000Z\"\n  },\n  \"options\": [\n    {\n      \"name\": \"Special Tour\",\n      \"price\": 2000,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"description\": \"Extra 1 day for hiking\",\n      \"price_type\": \"personal_option\",\n      \"quantity\": 5,\n      \"days_before_departure\": 0,\n      \"created_at\": 155564\n    },\n    {\n      \"name\": \"Special Tour\",\n      \"price\": 2000,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"description\": \"Extra 1 day for hiking\",\n      \"price_type\": \"personal_option\",\n      \"quantity\": 5,\n      \"days_before_departure\": 0,\n      \"created_at\": 155564\n    }\n  ],\n  \"donations\": [\n    {\n      \"id\": \"string\",\n      \"price\": 100000,\n      \"name\": \"Carbon Offset\",\n      \"type\": \"Carbon Offset\",\n      \"active_count\": 1,\n      \"amount\": 5000\n    },\n    {\n      \"id\": \"string\",\n      \"price\": 100000,\n      \"name\": \"Carbon Offset\",\n      \"type\": \"Carbon Offset\",\n      \"active_count\": 1,\n      \"amount\": 5000\n    }\n  ],\n  \"installments\": [\n    {\n      \"days_before_departure\": 60,\n      \"price\": 145.99\n    },\n    {\n      \"days_before_departure\": 60,\n      \"price\": 145.99\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c09ab3b8-c031-4dda-b36e-cf4cfa9682c1",
+          "name": "Set custom prices for multiple orders",
+          "request": {
+            "name": "Set custom prices for multiple orders",
+            "description": {
+              "content": "Set custom price for array of orders (if there is a payment plan for this order, the amounts of its payments will be adjusted automatically)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                "orders",
+                "batch",
+                "set_custom_price"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"batches\": [\n    {\n      \"order_id\": \"<string>\",\n      \"option_id\": \"<integer>\",\n      \"price\": \"<integer>\",\n      \"notification_message\": \"<string>\"\n    },\n    {\n      \"order_id\": \"<string>\",\n      \"option_id\": \"<integer>\",\n      \"price\": \"<integer>\",\n      \"notification_message\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "deed2009-2f67-4d8f-9d75-b174836cc61b",
+              "name": "Get Trip Order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    "orders",
+                    "batch",
+                    "set_custom_price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"batches\": [\n    {\n      \"order_id\": \"1476668027184349184\",\n      \"option_id\": \"<integer>\",\n      \"price\": 100000,\n      \"notification_message\": \"Hello, this is a notification message\"\n    },\n    {\n      \"order_id\": \"1476668027184349184\",\n      \"option_id\": \"<integer>\",\n      \"price\": 100000,\n      \"notification_message\": \"Hello, this is a notification message\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"successful_count\": 1,\n  \"failed_count\": 0,\n  \"data\": [\n    {\n      \"pending_amount\": 0,\n      \"paid_amount\": 200000,\n      \"failed_amount\": 0,\n      \"disputed_amount\": 0,\n      \"cash_amount\": 0,\n      \"refunded_amount\": 100000,\n      \"cash_refunded_amount\": 0,\n      \"adjusted_amount\": 0,\n      \"due_amount\": 0,\n      \"past_due_amount\": 0,\n      \"due_later_amount\": 0,\n      \"total_due_amount\": 0,\n      \"total_amount\": 100000,\n      \"total_next_installment\": 0,\n      \"id\": \"string\",\n      \"rebooked_from_order_id\": \"string\",\n      \"trip_uuid\": \"string\",\n      \"buyer_id\": 1,\n      \"trip_length\": 8,\n      \"departure_date\": \"2021-08-14T00:00:00.000Z\",\n      \"currency\": \"EUR\",\n      \"total_deposit_due\": 0,\n      \"overpaid_amount\": 100000,\n      \"already_paid\": 200000,\n      \"has_payment_plan\": true,\n      \"allow_auto_payment\": false,\n      \"allow_partial_payment\": true,\n      \"active_participants_count\": 1,\n      \"cancelled_participants_count\": 0,\n      \"created_at\": \"2021-07-30T09:55:46.000Z\",\n      \"esign_document\": {\n        \"document_id\": 3126680263958200300,\n        \"signed_at\": \"2021-07-30T09:55:46.000Z\"\n      },\n      \"options\": [\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        },\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        }\n      ],\n      \"donations\": [\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        },\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        }\n      ],\n      \"installments\": [\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        },\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        }\n      ]\n    },\n    {\n      \"pending_amount\": 0,\n      \"paid_amount\": 200000,\n      \"failed_amount\": 0,\n      \"disputed_amount\": 0,\n      \"cash_amount\": 0,\n      \"refunded_amount\": 100000,\n      \"cash_refunded_amount\": 0,\n      \"adjusted_amount\": 0,\n      \"due_amount\": 0,\n      \"past_due_amount\": 0,\n      \"due_later_amount\": 0,\n      \"total_due_amount\": 0,\n      \"total_amount\": 100000,\n      \"total_next_installment\": 0,\n      \"id\": \"string\",\n      \"rebooked_from_order_id\": \"string\",\n      \"trip_uuid\": \"string\",\n      \"buyer_id\": 1,\n      \"trip_length\": 8,\n      \"departure_date\": \"2021-08-14T00:00:00.000Z\",\n      \"currency\": \"EUR\",\n      \"total_deposit_due\": 0,\n      \"overpaid_amount\": 100000,\n      \"already_paid\": 200000,\n      \"has_payment_plan\": true,\n      \"allow_auto_payment\": false,\n      \"allow_partial_payment\": true,\n      \"active_participants_count\": 1,\n      \"cancelled_participants_count\": 0,\n      \"created_at\": \"2021-07-30T09:55:46.000Z\",\n      \"esign_document\": {\n        \"document_id\": 3126680263958200300,\n        \"signed_at\": \"2021-07-30T09:55:46.000Z\"\n      },\n      \"options\": [\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        },\n        {\n          \"name\": \"Special Tour\",\n          \"price\": 2000,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"description\": \"Extra 1 day for hiking\",\n          \"price_type\": \"personal_option\",\n          \"quantity\": 5,\n          \"days_before_departure\": 0,\n          \"created_at\": 155564\n        }\n      ],\n      \"donations\": [\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        },\n        {\n          \"id\": \"string\",\n          \"price\": 100000,\n          \"name\": \"Carbon Offset\",\n          \"type\": \"Carbon Offset\",\n          \"active_count\": 1,\n          \"amount\": 5000\n        }\n      ],\n      \"installments\": [\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        },\n        {\n          \"days_before_departure\": 60,\n          \"price\": 145.99\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wetravel.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9e259313-81b0-49d2-a761-f24573d1f33d",
+    "name": "WeTravel Partner Access token Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.",
+      "type": "text/plain"
+    }
+  }
+}

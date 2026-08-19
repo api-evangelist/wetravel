@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WeTravel Partner Access token Trips API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Trips",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List trips",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips",
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of trips per page"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (minimum:1)"
+              },
+              {
+                "name": "exclude_payment_links",
+                "value": "",
+                "type": "query",
+                "description": "Exclude payment links from the response"
+              }
+            ]
+          },
+          "docs": "Get the list of all trips"
+        },
+        {
+          "info": {
+            "name": "Create trip",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wetravel.com/v2/draft_trips",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creating a \"draft\" trip object. Using the other endpoints of Trip builder you can enhance your trip object and eventually publish it."
+        },
+        {
+          "info": {
+            "name": "Get trip",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the trip"
+              },
+              {
+                "name": "exclude_payment_links",
+                "value": "",
+                "type": "query",
+                "description": "Exclude payment links from the trip response"
+              }
+            ]
+          },
+          "docs": "Get a trip by UUID"
+        },
+        {
+          "info": {
+            "name": "Update trip",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the trip"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Trip"
+        },
+        {
+          "info": {
+            "name": "Delete trip",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the trip"
+              }
+            ]
+          },
+          "docs": "Delete Trip"
+        },
+        {
+          "info": {
+            "name": "Publish trip",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/publish",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the trip"
+              }
+            ]
+          },
+          "docs": "Publish Trip"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

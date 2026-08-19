@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WeTravel Partner Access token Participant Information API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Participant Information",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/surveys",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Participant Questions"
+        },
+        {
+          "info": {
+            "name": "Create question",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/surveys",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Participant Question"
+        },
+        {
+          "info": {
+            "name": "Get question",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/surveys/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the question"
+              }
+            ]
+          },
+          "docs": "Get Survey"
+        },
+        {
+          "info": {
+            "name": "Update question",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/surveys/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the question"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Survey"
+        },
+        {
+          "info": {
+            "name": "Delete question",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.wetravel.com/v2/draft_trips/:trip_uuid/surveys/:id",
+            "params": [
+              {
+                "name": "trip_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the question"
+              }
+            ]
+          },
+          "docs": "Delete Survey"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

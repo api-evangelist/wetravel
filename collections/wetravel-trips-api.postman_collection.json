@@ -1,0 +1,1210 @@
+{
+  "item": [
+    {
+      "id": "f822ad4c-5821-4707-b8ae-dbde7730d86d",
+      "name": "Trips",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7fd2a0d5-25d8-4cb9-a518-8d438bc5fb53",
+          "name": "Create trip",
+          "request": {
+            "name": "Create trip",
+            "description": {
+              "content": "Creating a \"draft\" trip object. Using the other endpoints of Trip builder you can enhance your trip object and eventually publish it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"can_contribute\": true,\n    \"currency\": \"USD\",\n    \"destination\": \"London, UK\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_max\": 15,\n    \"group_min\": 5,\n    \"listing_status\": \"private\",\n    \"participant_fees\": \"<string>\",\n    \"participant_list_show_type\": \"everyone\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"title\": \"Epic London Trip\",\n    \"waiting_list_enabled\": true,\n    \"trip_id\": \"<string>\",\n    \"url\": \"<string>\",\n    \"welcome_message\": \"Welcome message\",\n    \"carbon_offset\": {\n      \"enabled\": false,\n      \"percentage\": 1,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9a95350-6bc7-486c-b547-cc484e09270a",
+              "name": "Successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"can_contribute\": true,\n    \"currency\": \"USD\",\n    \"destination\": \"London, UK\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_max\": 15,\n    \"group_min\": 5,\n    \"listing_status\": \"private\",\n    \"participant_fees\": \"all\",\n    \"participant_list_show_type\": \"everyone\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"title\": \"Epic London Trip\",\n    \"waiting_list_enabled\": true,\n    \"trip_id\": \"TRIP20\",\n    \"url\": \"https://wetravel.com/trips/123456\",\n    \"welcome_message\": \"Thanks for booking the trip! Please <a href=\\\"http://example.com\\\">see the details</a>\",\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"can_contribute\": true,\n    \"currency\": \"USD\",\n    \"destination\": \"London, Uk\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_max\": 15,\n    \"group_min\": 5,\n    \"listing_status\": \"private\",\n    \"participant_fees\": \"all\",\n    \"participant_list_show_type\": \"everyone\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"title\": \"Epic London Trip\",\n    \"waiting_list_enabled\": true,\n    \"uuid\": \"12345678\",\n    \"created_at\": \"2017-07-21T17:32:28.000Z\",\n    \"trip_id\": \"TRIP20\",\n    \"url\": \"https://wetravel.com/trips/123456\",\n    \"welcome_message\": \"YAY!!!\",\n    \"published\": 4224,\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84327259-e65a-4d50-b81b-159f3607ffc6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"can_contribute\": true,\n    \"currency\": \"USD\",\n    \"destination\": \"London, UK\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_max\": 15,\n    \"group_min\": 5,\n    \"listing_status\": \"private\",\n    \"participant_fees\": \"all\",\n    \"participant_list_show_type\": \"everyone\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"title\": \"Epic London Trip\",\n    \"waiting_list_enabled\": true,\n    \"trip_id\": \"TRIP20\",\n    \"url\": \"https://wetravel.com/trips/123456\",\n    \"welcome_message\": \"Thanks for booking the trip! Please <a href=\\\"http://example.com\\\">see the details</a>\",\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"field_name\": [\n      \"is missing\",\n      \"is missing\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "254b128b-d090-479d-967d-6afa6204d014",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"can_contribute\": true,\n    \"currency\": \"USD\",\n    \"destination\": \"London, UK\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_max\": 15,\n    \"group_min\": 5,\n    \"listing_status\": \"private\",\n    \"participant_fees\": \"all\",\n    \"participant_list_show_type\": \"everyone\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"title\": \"Epic London Trip\",\n    \"waiting_list_enabled\": true,\n    \"trip_id\": \"TRIP20\",\n    \"url\": \"https://wetravel.com/trips/123456\",\n    \"welcome_message\": \"Thanks for booking the trip! Please <a href=\\\"http://example.com\\\">see the details</a>\",\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"A token is not valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f1c72c3-e337-4299-a0c0-db236de25561",
+          "name": "List trips",
+          "request": {
+            "name": "List trips",
+            "description": {
+              "content": "Get the list of all trips",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "1000",
+                  "description": "Number of trips per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number (minimum:1)"
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_payment_links",
+                  "value": "false",
+                  "description": "Exclude payment links from the response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef2acbb0-9714-447a-9500-a25b48375bf9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "exclude_payment_links",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"can_contribute\": true,\n      \"currency\": \"USD\",\n      \"destination\": \"London, Uk\",\n      \"end_date\": \"2021-05-07T00:00:00.000Z\",\n      \"group_max\": 15,\n      \"group_min\": 5,\n      \"listing_status\": \"private\",\n      \"participant_fees\": \"all\",\n      \"participant_list_show_type\": \"everyone\",\n      \"start_date\": \"2021-05-07T00:00:00.000Z\",\n      \"title\": \"Epic London Trip\",\n      \"waiting_list_enabled\": true,\n      \"uuid\": \"12345678\",\n      \"created_at\": \"2017-07-21T17:32:28.000Z\",\n      \"trip_id\": \"TRIP20\",\n      \"url\": \"https://wetravel.com/trips/123456\",\n      \"welcome_message\": \"YAY!!!\",\n      \"published\": 3335,\n      \"carbon_offset\": {\n        \"enabled\": true,\n        \"percentage\": 2.5,\n        \"paid_by_participant\": true\n      }\n    },\n    {\n      \"can_contribute\": true,\n      \"currency\": \"USD\",\n      \"destination\": \"London, Uk\",\n      \"end_date\": \"2021-05-07T00:00:00.000Z\",\n      \"group_max\": 15,\n      \"group_min\": 5,\n      \"listing_status\": \"private\",\n      \"participant_fees\": \"all\",\n      \"participant_list_show_type\": \"everyone\",\n      \"start_date\": \"2021-05-07T00:00:00.000Z\",\n      \"title\": \"Epic London Trip\",\n      \"waiting_list_enabled\": true,\n      \"uuid\": \"12345678\",\n      \"created_at\": \"2017-07-21T17:32:28.000Z\",\n      \"trip_id\": \"TRIP20\",\n      \"url\": \"https://wetravel.com/trips/123456\",\n      \"welcome_message\": \"YAY!!!\",\n      \"published\": 9485,\n      \"carbon_offset\": {\n        \"enabled\": true,\n        \"percentage\": 2.5,\n        \"paid_by_participant\": true\n      }\n    }\n  ],\n  \"pagination\": {\n    \"total_count\": 1,\n    \"page\": 1,\n    \"per_page\": 20,\n    \"total_pages\": 1,\n    \"has_previous\": false,\n    \"has_next\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d00ca4e-58de-4275-be38-fb689467d8ee",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "exclude_payment_links",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"A token is not valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "710a087f-269f-4fa5-bcc4-b5a836a5090a",
+          "name": "Delete trip",
+          "request": {
+            "name": "Delete trip",
+            "description": {
+              "content": "Delete Trip",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) UUID of the trip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fea21bb7-aeb6-4bc2-822d-341f0e02ac45",
+              "name": "Delete Trip",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) UUID of the trip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91297b0e-33ee-41fe-8562-ad11b782dd3e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) UUID of the trip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"field_name\": [\n      \"is missing\",\n      \"is missing\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "450c4bd3-b823-41f7-8b8b-61dad51550d8",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) UUID of the trip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Trip {TripID} not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d67d9cf0-d2b2-49db-90c6-948fd3cb6867",
+          "name": "Get trip",
+          "request": {
+            "name": "Get trip",
+            "description": {
+              "content": "Get a trip by UUID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exclude_payment_links",
+                  "value": "false",
+                  "description": "Exclude payment links from the trip response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) UUID of the trip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7216430a-5743-4af4-9fb7-a4e02502c212",
+              "name": "Successfull response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_payment_links",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) UUID of the trip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"can_contribute\": true,\n    \"currency\": \"USD\",\n    \"destination\": \"London, Uk\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_max\": 15,\n    \"group_min\": 5,\n    \"listing_status\": \"private\",\n    \"participant_fees\": \"all\",\n    \"participant_list_show_type\": \"everyone\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"title\": \"Epic London Trip\",\n    \"waiting_list_enabled\": true,\n    \"uuid\": \"12345678\",\n    \"created_at\": \"2017-07-21T17:32:28.000Z\",\n    \"trip_id\": \"TRIP20\",\n    \"url\": \"https://wetravel.com/trips/123456\",\n    \"welcome_message\": \"YAY!!!\",\n    \"published\": 4224,\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fb8c92b-92f4-4e9f-81a5-90174aba0356",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_payment_links",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) UUID of the trip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Trip {TripID} not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16110d7c-3963-4e8d-a281-c2fc2b142771",
+          "name": "Update trip",
+          "request": {
+            "name": "Update trip",
+            "description": {
+              "content": "Update Trip",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) UUID of the trip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"trip_id\": \"<string>\",\n    \"title\": \"<string>\",\n    \"destination\": \"<string>\",\n    \"start_date\": \"<string>\",\n    \"end_date\": \"<string>\",\n    \"group_min\": \"<integer>\",\n    \"group_max\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"participant_list_show_type\": \"<string>\",\n    \"welcome_message\": \"<string>\",\n    \"participant_fees\": \"<string>\",\n    \"listing_status\": \"<string>\",\n    \"waiting_list_enabled\": \"<boolean>\",\n    \"can_contribute\": \"<boolean>\",\n    \"carbon_offset\": {\n      \"enabled\": false,\n      \"percentage\": 1,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3b2d41e0-1197-449c-bb75-ce0d75b18c3b",
+              "name": "Successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) UUID of the trip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"trip_id\": \"TRIP20\",\n    \"title\": \"Epic London Trip\",\n    \"destination\": \"London, Uk\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_min\": 5,\n    \"group_max\": 15,\n    \"currency\": \"USD\",\n    \"participant_list_show_type\": \"everyone\",\n    \"welcome_message\": \"YAY!!!\",\n    \"participant_fees\": \"all\",\n    \"listing_status\": \"private\",\n    \"waiting_list_enabled\": true,\n    \"can_contribute\": true,\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"can_contribute\": true,\n    \"currency\": \"USD\",\n    \"destination\": \"London, Uk\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_max\": 15,\n    \"group_min\": 5,\n    \"listing_status\": \"private\",\n    \"participant_fees\": \"all\",\n    \"participant_list_show_type\": \"everyone\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"title\": \"Epic London Trip\",\n    \"waiting_list_enabled\": true,\n    \"uuid\": \"12345678\",\n    \"created_at\": \"2017-07-21T17:32:28.000Z\",\n    \"trip_id\": \"TRIP20\",\n    \"url\": \"https://wetravel.com/trips/123456\",\n    \"welcome_message\": \"YAY!!!\",\n    \"published\": 4224,\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c06003f8-7c0e-4e88-bc81-0e2fc95d604c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) UUID of the trip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"trip_id\": \"TRIP20\",\n    \"title\": \"Epic London Trip\",\n    \"destination\": \"London, Uk\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_min\": 5,\n    \"group_max\": 15,\n    \"currency\": \"USD\",\n    \"participant_list_show_type\": \"everyone\",\n    \"welcome_message\": \"YAY!!!\",\n    \"participant_fees\": \"all\",\n    \"listing_status\": \"private\",\n    \"waiting_list_enabled\": true,\n    \"can_contribute\": true,\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"field_name\": [\n      \"is missing\",\n      \"is missing\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9f49bc5-c142-4988-8fdd-f352d66ed937",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) UUID of the trip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"trip_id\": \"TRIP20\",\n    \"title\": \"Epic London Trip\",\n    \"destination\": \"London, Uk\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_min\": 5,\n    \"group_max\": 15,\n    \"currency\": \"USD\",\n    \"participant_list_show_type\": \"everyone\",\n    \"welcome_message\": \"YAY!!!\",\n    \"participant_fees\": \"all\",\n    \"listing_status\": \"private\",\n    \"waiting_list_enabled\": true,\n    \"can_contribute\": true,\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Trip {TripID} not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28f2e929-ff3e-432b-bbfb-a790732d1fc5",
+          "name": "Publish trip",
+          "request": {
+            "name": "Publish trip",
+            "description": {
+              "content": "Publish Trip",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "draft_trips",
+                ":trip_uuid",
+                "publish"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trip_uuid",
+                  "description": "(Required) UUID of the trip"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e10945ff-b243-415b-bf00-ed026131a41a",
+              "name": "Publish Trip",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) UUID of the trip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"can_contribute\": true,\n    \"currency\": \"USD\",\n    \"destination\": \"London, Uk\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_max\": 15,\n    \"group_min\": 5,\n    \"listing_status\": \"private\",\n    \"participant_fees\": \"all\",\n    \"participant_list_show_type\": \"everyone\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"title\": \"Epic London Trip\",\n    \"waiting_list_enabled\": true,\n    \"uuid\": \"12345678\",\n    \"created_at\": \"2017-07-21T17:32:28.000Z\",\n    \"trip_id\": \"TRIP20\",\n    \"url\": \"https://wetravel.com/trips/123456\",\n    \"welcome_message\": \"YAY!!!\",\n    \"published\": 4224,\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d201cf12-2c7c-4009-a0a8-507fa6dd5a08",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) UUID of the trip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Trip {TripID} not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9376634b-54ba-4b7d-a1fb-23e971c02af2",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "draft_trips",
+                    ":trip_uuid",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trip_uuid",
+                      "description": "(Required) UUID of the trip"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "An unhandled lowlevel error occurred. The application logs may have details.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wetravel.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e5be0274-9a1c-47a7-a249-704da3b89902",
+    "name": "WeTravel Partner Access token Trips API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.",
+      "type": "text/plain"
+    }
+  }
+}

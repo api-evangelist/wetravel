@@ -1,0 +1,236 @@
+{
+  "item": [
+    {
+      "id": "41a2c6c4-b34f-4a36-8207-b16d255b4219",
+      "name": "Transactions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eca2fa7d-137e-48ea-a71d-6b00fae88d7e",
+          "name": "Get transaction",
+          "request": {
+            "name": "Get transaction",
+            "description": {
+              "content": "Get a transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) The unique global ID of the transaction"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c962bf74-c511-4f8e-b990-94fc4a612010",
+              "name": "Get a transaction",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) The unique global ID of the transaction"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"py-19e4e192-db9e-401f-8e91-ebeee7826190\",\n  \"user_id\": 2,\n  \"organizer_id\": 1,\n  \"vendor_id\": 477,\n  \"amount\": 100000,\n  \"customer_facing_amount\": 102987,\n  \"refunded_amount\": 0,\n  \"disputed_amount\": 0,\n  \"net_amount\": 98970,\n  \"currency\": \"USD\",\n  \"transfer_id\": \"string\",\n  \"bank_name\": \"STRIPE TEST BANK\",\n  \"brand\": \"Visa\",\n  \"last4\": \"string\",\n  \"beneficiary_name\": \"string\",\n  \"beneficiary_email\": \"string\",\n  \"payout_account_type\": \"string\",\n  \"status\": \"processed\",\n  \"note\": \"Payout to my vendor\",\n  \"description\": \"John Doe for San Francisco Trip!\",\n  \"payment_method\": \"ach\",\n  \"payment_id\": \"string\",\n  \"order_id\": \"string\",\n  \"rebooked_from_order_id\": \"string\",\n  \"trip\": {\n    \"can_contribute\": true,\n    \"currency\": \"USD\",\n    \"destination\": \"London, Uk\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_max\": 15,\n    \"group_min\": 5,\n    \"listing_status\": \"private\",\n    \"participant_fees\": \"all\",\n    \"participant_list_show_type\": \"everyone\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"title\": \"Epic London Trip\",\n    \"waiting_list_enabled\": true,\n    \"uuid\": \"12345678\",\n    \"created_at\": \"2017-07-21T17:32:28.000Z\",\n    \"trip_id\": \"TRIP20\",\n    \"url\": \"https://wetravel.com/trips/123456\",\n    \"welcome_message\": \"YAY!!!\",\n    \"published\": 7525,\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  },\n  \"rebooked_from_trip\": {\n    \"can_contribute\": true,\n    \"currency\": \"USD\",\n    \"destination\": \"London, Uk\",\n    \"end_date\": \"2021-05-07T00:00:00.000Z\",\n    \"group_max\": 15,\n    \"group_min\": 5,\n    \"listing_status\": \"private\",\n    \"participant_fees\": \"all\",\n    \"participant_list_show_type\": \"everyone\",\n    \"start_date\": \"2021-05-07T00:00:00.000Z\",\n    \"title\": \"Epic London Trip\",\n    \"waiting_list_enabled\": true,\n    \"uuid\": \"12345678\",\n    \"created_at\": \"2017-07-21T17:32:28.000Z\",\n    \"trip_id\": \"TRIP20\",\n    \"url\": \"https://wetravel.com/trips/123456\",\n    \"welcome_message\": \"YAY!!!\",\n    \"published\": 8050,\n    \"carbon_offset\": {\n      \"enabled\": true,\n      \"percentage\": 2.5,\n      \"paid_by_participant\": true\n    }\n  },\n  \"participants\": [\n    {\n      \"id\": \"string\",\n      \"email\": \"maksym+local@wetravel.com\",\n      \"first_name\": \"Maks\",\n      \"last_name\": \"Local\",\n      \"cancelled\": false,\n      \"survey\": [\n        {\n          \"question\": \"What's your favorite meal?\",\n          \"question_type\": \"text\",\n          \"trip_uuid\": \"12345678\",\n          \"id\": \"2510177931054358528\",\n          \"required\": true,\n          \"answer_options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"other_option\": false,\n          \"created_at\": 123133\n        },\n        {\n          \"question\": \"What's your favorite meal?\",\n          \"question_type\": \"text\",\n          \"trip_uuid\": \"12345678\",\n          \"id\": \"2510177931054358528\",\n          \"required\": true,\n          \"answer_options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"other_option\": false,\n          \"created_at\": 123133\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"email\": \"maksym+local@wetravel.com\",\n      \"first_name\": \"Maks\",\n      \"last_name\": \"Local\",\n      \"cancelled\": false,\n      \"survey\": [\n        {\n          \"question\": \"What's your favorite meal?\",\n          \"question_type\": \"text\",\n          \"trip_uuid\": \"12345678\",\n          \"id\": \"2510177931054358528\",\n          \"required\": true,\n          \"answer_options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"other_option\": false,\n          \"created_at\": 123133\n        },\n        {\n          \"question\": \"What's your favorite meal?\",\n          \"question_type\": \"text\",\n          \"trip_uuid\": \"12345678\",\n          \"id\": \"2510177931054358528\",\n          \"required\": true,\n          \"answer_options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"other_option\": false,\n          \"created_at\": 123133\n        }\n      ]\n    }\n  ],\n  \"packages\": [\n    {\n      \"description\": \"Early bird package\",\n      \"name\": \"Early bird\",\n      \"price\": 450,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"deposit\": 150,\n      \"quantity\": 7,\n      \"days_before_departure\": 0,\n      \"created_at\": 144445\n    },\n    {\n      \"description\": \"Early bird package\",\n      \"name\": \"Early bird\",\n      \"price\": 450,\n      \"trip_uuid\": \"105544110\",\n      \"id\": \"2510177931054358528\",\n      \"deposit\": 150,\n      \"quantity\": 7,\n      \"days_before_departure\": 0,\n      \"created_at\": 144445\n    }\n  ],\n  \"discount_code\": \"string\",\n  \"buyer\": {\n    \"id\": 1,\n    \"email\": \"maksym+local@wetravel.com\",\n    \"full_name\": \"Maks Local\"\n  },\n  \"type\": \"Payment\",\n  \"parent_uuid\": \"string\",\n  \"wetravel_fee\": 1030,\n  \"organizer_card_fee\": 0,\n  \"customer_card_fee\": 0,\n  \"organizer_payout_fee\": 0,\n  \"created_at\": \"2022-05-02T11:51:35.000Z\",\n  \"updated_at\": \"2022-05-02T11:51:45.000Z\",\n  \"running_balance\": 19970,\n  \"reference\": \"Sample-Reference-1234\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8fc312b-e3c6-47ae-9f1e-f6abbe706452",
+          "name": "List transactions",
+          "request": {
+            "name": "List transactions",
+            "description": {
+              "content": "Get a list of transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"filters\": {\n    \"trip_uuids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"order_id\": \"<long>\",\n    \"currency\": \"<string>\",\n    \"transaction_type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "45e4175f-ef64-4b3b-a4ef-902f03afbc0e",
+              "name": "Get a list of transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": 1,\n  \"per_page\": 20,\n  \"filters\": {\n    \"trip_uuids\": [\n      \"94030501\",\n      \"94030501\"\n    ],\n    \"order_id\": 94030501,\n    \"currency\": \"usd\",\n    \"transaction_type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"uuid\": \"py-19e4e192-db9e-401f-8e91-ebeee7826190\",\n      \"user_id\": 2,\n      \"organizer_id\": 1,\n      \"vendor_id\": 9497,\n      \"amount\": 100000,\n      \"customer_facing_amount\": 102987,\n      \"refunded_amount\": 0,\n      \"disputed_amount\": 0,\n      \"net_amount\": 98970,\n      \"currency\": \"USD\",\n      \"transfer_id\": \"string\",\n      \"bank_name\": \"STRIPE TEST BANK\",\n      \"brand\": \"Visa\",\n      \"last4\": \"string\",\n      \"beneficiary_name\": \"string\",\n      \"beneficiary_email\": \"string\",\n      \"payout_account_type\": \"string\",\n      \"status\": \"processed\",\n      \"note\": \"Payout to my vendor\",\n      \"description\": \"John Doe for San Francisco Trip!\",\n      \"payment_method\": \"ach\",\n      \"payment_id\": \"string\",\n      \"order_id\": \"string\",\n      \"rebooked_from_order_id\": \"string\",\n      \"trip\": {\n        \"can_contribute\": true,\n        \"currency\": \"USD\",\n        \"destination\": \"London, Uk\",\n        \"end_date\": \"2021-05-07T00:00:00.000Z\",\n        \"group_max\": 15,\n        \"group_min\": 5,\n        \"listing_status\": \"private\",\n        \"participant_fees\": \"all\",\n        \"participant_list_show_type\": \"everyone\",\n        \"start_date\": \"2021-05-07T00:00:00.000Z\",\n        \"title\": \"Epic London Trip\",\n        \"waiting_list_enabled\": true,\n        \"uuid\": \"12345678\",\n        \"created_at\": \"2017-07-21T17:32:28.000Z\",\n        \"trip_id\": \"TRIP20\",\n        \"url\": \"https://wetravel.com/trips/123456\",\n        \"welcome_message\": \"YAY!!!\",\n        \"published\": 4024,\n        \"carbon_offset\": {\n          \"enabled\": true,\n          \"percentage\": 2.5,\n          \"paid_by_participant\": true\n        }\n      },\n      \"rebooked_from_trip\": {\n        \"can_contribute\": true,\n        \"currency\": \"USD\",\n        \"destination\": \"London, Uk\",\n        \"end_date\": \"2021-05-07T00:00:00.000Z\",\n        \"group_max\": 15,\n        \"group_min\": 5,\n        \"listing_status\": \"private\",\n        \"participant_fees\": \"all\",\n        \"participant_list_show_type\": \"everyone\",\n        \"start_date\": \"2021-05-07T00:00:00.000Z\",\n        \"title\": \"Epic London Trip\",\n        \"waiting_list_enabled\": true,\n        \"uuid\": \"12345678\",\n        \"created_at\": \"2017-07-21T17:32:28.000Z\",\n        \"trip_id\": \"TRIP20\",\n        \"url\": \"https://wetravel.com/trips/123456\",\n        \"welcome_message\": \"YAY!!!\",\n        \"published\": 9606,\n        \"carbon_offset\": {\n          \"enabled\": true,\n          \"percentage\": 2.5,\n          \"paid_by_participant\": true\n        }\n      },\n      \"participants\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"maksym+local@wetravel.com\",\n          \"first_name\": \"Maks\",\n          \"last_name\": \"Local\",\n          \"cancelled\": false,\n          \"survey\": [\n            {\n              \"question\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"question_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"trip_uuid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"required\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"answer_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"other_option\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"question\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"question_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"trip_uuid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"required\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"answer_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"other_option\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"maksym+local@wetravel.com\",\n          \"first_name\": \"Maks\",\n          \"last_name\": \"Local\",\n          \"cancelled\": false,\n          \"survey\": [\n            {\n              \"question\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"question_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"trip_uuid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"required\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"answer_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"other_option\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"question\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"question_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"trip_uuid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"required\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"answer_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"other_option\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"packages\": [\n        {\n          \"description\": \"Early bird package\",\n          \"name\": \"Early bird\",\n          \"price\": 450,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"deposit\": 150,\n          \"quantity\": 7,\n          \"days_before_departure\": 0,\n          \"created_at\": 144445\n        },\n        {\n          \"description\": \"Early bird package\",\n          \"name\": \"Early bird\",\n          \"price\": 450,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"deposit\": 150,\n          \"quantity\": 7,\n          \"days_before_departure\": 0,\n          \"created_at\": 144445\n        }\n      ],\n      \"discount_code\": \"string\",\n      \"buyer\": {\n        \"id\": 1,\n        \"email\": \"maksym+local@wetravel.com\",\n        \"full_name\": \"Maks Local\"\n      },\n      \"type\": \"Payment\",\n      \"parent_uuid\": \"string\",\n      \"wetravel_fee\": 1030,\n      \"organizer_card_fee\": 0,\n      \"customer_card_fee\": 0,\n      \"organizer_payout_fee\": 0,\n      \"created_at\": \"2022-05-02T11:51:35.000Z\",\n      \"updated_at\": \"2022-05-02T11:51:45.000Z\",\n      \"running_balance\": 19970,\n      \"reference\": \"Sample-Reference-1234\"\n    },\n    {\n      \"uuid\": \"py-19e4e192-db9e-401f-8e91-ebeee7826190\",\n      \"user_id\": 2,\n      \"organizer_id\": 1,\n      \"vendor_id\": 1536,\n      \"amount\": 100000,\n      \"customer_facing_amount\": 102987,\n      \"refunded_amount\": 0,\n      \"disputed_amount\": 0,\n      \"net_amount\": 98970,\n      \"currency\": \"USD\",\n      \"transfer_id\": \"string\",\n      \"bank_name\": \"STRIPE TEST BANK\",\n      \"brand\": \"Visa\",\n      \"last4\": \"string\",\n      \"beneficiary_name\": \"string\",\n      \"beneficiary_email\": \"string\",\n      \"payout_account_type\": \"string\",\n      \"status\": \"processed\",\n      \"note\": \"Payout to my vendor\",\n      \"description\": \"John Doe for San Francisco Trip!\",\n      \"payment_method\": \"ach\",\n      \"payment_id\": \"string\",\n      \"order_id\": \"string\",\n      \"rebooked_from_order_id\": \"string\",\n      \"trip\": {\n        \"can_contribute\": true,\n        \"currency\": \"USD\",\n        \"destination\": \"London, Uk\",\n        \"end_date\": \"2021-05-07T00:00:00.000Z\",\n        \"group_max\": 15,\n        \"group_min\": 5,\n        \"listing_status\": \"private\",\n        \"participant_fees\": \"all\",\n        \"participant_list_show_type\": \"everyone\",\n        \"start_date\": \"2021-05-07T00:00:00.000Z\",\n        \"title\": \"Epic London Trip\",\n        \"waiting_list_enabled\": true,\n        \"uuid\": \"12345678\",\n        \"created_at\": \"2017-07-21T17:32:28.000Z\",\n        \"trip_id\": \"TRIP20\",\n        \"url\": \"https://wetravel.com/trips/123456\",\n        \"welcome_message\": \"YAY!!!\",\n        \"published\": 4422,\n        \"carbon_offset\": {\n          \"enabled\": true,\n          \"percentage\": 2.5,\n          \"paid_by_participant\": true\n        }\n      },\n      \"rebooked_from_trip\": {\n        \"can_contribute\": true,\n        \"currency\": \"USD\",\n        \"destination\": \"London, Uk\",\n        \"end_date\": \"2021-05-07T00:00:00.000Z\",\n        \"group_max\": 15,\n        \"group_min\": 5,\n        \"listing_status\": \"private\",\n        \"participant_fees\": \"all\",\n        \"participant_list_show_type\": \"everyone\",\n        \"start_date\": \"2021-05-07T00:00:00.000Z\",\n        \"title\": \"Epic London Trip\",\n        \"waiting_list_enabled\": true,\n        \"uuid\": \"12345678\",\n        \"created_at\": \"2017-07-21T17:32:28.000Z\",\n        \"trip_id\": \"TRIP20\",\n        \"url\": \"https://wetravel.com/trips/123456\",\n        \"welcome_message\": \"YAY!!!\",\n        \"published\": 2875,\n        \"carbon_offset\": {\n          \"enabled\": true,\n          \"percentage\": 2.5,\n          \"paid_by_participant\": true\n        }\n      },\n      \"participants\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"maksym+local@wetravel.com\",\n          \"first_name\": \"Maks\",\n          \"last_name\": \"Local\",\n          \"cancelled\": false,\n          \"survey\": [\n            {\n              \"question\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"question_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"trip_uuid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"required\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"answer_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"other_option\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"question\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"question_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"trip_uuid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"required\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"answer_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"other_option\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"maksym+local@wetravel.com\",\n          \"first_name\": \"Maks\",\n          \"last_name\": \"Local\",\n          \"cancelled\": false,\n          \"survey\": [\n            {\n              \"question\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"question_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"trip_uuid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"required\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"answer_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"other_option\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"question\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"question_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"trip_uuid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"required\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"answer_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"other_option\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"created_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"packages\": [\n        {\n          \"description\": \"Early bird package\",\n          \"name\": \"Early bird\",\n          \"price\": 450,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"deposit\": 150,\n          \"quantity\": 7,\n          \"days_before_departure\": 0,\n          \"created_at\": 144445\n        },\n        {\n          \"description\": \"Early bird package\",\n          \"name\": \"Early bird\",\n          \"price\": 450,\n          \"trip_uuid\": \"105544110\",\n          \"id\": \"2510177931054358528\",\n          \"deposit\": 150,\n          \"quantity\": 7,\n          \"days_before_departure\": 0,\n          \"created_at\": 144445\n        }\n      ],\n      \"discount_code\": \"string\",\n      \"buyer\": {\n        \"id\": 1,\n        \"email\": \"maksym+local@wetravel.com\",\n        \"full_name\": \"Maks Local\"\n      },\n      \"type\": \"Payment\",\n      \"parent_uuid\": \"string\",\n      \"wetravel_fee\": 1030,\n      \"organizer_card_fee\": 0,\n      \"customer_card_fee\": 0,\n      \"organizer_payout_fee\": 0,\n      \"created_at\": \"2022-05-02T11:51:35.000Z\",\n      \"updated_at\": \"2022-05-02T11:51:45.000Z\",\n      \"running_balance\": 19970,\n      \"reference\": \"Sample-Reference-1234\"\n    }\n  ],\n  \"pagination\": {\n    \"total_count\": 1,\n    \"page\": 1,\n    \"per_page\": 20,\n    \"total_pages\": 1,\n    \"has_previous\": false,\n    \"has_next\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wetravel.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "85cd221d-8243-4533-b49d-8d3d49c54cda",
+    "name": "WeTravel Partner Access token Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.",
+      "type": "text/plain"
+    }
+  }
+}
