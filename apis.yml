@@ -54,6 +54,8 @@ apis:
   humanURL: https://developer.wetravel.com/
   baseURL: https://api.wetravel.com/v2
   tags:
+  - Access Token
+  tags_raw:
   - Access token
   properties:
   - type: OpenAPI
@@ -68,6 +70,8 @@ apis:
   humanURL: https://developer.wetravel.com/
   baseURL: https://api.wetravel.com/v2
   tags:
+  - Addons
+  tags_raw:
   - Add-ons
   properties:
   - type: OpenAPI
@@ -96,6 +100,8 @@ apis:
   humanURL: https://developer.wetravel.com/
   baseURL: https://api.wetravel.com/v2
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -152,6 +158,8 @@ apis:
   humanURL: https://developer.wetravel.com/
   baseURL: https://api.wetravel.com/v2
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -251,6 +259,8 @@ apis:
   humanURL: https://developer.wetravel.com/
   baseURL: https://api.wetravel.com/v2
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
