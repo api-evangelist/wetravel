@@ -1,0 +1,90 @@
+slug: wetravel
+provider: WeTravel
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Travel & Hospitality
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 8
+edges:
+- tag: Orders
+  spec_file: wetravel-orders-api-openapi.yml
+  capability_id: BC-4020
+  capability_id_l1: BC-4020
+  capability_name: Reservation & Booking Management
+  confidence: 0.8
+  evidence: GET /bookings/trips/{trip_uuid}/orders/{order_id}  getOrderById  Get an order; PUT /bookings/orders/{order_id}/edit_payment_plan
+  reason: Booking/order lifecycle for trips including retrieval by buyer, custom pricing and payment plans/installments
+    — reservation and booking management. Spans capture, pricing and payment sub-capabilities, so L1 only.
+- tag: Add-ons
+  spec_file: wetravel-add-ons-api-openapi.yml
+  capability_id: BC-4000.40
+  capability_id_l1: BC-4000
+  capability_name: Ancillary & Add-On Product Management
+  confidence: 0.78
+  evidence: POST /draft_trips/{trip_uuid}/options  createOption  Create add-on
+  reason: CRUD over add-on options attached to a draft trip product — definition of ancillary/add-on products
+    on a tour, matching Ancillary & Add-On Product Management.
+- tag: Images
+  spec_file: wetravel-images-api-openapi.yml
+  capability_id: BC-4000.70
+  capability_id_l1: BC-4000
+  capability_name: Travel Content & Imagery Management
+  confidence: 0.78
+  evidence: POST /draft_trips/{trip_uuid}/images  createImage  Create image
+  reason: Management of imagery assets attached to a trip/product page — descriptive content and imagery
+    for a travel product.
+- tag: Packages
+  spec_file: wetravel-packages-api-openapi.yml
+  capability_id: BC-4000.30
+  capability_id_l1: BC-4000
+  capability_name: Tour & Package Product Management
+  confidence: 0.78
+  evidence: POST /draft_trips/{trip_uuid}/packages  createPackage  Create package
+  reason: CRUD over package definitions on a draft trip for a multi-day/group tour operator platform —
+    packaged travel product definition.
+- tag: Trips
+  spec_file: wetravel-trips-api-openapi.yml
+  capability_id: BC-4000.30
+  capability_id_l1: BC-4000
+  capability_name: Tour & Package Product Management
+  confidence: 0.75
+  evidence: 'POST /draft_trips createTrip Create trip; POST /draft_trips/{trip_uuid}/publish publishTrip
+    Publish trip; schemas: Trip, CreateTrip, UpdateTrip'
+  reason: Creation, update and publication of multi-day trip products (with packages and options) — definition
+    of packaged travel itineraries by tour operators, i.e. tour & package product management.
+- tag: Discounts
+  spec_file: wetravel-discounts-api-openapi.yml
+  capability_id: BC-4030.50
+  capability_id_l1: BC-4030
+  capability_name: Promotion & Discount Management
+  confidence: 0.72
+  evidence: POST /draft_trips/{trip_uuid}/discounts  createDiscount  Create discount
+  reason: Defines discounts against a travel product being built, i.e. promotion/discount definition for
+    a bookable trip. Some ambiguity with generic BC-440.30 discount management, but the travel-product
+    context favours the travel revenue capability.
+- tag: Paragraphs
+  spec_file: wetravel-paragraphs-api-openapi.yml
+  capability_id: BC-4000.70
+  capability_id_l1: BC-4000
+  capability_name: Travel Content & Imagery Management
+  confidence: 0.7
+  evidence: POST /draft_trips/{trip_uuid}/paragraphs  createParagraph  Create paragraph
+  reason: Authoring of descriptive text blocks on the trip/booking page — descriptive content management
+    for a travel product.
+- tag: Transactions
+  spec_file: wetravel-transactions-api-openapi.yml
+  capability_id: BC-4020.60
+  capability_id_l1: BC-4020
+  capability_name: Booking Payment & Settlement
+  confidence: 0.7
+  evidence: 'GET /transactions/{uuid} getTransaction Get transaction; schemas: Transaction, Buyer, Trip,
+    Package, Participant'
+  reason: Transactions are payment records tied to trips, packages, buyers and participants — booking-level
+    payment and settlement data sync for a travel booking/payments platform.

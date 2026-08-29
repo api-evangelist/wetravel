@@ -309,6 +309,9 @@ apis:
   - type: APIReference
     url: https://developer.wetravel.com/reference
 common:
+- type: CapabilityMap
+  url: capabilities/wetravel-capability-edges.yml
+  name: WeTravel Business Capability Map
 - type: Overlay
   url: overlays/wetravel-partner-overlay.yaml
 - type: DeveloperPortal
