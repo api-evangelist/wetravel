@@ -65,7 +65,7 @@ apis:
   humanURL: https://developer.wetravel.com/
   baseURL: https://api.wetravel.com/v2
   tags:
-  - Access token
+  - Access Token
   tags_raw:
   - Access token
   properties:
