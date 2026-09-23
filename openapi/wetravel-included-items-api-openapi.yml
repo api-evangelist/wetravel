@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WeTravel Partner Access token Included items API
+  title: WeTravel Partner Included items API
   version: 2.0.0
   description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
   x-apievangelist:
@@ -162,18 +162,6 @@ paths:
                 $ref: '#/components/schemas/Included'
 components:
   schemas:
-    UpdateIncluded:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Title of the included item
-          example: Private yoga lesson
-        description:
-          type: string
-          description: Description of the included item
-          example: Private yoga lessons are not included
-      description: Update Included
     Included:
       required:
       - title
@@ -219,6 +207,18 @@ components:
           description: Allows you to set the description of the included item. This field allows HTML tags(b, i, a) for better formatting.
           example: Private yoga lessons are not included
       description: Create Included
+    UpdateIncluded:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the included item
+          example: Private yoga lesson
+        description:
+          type: string
+          description: Description of the included item
+          example: Private yoga lessons are not included
+      description: Update Included
   securitySchemes:
     bearerAuth:
       type: http

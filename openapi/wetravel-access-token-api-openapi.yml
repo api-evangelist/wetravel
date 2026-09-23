@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: WeTravel Partner Access token API
   version: 2.0.0
@@ -17,13 +17,12 @@ security:
 - bearerAuth: []
 - tokenAuth: []
 tags:
-- name: Access token
+- name: Access Token
 paths:
   /auth/tokens/access:
     post:
       tags:
-      - Access token
-      description: Issue new access token
+      - Access Token
       summary: Issue new access token
       operationId: issueAccessToken
       responses:

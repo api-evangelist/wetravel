@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WeTravel Partner Access token Transactions API
+  title: WeTravel Partner Transactions API
   version: 2.0.0
   description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
   x-apievangelist:
@@ -70,176 +70,66 @@ paths:
                     $ref: '#/components/schemas/Pagination'
 components:
   schemas:
-    Transaction:
+    Pagination:
       type: object
       properties:
-        uuid:
-          type: string
-          description: The unique global ID of the transaction
-          example: py-19e4e192-db9e-401f-8e91-ebeee7826190
-        user_id:
+        total_count:
           type: integer
-          description: The unique ID of the user who initiated the transaction
-          example: 2
-        organizer_id:
-          type: integer
-          description: The unique ID of the organizer who's balance is affected
+          description: Total number of leads
+          format: int32
           example: 1
-        vendor_id:
+        page:
           type: integer
-          description: The unique ID of the vendor who's balance is affected
-          example: null
-        amount:
-          type: integer
-          description: The amount paid excluding all fees
+          description: Current page number where the lead is found
           format: int32
-          example: 100000
-        customer_facing_amount:
+          example: 1
+        per_page:
           type: integer
-          description: Total gross amount paid through WeTravel - cc or bank payments
+          description: 'How many lead are per page (default: 25)'
           format: int32
-          example: 102987
-        refunded_amount:
+          example: 20
+        total_pages:
           type: integer
-          description: Amount refunded to the participant through WeTravel - cc or bank payments
+          description: Total number of pages
           format: int32
-          example: 0
-        disputed_amount:
-          type: integer
-          description: Amount disputed to the participant through WeTravel - cc or bank payments
-          format: int32
-          example: 0
-        net_amount:
-          type: integer
-          description: The final amount received by an organizer after deducting all the fees
-          format: int32
-          example: 98970
-        currency:
+          example: 1
+        has_previous:
+          type: boolean
+          description: Whether the previous page is there or not
+          example: false
+        has_next:
+          type: boolean
+          description: Whether the next page is there or not
+          example: false
+      description: Pagination object
+    Participant:
+      type: object
+      properties:
+        id:
           type: string
-          description: Currency of the transaction
-          example: USD
-        transfer_id:
+          description: Unique ID of the option
+          example: 1476668027293401000
+        email:
           type: string
-          description: The unique ID of the transaction based on type
-          example: 1676764423135428600
-        bank_name:
+          description: Email of the participant
+          example: maksym+local@wetravel.com
+        first_name:
           type: string
-          description: Bank's name
-          example: STRIPE TEST BANK
-        brand:
+          description: First name of the participant
+          example: Maks
+        last_name:
           type: string
-          description: Card brand name
-          example: Visa
-        last4:
-          type: string
-          description: Last 4 digits of cc or bank account
-          example: 4242
-        beneficiary_name:
-          type: string
-          description: Beneficiary name of Top Up, Adjustment, Card Transfer, Conversion, Payout/Wire or Supplier Transfers
-          example: null
-        beneficiary_email:
-          type: string
-          description: Beneficiary email of Top Up, Payout/Wire, Conversion, or Supplier Transfers
-          example: null
-        payout_account_type:
-          type: string
-          description: Payout account type
-          example: null
-        status:
-          type: string
-          description: Transaction status
-          example: processed
-        note:
-          type: string
-          description: Note of the transaction (Purpose of payment of Wire and Supplier Transfers)
-          example: Payout to my vendor
-        description:
-          type: string
-          description: Description of the transaction
-          example: John Doe for San Francisco Trip!
-        payment_method:
-          type: string
-          description: Payment method
-          example: ach
-        payment_id:
-          type: string
-          description: The unique ID of the payment
-          example: 1676764423135428600
-        order_id:
-          type: string
-          description: The unique ID of the order (booking)
-          example: 1676764423135513000
-        rebooked_from_order_id:
-          type: string
-          description: The unique ID of the order (booking) which this order was rebooked from
-          example: 1676764423135513000
-        trip:
-          $ref: '#/components/schemas/Trip'
-        rebooked_from_trip:
-          $ref: '#/components/schemas/Trip'
-        participants:
+          description: Last name of the participant
+          example: Local
+        cancelled:
+          type: boolean
+          description: Whether the participant is canceled or not
+          example: false
+        survey:
           type: array
           items:
-            $ref: '#/components/schemas/Participant'
-        packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Package'
-        discount_code:
-          type: string
-          description: discount_code
-          example: null
-        buyer:
-          $ref: '#/components/schemas/Buyer'
-        type:
-          type: string
-          description: Transaction type
-          example: Payment
-        parent_uuid:
-          type: string
-          description: The unique global ID of the parent transaction
-          example: null
-        wetravel_fee:
-          type: integer
-          description: Wetravel fee
-          format: int32
-          example: 1030
-        organizer_card_fee:
-          type: integer
-          description: Card fee paid by the organizer
-          format: int32
-          example: 0
-        customer_card_fee:
-          type: integer
-          description: Card fee paid by the customer (buyer)
-          format: int32
-          example: 0
-        organizer_payout_fee:
-          type: integer
-          description: Payout fee paid by the organizer
-          format: int32
-          example: 0
-        created_at:
-          type: string
-          format: date-time
-          description: Time at which the transaction was initiated in ISO 8601 format
-          example: '2022-05-02T11:51:35.000Z'
-        updated_at:
-          type: string
-          description: Time at which the transaction was updated in ISO 8601 format
-          format: date-time
-          example: '2022-05-02T11:51:45.000Z'
-        running_balance:
-          type: integer
-          description: Running balance
-          format: int32
-          example: 19970
-        reference:
-          type: string
-          description: Reference filled in by the user who initiated the transaction
-          example: Sample-Reference-1234
-      description: Transaction object
+            $ref: '#/components/schemas/Survey'
+      description: Participant object
     Buyer:
       type: object
       properties:
@@ -257,6 +147,29 @@ components:
           description: Full name of the buyer
           example: Maks Local
       description: Buyer object
+    CarbonOffset:
+      required:
+      - enabled
+      - percentage
+      - paid_by_participant
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Carbon Offset Contribution offered for the trip
+          example: true
+          default: false
+        percentage:
+          type: number
+          description: Carbon Offset Contribution amount as a selected percentage of the trip price
+          example: 2.5
+          default: 1
+        paid_by_participant:
+          type: boolean
+          description: Carbon Offset Contribution is paid by participant
+          example: true
+          default: true
+      description: Carbon Offset Contribution
     Survey:
       required:
       - question
@@ -312,6 +225,69 @@ components:
           format: int32
           example: 123133
       description: Participant Question model
+    GetTransactions:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Page number
+          format: int32
+          example: 1
+        per_page:
+          type: integer
+          description: Transactions per page, max. 1000
+          format: int32
+          example: 20
+        filters:
+          type: object
+          description: Filters out transactions
+          properties:
+            trip_uuids:
+              type: array
+              items:
+                type: string
+                description: The unique global ID of the trip
+                example: '94030501'
+            order_id:
+              type: integer
+              description: The order ID
+              format: int64
+              example: 94030501
+            currency:
+              type: string
+              description: The currency of the transaction
+              example: usd
+              enum:
+              - usd
+              - eur
+              - cad
+              - zar
+              - gbp
+              - aud
+              - nzd
+              - chf
+              - sek
+              - nok
+              - dkk
+              - pln
+              - hkd
+              - mxn
+            transaction_type:
+              type: string
+              description: The type of the transaction
+              example: trip
+              enum:
+              - payment
+              - refund
+              - dispute
+              - transfer
+              - payout
+              - instant_payout
+              - wire
+              - card_transfer
+              - adjustment
+              - top_up
+      description: Get Transactions Body
     Trip:
       required:
       - can_contribute
@@ -484,152 +460,176 @@ components:
           format: int32
           example: 144445
       description: Package model
-    CarbonOffset:
-      required:
-      - enabled
-      - percentage
-      - paid_by_participant
+    Transaction:
       type: object
       properties:
-        enabled:
-          type: boolean
-          description: Carbon Offset Contribution offered for the trip
-          example: true
-          default: false
-        percentage:
-          type: number
-          description: Carbon Offset Contribution amount as a selected percentage of the trip price
-          example: 2.5
-          default: 1
-        paid_by_participant:
-          type: boolean
-          description: Carbon Offset Contribution is paid by participant
-          example: true
-          default: true
-      description: Carbon Offset Contribution
-    GetTransactions:
-      type: object
-      properties:
-        page:
+        uuid:
+          type: string
+          description: The unique global ID of the transaction
+          example: py-19e4e192-db9e-401f-8e91-ebeee7826190
+        user_id:
           type: integer
-          description: Page number
-          format: int32
+          description: The unique ID of the user who initiated the transaction
+          example: 2
+        organizer_id:
+          type: integer
+          description: The unique ID of the organizer who's balance is affected
           example: 1
-        per_page:
+        vendor_id:
           type: integer
-          description: Transactions per page, max. 1000
+          description: The unique ID of the vendor who's balance is affected
+          example: null
+        amount:
+          type: integer
+          description: The amount paid excluding all fees
           format: int32
-          example: 20
-        filters:
-          type: object
-          description: Filters out transactions
-          properties:
-            trip_uuids:
-              type: array
-              items:
-                type: string
-                description: The unique global ID of the trip
-                example: '94030501'
-            order_id:
-              type: integer
-              description: The order ID
-              format: int64
-              example: 94030501
-            currency:
-              type: string
-              description: The currency of the transaction
-              example: usd
-              enum:
-              - usd
-              - eur
-              - cad
-              - zar
-              - gbp
-              - aud
-              - nzd
-              - chf
-              - sek
-              - nok
-              - dkk
-              - pln
-              - hkd
-              - mxn
-            transaction_type:
-              type: string
-              description: The type of the transaction
-              example: trip
-              enum:
-              - payment
-              - refund
-              - dispute
-              - transfer
-              - payout
-              - instant_payout
-              - wire
-              - card_transfer
-              - adjustment
-              - top_up
-      description: Get Transactions Body
-    Participant:
-      type: object
-      properties:
-        id:
+          example: 100000
+        customer_facing_amount:
+          type: integer
+          description: Total gross amount paid through WeTravel - cc or bank payments
+          format: int32
+          example: 102987
+        refunded_amount:
+          type: integer
+          description: Amount refunded to the participant through WeTravel - cc or bank payments
+          format: int32
+          example: 0
+        disputed_amount:
+          type: integer
+          description: Amount disputed to the participant through WeTravel - cc or bank payments
+          format: int32
+          example: 0
+        net_amount:
+          type: integer
+          description: The final amount received by an organizer after deducting all the fees
+          format: int32
+          example: 98970
+        currency:
           type: string
-          description: Unique ID of the option
-          example: 1476668027293401000
-        email:
+          description: Currency of the transaction
+          example: USD
+        transfer_id:
           type: string
-          description: Email of the participant
-          example: maksym+local@wetravel.com
-        first_name:
+          description: The unique ID of the transaction based on type
+          example: 1676764423135428600
+        bank_name:
           type: string
-          description: First name of the participant
-          example: Maks
-        last_name:
+          description: Bank's name
+          example: STRIPE TEST BANK
+        brand:
           type: string
-          description: Last name of the participant
-          example: Local
-        cancelled:
-          type: boolean
-          description: Whether the participant is canceled or not
-          example: false
-        survey:
+          description: Card brand name
+          example: Visa
+        last4:
+          type: string
+          description: Last 4 digits of cc or bank account
+          example: 4242
+        beneficiary_name:
+          type: string
+          description: Beneficiary name of Top Up, Adjustment, Card Transfer, Conversion, Payout/Wire or Supplier Transfers
+          example: null
+        beneficiary_email:
+          type: string
+          description: Beneficiary email of Top Up, Payout/Wire, Conversion, or Supplier Transfers
+          example: null
+        payout_account_type:
+          type: string
+          description: Payout account type
+          example: null
+        status:
+          type: string
+          description: Transaction status
+          example: processed
+        note:
+          type: string
+          description: Note of the transaction (Purpose of payment of Wire and Supplier Transfers)
+          example: Payout to my vendor
+        description:
+          type: string
+          description: Description of the transaction
+          example: John Doe for San Francisco Trip!
+        payment_method:
+          type: string
+          description: Payment method
+          example: ach
+        payment_id:
+          type: string
+          description: The unique ID of the payment
+          example: 1676764423135428600
+        order_id:
+          type: string
+          description: The unique ID of the order (booking)
+          example: 1676764423135513000
+        rebooked_from_order_id:
+          type: string
+          description: The unique ID of the order (booking) which this order was rebooked from
+          example: 1676764423135513000
+        trip:
+          $ref: '#/components/schemas/Trip'
+        rebooked_from_trip:
+          $ref: '#/components/schemas/Trip'
+        participants:
           type: array
           items:
-            $ref: '#/components/schemas/Survey'
-      description: Participant object
-    Pagination:
-      type: object
-      properties:
-        total_count:
+            $ref: '#/components/schemas/Participant'
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Package'
+        discount_code:
+          type: string
+          description: discount_code
+          example: null
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        type:
+          type: string
+          description: Transaction type
+          example: Payment
+        parent_uuid:
+          type: string
+          description: The unique global ID of the parent transaction
+          example: null
+        wetravel_fee:
           type: integer
-          description: Total number of leads
+          description: Wetravel fee
           format: int32
-          example: 1
-        page:
+          example: 1030
+        organizer_card_fee:
           type: integer
-          description: Current page number where the lead is found
+          description: Card fee paid by the organizer
           format: int32
-          example: 1
-        per_page:
+          example: 0
+        customer_card_fee:
           type: integer
-          description: 'How many lead are per page (default: 25)'
+          description: Card fee paid by the customer (buyer)
           format: int32
-          example: 20
-        total_pages:
+          example: 0
+        organizer_payout_fee:
           type: integer
-          description: Total number of pages
+          description: Payout fee paid by the organizer
           format: int32
-          example: 1
-        has_previous:
-          type: boolean
-          description: Whether the previous page is there or not
-          example: false
-        has_next:
-          type: boolean
-          description: Whether the next page is there or not
-          example: false
-      description: Pagination object
+          example: 0
+        created_at:
+          type: string
+          format: date-time
+          description: Time at which the transaction was initiated in ISO 8601 format
+          example: '2022-05-02T11:51:35.000Z'
+        updated_at:
+          type: string
+          description: Time at which the transaction was updated in ISO 8601 format
+          format: date-time
+          example: '2022-05-02T11:51:45.000Z'
+        running_balance:
+          type: integer
+          description: Running balance
+          format: int32
+          example: 19970
+        reference:
+          type: string
+          description: Reference filled in by the user who initiated the transaction
+          example: Sample-Reference-1234
+      description: Transaction object
   securitySchemes:
     bearerAuth:
       type: http

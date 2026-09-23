@@ -1,23 +1,7 @@
 {
   "provider": "wetravel",
   "sources": [
-    "wetravel-access-token-api-openapi.yml",
-    "wetravel-add-ons-api-openapi.yml",
-    "wetravel-discounts-api-openapi.yml",
-    "wetravel-images-api-openapi.yml",
-    "wetravel-included-items-api-openapi.yml",
-    "wetravel-leads-api-openapi.yml",
-    "wetravel-not-included-items-api-openapi.yml",
-    "wetravel-orders-api-openapi.yml",
-    "wetravel-packages-api-openapi.yml",
-    "wetravel-paragraphs-api-openapi.yml",
-    "wetravel-participant-information-api-openapi.yml",
-    "wetravel-payment-links-api-openapi.yml",
-    "wetravel-payment-plans-api-openapi.yml",
-    "wetravel-suppliers-api-openapi.yml",
-    "wetravel-transactions-api-openapi.yml",
-    "wetravel-trip-overview-api-openapi.yml",
-    "wetravel-trips-api-openapi.yml"
+    "_original/wetravel-partner-openapi.json"
   ],
   "outputs": [
     "wetravel-access-token-api-openapi.yml",
@@ -41,6 +25,28 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "wetravel-partner-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "wetravel-access-token-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-add-ons-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-discounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-included-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-leads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-not-included-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-packages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-paragraphs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-participant-information-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-payment-links-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-payment-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-suppliers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-trip-overview-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wetravel-trips-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

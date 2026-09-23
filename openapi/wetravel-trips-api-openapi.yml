@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WeTravel Partner Access token Trips API
+  title: WeTravel Partner Trips API
   version: 2.0.0
   description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
   x-apievangelist:
@@ -295,91 +295,61 @@ paths:
                 example: An unhandled lowlevel error occurred. The application logs may have details.
 components:
   schemas:
-    ValidationError:
+    Pagination:
       type: object
       properties:
-        field_name:
-          type: array
-          items:
-            type: string
-            description: Error message
-            example: is missing
-    UpdateTrip:
+        total_count:
+          type: integer
+          description: Total number of leads
+          format: int32
+          example: 1
+        page:
+          type: integer
+          description: Current page number where the lead is found
+          format: int32
+          example: 1
+        per_page:
+          type: integer
+          description: 'How many lead are per page (default: 25)'
+          format: int32
+          example: 20
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 1
+        has_previous:
+          type: boolean
+          description: Whether the previous page is there or not
+          example: false
+        has_next:
+          type: boolean
+          description: Whether the next page is there or not
+          example: false
+      description: Pagination object
+    CarbonOffset:
+      required:
+      - enabled
+      - percentage
+      - paid_by_participant
       type: object
       properties:
-        trip_id:
-          type: string
-          description: This optional Trip Reference is set by you. It is not visible to your clients. It is only visible to you in your WeTravel dashboard and reporting.
-          example: TRIP20
-        title:
-          type: string
-          description: Title of the trip
-          example: Epic London Trip
-        destination:
-          type: string
-          description: Destination of the trip
-          example: London, Uk
-        start_date:
-          type: string
-          description: Start date of the trip in ISO 8601 format, e.g. “2021-05-07”
-          example: '2021-05-07T00:00:00.000Z'
-        end_date:
-          type: string
-          description: End date of the trip in ISO 8601 format, e.g. “2021-05-07”
-          example: '2021-05-07T00:00:00.000Z'
-        group_min:
-          type: integer
-          description: Min group size of the trip
-          format: int32
-          example: 5
-        group_max:
-          type: integer
-          description: Max group size of the trip
-          format: int32
-          example: 15
-        currency:
-          type: string
-          description: Currency of the trip
-          example: USD
-        participant_list_show_type:
-          type: string
-          description: "You can choose to show the names of already booked participants on your booking page. The options are “everyone”, “participants” or “only_organizer” which stand for\n               everyone - everyone can see the participant list on the booking page\n               participants - only already booked participants see the participant list\n               only_organizer - nobody can see the participant list (only the organizer)"
-          example: everyone
-          enum:
-          - everyone
-          - participants
-          - only_organizer
-        welcome_message:
-          type: string
-          description: This welcome message is added to the booking confirmation email and is also shown on the payment confirmation page. This can also contain HTML.
-          example: YAY!!!
-        participant_fees:
-          type: string
-          description: "This setting allows you to choose how the payment fees are handled. The options are:\n              “credit_card” - Bank account payments are free to the participant, but if they choose to pay by credit card, a card fee is added to the price\n              “service” - Service fees are paid by the participant. Payment method fees are covered by the organizer.\n              “all” - all fees are paid by the participant\n              “none” - all fees are paid by the organizer"
-          example: all
-          enum:
-          - credit_card
-          - service
-          - all
-          - none
-        listing_status:
-          type: string
-          description: Whether the trip is “public” or “private”
-          example: private
-          enum:
-          - private
-          - public
-        waiting_list_enabled:
+        enabled:
           type: boolean
-          description: Whether the trip has a waitlist or not in case it’s sold out.
+          description: Carbon Offset Contribution offered for the trip
           example: true
-        can_contribute:
+          default: false
+        percentage:
+          type: number
+          description: Carbon Offset Contribution amount as a selected percentage of the trip price
+          example: 2.5
+          default: 1
+        paid_by_participant:
           type: boolean
-          description: Whether the participant is allowed to create a contribution / fundraising page after booking this trip.
+          description: Carbon Offset Contribution is paid by participant
           example: true
-        carbon_offset:
-          $ref: '#/components/schemas/CarbonOffset'
-      description: Update a trip
+          default: true
+      description: Carbon Offset Contribution
     CreateTrip:
       required:
       - can_contribute
@@ -491,29 +461,15 @@ components:
         carbon_offset:
           $ref: '#/components/schemas/CarbonOffset'
       description: Trip object for creation
-    CarbonOffset:
-      required:
-      - enabled
-      - percentage
-      - paid_by_participant
+    ValidationError:
       type: object
       properties:
-        enabled:
-          type: boolean
-          description: Carbon Offset Contribution offered for the trip
-          example: true
-          default: false
-        percentage:
-          type: number
-          description: Carbon Offset Contribution amount as a selected percentage of the trip price
-          example: 2.5
-          default: 1
-        paid_by_participant:
-          type: boolean
-          description: Carbon Offset Contribution is paid by participant
-          example: true
-          default: true
-      description: Carbon Offset Contribution
+        field_name:
+          type: array
+          items:
+            type: string
+            description: Error message
+            example: is missing
     Trip:
       required:
       - can_contribute
@@ -631,38 +587,82 @@ components:
         carbon_offset:
           $ref: '#/components/schemas/CarbonOffset'
       description: Trip model
-    Pagination:
+    UpdateTrip:
       type: object
       properties:
-        total_count:
+        trip_id:
+          type: string
+          description: This optional Trip Reference is set by you. It is not visible to your clients. It is only visible to you in your WeTravel dashboard and reporting.
+          example: TRIP20
+        title:
+          type: string
+          description: Title of the trip
+          example: Epic London Trip
+        destination:
+          type: string
+          description: Destination of the trip
+          example: London, Uk
+        start_date:
+          type: string
+          description: Start date of the trip in ISO 8601 format, e.g. “2021-05-07”
+          example: '2021-05-07T00:00:00.000Z'
+        end_date:
+          type: string
+          description: End date of the trip in ISO 8601 format, e.g. “2021-05-07”
+          example: '2021-05-07T00:00:00.000Z'
+        group_min:
           type: integer
-          description: Total number of leads
+          description: Min group size of the trip
           format: int32
-          example: 1
-        page:
+          example: 5
+        group_max:
           type: integer
-          description: Current page number where the lead is found
+          description: Max group size of the trip
           format: int32
-          example: 1
-        per_page:
-          type: integer
-          description: 'How many lead are per page (default: 25)'
-          format: int32
-          example: 20
-        total_pages:
-          type: integer
-          description: Total number of pages
-          format: int32
-          example: 1
-        has_previous:
+          example: 15
+        currency:
+          type: string
+          description: Currency of the trip
+          example: USD
+        participant_list_show_type:
+          type: string
+          description: "You can choose to show the names of already booked participants on your booking page. The options are “everyone”, “participants” or “only_organizer” which stand for\n               everyone - everyone can see the participant list on the booking page\n               participants - only already booked participants see the participant list\n               only_organizer - nobody can see the participant list (only the organizer)"
+          example: everyone
+          enum:
+          - everyone
+          - participants
+          - only_organizer
+        welcome_message:
+          type: string
+          description: This welcome message is added to the booking confirmation email and is also shown on the payment confirmation page. This can also contain HTML.
+          example: YAY!!!
+        participant_fees:
+          type: string
+          description: "This setting allows you to choose how the payment fees are handled. The options are:\n              “credit_card” - Bank account payments are free to the participant, but if they choose to pay by credit card, a card fee is added to the price\n              “service” - Service fees are paid by the participant. Payment method fees are covered by the organizer.\n              “all” - all fees are paid by the participant\n              “none” - all fees are paid by the organizer"
+          example: all
+          enum:
+          - credit_card
+          - service
+          - all
+          - none
+        listing_status:
+          type: string
+          description: Whether the trip is “public” or “private”
+          example: private
+          enum:
+          - private
+          - public
+        waiting_list_enabled:
           type: boolean
-          description: Whether the previous page is there or not
-          example: false
-        has_next:
+          description: Whether the trip has a waitlist or not in case it’s sold out.
+          example: true
+        can_contribute:
           type: boolean
-          description: Whether the next page is there or not
-          example: false
-      description: Pagination object
+          description: Whether the participant is allowed to create a contribution / fundraising page after booking this trip.
+          example: true
+        carbon_offset:
+          $ref: '#/components/schemas/CarbonOffset'
+      description: Update a trip
   securitySchemes:
     bearerAuth:
       type: http

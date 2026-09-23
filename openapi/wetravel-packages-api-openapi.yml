@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WeTravel Partner Access token Packages API
+  title: WeTravel Partner Packages API
   version: 2.0.0
   description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
   x-apievangelist:
@@ -165,95 +165,6 @@ paths:
                     $ref: '#/components/schemas/Package'
 components:
   schemas:
-    UpdatePackage:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the package
-          example: Early bird
-        deposit:
-          type: integer
-          description: Deposit price of the package, please use the payment plan field instead
-          format: int32
-          example: 150
-          deprecated: true
-        price:
-          type: integer
-          description: Price of the package
-          format: int32
-          example: 450
-          minimum: 0
-          maximum: 1000000000
-        quantity:
-          type: integer
-          description: 'Max available quantity of the package. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
-          format: int32
-          example: 7
-          minimum: 0
-          maximum: 9999
-        description:
-          type: string
-          description: Description of the package
-          example: Early bird package
-        participants_per_package:
-          type: integer
-          description: Number of participants per package.
-          format: int32
-          default: 1
-          example: 1
-        days_before_departure:
-          type: integer
-          description: "Whether this package has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
-          format: int32
-          example: 0
-      description: Update Package
-    CreatePackage:
-      required:
-      - name
-      - price
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the package
-          example: Early bird
-        deposit:
-          type: integer
-          description: Deposit price of the package, please use the payment plan field instead
-          format: int32
-          example: 150
-          deprecated: true
-        price:
-          type: integer
-          description: Price of the package
-          format: int32
-          example: 450
-          minimum: 0
-          maximum: 1000000000
-        quantity:
-          type: integer
-          description: 'Max available quantity of the package. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
-          format: int32
-          example: 7
-          minimum: 0
-          maximum: 9999
-        description:
-          type: string
-          description: Description of the package
-          example: Early bird package
-        participants_per_package:
-          type: integer
-          description: Number of participants per package.
-          format: int32
-          default: 1
-          example: 1
-        days_before_departure:
-          type: integer
-          description: "Whether this package has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
-          format: int32
-          example: 0
-      description: Create Package
     Package:
       required:
       - description
@@ -309,6 +220,95 @@ components:
           format: int32
           example: 144445
       description: Package model
+    CreatePackage:
+      required:
+      - name
+      - price
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the package
+          example: Early bird
+        deposit:
+          type: integer
+          description: Deposit price of the package, please use the payment plan field instead
+          format: int32
+          example: 150
+          deprecated: true
+        price:
+          type: integer
+          description: Price of the package
+          format: int32
+          example: 450
+          minimum: 0
+          maximum: 1000000000
+        quantity:
+          type: integer
+          description: 'Max available quantity of the package. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 7
+          minimum: 0
+          maximum: 9999
+        description:
+          type: string
+          description: Description of the package
+          example: Early bird package
+        participants_per_package:
+          type: integer
+          description: Number of participants per package.
+          format: int32
+          default: 1
+          example: 1
+        days_before_departure:
+          type: integer
+          description: "Whether this package has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
+          format: int32
+          example: 0
+      description: Create Package
+    UpdatePackage:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the package
+          example: Early bird
+        deposit:
+          type: integer
+          description: Deposit price of the package, please use the payment plan field instead
+          format: int32
+          example: 150
+          deprecated: true
+        price:
+          type: integer
+          description: Price of the package
+          format: int32
+          example: 450
+          minimum: 0
+          maximum: 1000000000
+        quantity:
+          type: integer
+          description: 'Max available quantity of the package. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 7
+          minimum: 0
+          maximum: 9999
+        description:
+          type: string
+          description: Description of the package
+          example: Early bird package
+        participants_per_package:
+          type: integer
+          description: Number of participants per package.
+          format: int32
+          default: 1
+          example: 1
+        days_before_departure:
+          type: integer
+          description: "Whether this package has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
+          format: int32
+          example: 0
+      description: Update Package
   securitySchemes:
     bearerAuth:
       type: http

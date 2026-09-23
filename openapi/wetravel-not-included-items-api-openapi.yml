@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WeTravel Partner Access token Not Included items API
+  title: WeTravel Partner Not Included items API
   version: 2.0.0
   description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
   x-apievangelist:
@@ -165,32 +165,6 @@ paths:
                     $ref: '#/components/schemas/NotIncluded'
 components:
   schemas:
-    UpdateNotIncluded:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Title of the not included item
-          example: Flight tickets
-        description:
-          type: string
-          description: Description of the not included item
-          example: Flight tickets included for this trip
-      description: Update NotIncluded
-    CreateNotIncluded:
-      required:
-      - title
-      type: object
-      properties:
-        title:
-          type: string
-          description: Title of the not included item
-          example: Flight tickets
-        description:
-          type: string
-          description: Description of the not included item
-          example: Flight tickets included for this trip
-      description: Create NotIncluded
     NotIncluded:
       required:
       - title
@@ -222,6 +196,32 @@ components:
           format: int32
           example: 134543
       description: NotIncluded model
+    CreateNotIncluded:
+      required:
+      - title
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the not included item
+          example: Flight tickets
+        description:
+          type: string
+          description: Description of the not included item
+          example: Flight tickets included for this trip
+      description: Create NotIncluded
+    UpdateNotIncluded:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the not included item
+          example: Flight tickets
+        description:
+          type: string
+          description: Description of the not included item
+          example: Flight tickets included for this trip
+      description: Update NotIncluded
   securitySchemes:
     bearerAuth:
       type: http

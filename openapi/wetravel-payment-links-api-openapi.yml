@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WeTravel Partner Access token Payment Links API
+  title: WeTravel Partner Payment Links API
   version: 2.0.0
   description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
   x-apievangelist:
@@ -397,33 +397,38 @@ paths:
                     example: Payment Link {uuid} not found
 components:
   schemas:
-    Installment:
-      required:
-      - days_before_departure
-      - price
+    Pagination:
       type: object
       properties:
-        price:
-          type: number
-          description: Amount of the installment
-          format: double
-          example: 145.99
-          minimum: 1
-          maximum: 1000000000
-        days_before_departure:
+        total_count:
           type: integer
-          description: "Defines the date on which the installment is due in relation to the trip start date.\n                  E.g. if this setting is set to “5” and the trip starts on January 15, then the installment due date will be January 10."
+          description: Total number of leads
           format: int32
-          example: 60
-    ValidationError:
-      type: object
-      properties:
-        field_name:
-          type: array
-          items:
-            type: string
-            description: Error message
-            example: is missing
+          example: 1
+        page:
+          type: integer
+          description: Current page number where the lead is found
+          format: int32
+          example: 1
+        per_page:
+          type: integer
+          description: 'How many lead are per page (default: 25)'
+          format: int32
+          example: 20
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 1
+        has_previous:
+          type: boolean
+          description: Whether the previous page is there or not
+          example: false
+        has_next:
+          type: boolean
+          description: Whether the next page is there or not
+          example: false
+      description: Pagination object
     PaymentLink:
       type: object
       properties:
@@ -608,6 +613,33 @@ components:
                   items:
                     $ref: '#/components/schemas/Installment'
       description: Create Payment Link request model
+    ValidationError:
+      type: object
+      properties:
+        field_name:
+          type: array
+          items:
+            type: string
+            description: Error message
+            example: is missing
+    Installment:
+      required:
+      - days_before_departure
+      - price
+      type: object
+      properties:
+        price:
+          type: number
+          description: Amount of the installment
+          format: double
+          example: 145.99
+          minimum: 1
+          maximum: 1000000000
+        days_before_departure:
+          type: integer
+          description: "Defines the date on which the installment is due in relation to the trip start date.\n                  E.g. if this setting is set to “5” and the trip starts on January 15, then the installment due date will be January 10."
+          format: int32
+          example: 60
     UpdatePaymentLink:
       type: object
       properties:
@@ -691,38 +723,6 @@ components:
                   items:
                     $ref: '#/components/schemas/Installment'
       description: Update Payment Link request model
-    Pagination:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          description: Total number of leads
-          format: int32
-          example: 1
-        page:
-          type: integer
-          description: Current page number where the lead is found
-          format: int32
-          example: 1
-        per_page:
-          type: integer
-          description: 'How many lead are per page (default: 25)'
-          format: int32
-          example: 20
-        total_pages:
-          type: integer
-          description: Total number of pages
-          format: int32
-          example: 1
-        has_previous:
-          type: boolean
-          description: Whether the previous page is there or not
-          example: false
-        has_next:
-          type: boolean
-          description: Whether the next page is there or not
-          example: false
-      description: Pagination object
   securitySchemes:
     bearerAuth:
       type: http

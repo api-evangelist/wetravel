@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WeTravel Partner Access token Participant Information API
+  title: WeTravel Partner Participant Information API
   version: 2.0.0
   description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
   x-apievangelist:
@@ -165,6 +165,40 @@ paths:
                     $ref: '#/components/schemas/Survey'
 components:
   schemas:
+    UpdateSurvey:
+      type: object
+      properties:
+        question:
+          type: string
+          description: Text of the question
+          example: What's your favorite meal?
+        question_type:
+          type: string
+          description: "The question type is either “text”, “checkbox”, “radio”, \"dropdown\", \"phone\", \"country\", “date” and “file”.\n              Text prompts a text response from the participant. Checkbox allows the participant to select among several options. “Radio” prompts the participant to choose one option. “Date” prompts the participant to enter a date. “File” prompts the participant to upload a file. “Dropdown” prompts the participant to select one option from a list of choices presented in a collapsible menu. “Phone” prompts the participant to enter a valid phone number. “Country” prompts the participant to select a country from a standardized list, provided as a dropdown menu."
+          example: text
+          enum:
+          - text
+          - checkbox
+          - radio
+          - file
+          - date
+          - phone
+          - country
+          - dropdown
+        required:
+          type: boolean
+          description: Is this a required question or not
+          example: true
+          default: true
+        answer_options:
+          type: array
+          description: Answer options for “checkbox” and “radio” questions. E.g. The question “What’s your T-Shirt size?” can be answered as ['Medium', 'Large']
+          items:
+            type: string
+        other_option:
+          type: boolean
+          description: Whether there is a “Other” answer option for “checkbox” and “radio” questions.
+      description: Update Participant Question
     Survey:
       required:
       - question
@@ -257,40 +291,6 @@ components:
           type: boolean
           description: Whether there is a “Other” answer option for “checkbox” and “radio” questions.
       description: Create Participant Question
-    UpdateSurvey:
-      type: object
-      properties:
-        question:
-          type: string
-          description: Text of the question
-          example: What's your favorite meal?
-        question_type:
-          type: string
-          description: "The question type is either “text”, “checkbox”, “radio”, \"dropdown\", \"phone\", \"country\", “date” and “file”.\n              Text prompts a text response from the participant. Checkbox allows the participant to select among several options. “Radio” prompts the participant to choose one option. “Date” prompts the participant to enter a date. “File” prompts the participant to upload a file. “Dropdown” prompts the participant to select one option from a list of choices presented in a collapsible menu. “Phone” prompts the participant to enter a valid phone number. “Country” prompts the participant to select a country from a standardized list, provided as a dropdown menu."
-          example: text
-          enum:
-          - text
-          - checkbox
-          - radio
-          - file
-          - date
-          - phone
-          - country
-          - dropdown
-        required:
-          type: boolean
-          description: Is this a required question or not
-          example: true
-          default: true
-        answer_options:
-          type: array
-          description: Answer options for “checkbox” and “radio” questions. E.g. The question “What’s your T-Shirt size?” can be answered as ['Medium', 'Large']
-          items:
-            type: string
-        other_option:
-          type: boolean
-          description: Whether there is a “Other” answer option for “checkbox” and “radio” questions.
-      description: Update Participant Question
   securitySchemes:
     bearerAuth:
       type: http

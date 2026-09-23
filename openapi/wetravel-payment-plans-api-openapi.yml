@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WeTravel Partner Access token Payment Plans API
+  title: WeTravel Partner Payment Plans API
   version: 2.0.0
   description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
   x-apievangelist:
@@ -215,32 +215,31 @@ components:
           description: "Defines the date on which the installment is due in relation to the trip start date.\n                  E.g. if this setting is set to “5” and the trip starts on January 15, then the installment due date will be January 10."
           format: int32
           example: 60
-    CreatePackagePaymentPlan:
-      required:
-      - allow_partial_payment
-      - enable_auto_payment
+    PaymentPlan:
       type: object
       properties:
         allow_partial_payment:
           type: boolean
           description: Allow participants to make partial payments
           example: true
+          default: true
         enable_auto_payment:
           type: boolean
           description: Participants will automatically be auto-billed to their default payment method when each payment is due.
           example: true
+          default: true
         deposit:
           type: integer
           description: Deposit price of the package
           format: int32
+          example: 150
           minimum: 0
           maximum: 1000000000
-          example: 150
         installments:
           type: array
           items:
             $ref: '#/components/schemas/Installment'
-      description: Create PaymentPlan
+      description: PaymentPlan model
     CreateOptionPaymentPlan:
       required:
       - allow_partial_payment
@@ -267,31 +266,32 @@ components:
           items:
             $ref: '#/components/schemas/Installment'
       description: Create PaymentPlan
-    PaymentPlan:
+    CreatePackagePaymentPlan:
+      required:
+      - allow_partial_payment
+      - enable_auto_payment
       type: object
       properties:
         allow_partial_payment:
           type: boolean
           description: Allow participants to make partial payments
           example: true
-          default: true
         enable_auto_payment:
           type: boolean
           description: Participants will automatically be auto-billed to their default payment method when each payment is due.
           example: true
-          default: true
         deposit:
           type: integer
           description: Deposit price of the package
           format: int32
-          example: 150
           minimum: 0
           maximum: 1000000000
+          example: 150
         installments:
           type: array
           items:
             $ref: '#/components/schemas/Installment'
-      description: PaymentPlan model
+      description: Create PaymentPlan
   securitySchemes:
     bearerAuth:
       type: http

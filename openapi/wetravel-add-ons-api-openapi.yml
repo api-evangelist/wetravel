@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WeTravel Partner Access token Add-ons API
+  title: WeTravel Partner Add Ons API
   version: 2.0.0
   description: WeTravel Partner API — Trip Builder, Bookings/Orders, Payments (payment links), Transactions, Suppliers and Leads. Enables travel companies to programmatically create WeTravel trip and booking pages and sync customers, orders and transactions. Harvested from the WeTravel Developer Hub per-endpoint OpenAPI fragments (developer.wetravel.com). Paths normalized to the https://api.wetravel.com/v2 base.
   x-apievangelist:
@@ -17,12 +17,12 @@ security:
 - bearerAuth: []
 - tokenAuth: []
 tags:
-- name: Add-ons
+- name: Add Ons
 paths:
   /draft_trips/{trip_uuid}/options:
     post:
       tags:
-      - Add-ons
+      - Add Ons
       summary: Create add-on
       description: Create Add-on
       operationId: createOption
@@ -53,7 +53,7 @@ paths:
                     $ref: '#/components/schemas/Option'
     get:
       tags:
-      - Add-ons
+      - Add Ons
       summary: List add-ons
       description: Get Add-ons
       operationId: getOptions
@@ -78,7 +78,7 @@ paths:
   /draft_trips/{trip_uuid}/options/{id}:
     delete:
       tags:
-      - Add-ons
+      - Add Ons
       summary: Delete add-on
       description: Delete Add-on
       operationId: deleteOption
@@ -100,7 +100,7 @@ paths:
           content: {}
     get:
       tags:
-      - Add-ons
+      - Add Ons
       summary: Get add-on
       description: Get Add-on
       operationId: getOptionById
@@ -128,7 +128,7 @@ paths:
                     $ref: '#/components/schemas/Option'
     patch:
       tags:
-      - Add-ons
+      - Add Ons
       summary: Update add-on
       description: Update Add-on
       operationId: updateOption
@@ -165,45 +165,6 @@ paths:
                     $ref: '#/components/schemas/Option'
 components:
   schemas:
-    CreateOption:
-      required:
-      - name
-      - price
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the add-on option
-          example: Special Tour
-        description:
-          type: string
-          description: Description of the add-on option
-          example: Extra 1 day for hiking
-        price:
-          type: integer
-          description: Price of the add-on option
-          format: int32
-          example: 2000
-          minimum: 0
-          maximum: 1000000000
-        price_type:
-          type: string
-          description: Type of the add-on option, can be "option" or "personal_option"
-          example: personal_option
-        quantity:
-          type: integer
-          description: 'Quantity of the add-on option. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
-          format: int32
-          example: 5
-          minimum: 0
-          maximum: 999
-        days_before_departure:
-          type: integer
-          description: "Whether this add-on has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
-          format: int32
-          example: 0
-          default: 0
-      description: Create Add-on
     UpdateOption:
       type: object
       properties:
@@ -296,6 +257,45 @@ components:
           format: int32
           example: 155564
       description: Add-on model
+    CreateOption:
+      required:
+      - name
+      - price
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the add-on option
+          example: Special Tour
+        description:
+          type: string
+          description: Description of the add-on option
+          example: Extra 1 day for hiking
+        price:
+          type: integer
+          description: Price of the add-on option
+          format: int32
+          example: 2000
+          minimum: 0
+          maximum: 1000000000
+        price_type:
+          type: string
+          description: Type of the add-on option, can be "option" or "personal_option"
+          example: personal_option
+        quantity:
+          type: integer
+          description: 'Quantity of the add-on option. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 5
+          minimum: 0
+          maximum: 999
+        days_before_departure:
+          type: integer
+          description: "Whether this add-on has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
+          format: int32
+          example: 0
+          default: 0
+      description: Create Add-on
   securitySchemes:
     bearerAuth:
       type: http
