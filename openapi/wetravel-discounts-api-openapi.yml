@@ -165,66 +165,6 @@ paths:
                     $ref: '#/components/schemas/Discount'
 components:
   schemas:
-    UpdateDiscount:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the discount code
-          example: TRIPDISCOUNT
-        amount:
-          type: integer
-          description: Amount of the discount code
-          format: int32
-          example: 40
-        quantity:
-          type: integer
-          description: 'How many times this discount code can be used. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
-          format: int32
-          example: 10
-          minimum: 0
-          maximum: 99
-        discount_type:
-          type: string
-          description: Type of discount code
-          example: percentage
-          enum:
-          - amount
-          - percentage
-        duration:
-          type: object
-          description: Discount duration details
-          properties:
-            duration_reference:
-              type: string
-              description: 'Reference for applying offsets or selecting dates.
-
-                If `trip_start_date` is selected, the discount will be applied based on the start date of the trip. Either `start_offset_days` or `end_offset_days` must be provided.
-
-                If `absolute` is selected, the discount will be applied based on the absolute start and end dates provided. Either `start_date` or `end_date` must be provided.'
-              enum:
-              - trip_start_date
-              - absolute
-              example: absolute
-            start_date:
-              type: string
-              format: date
-              description: Start date of the discount.
-              example: '2025-08-01'
-            end_date:
-              type: string
-              format: date
-              description: End date of the discount
-              example: '2025-08-15'
-            start_offset_days:
-              type: integer
-              description: Number of days before the reference to start the discount
-              example: 30
-            end_offset_days:
-              type: integer
-              description: Number of days before the reference to end the discount
-              example: 20
-      description: Update Discount
     CreateDiscount:
       required:
       - amount
@@ -291,6 +231,66 @@ components:
               description: Number of days before the reference to end the discount
               example: 20
       description: Create Discount
+    UpdateDiscount:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the discount code
+          example: TRIPDISCOUNT
+        amount:
+          type: integer
+          description: Amount of the discount code
+          format: int32
+          example: 40
+        quantity:
+          type: integer
+          description: 'How many times this discount code can be used. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 10
+          minimum: 0
+          maximum: 99
+        discount_type:
+          type: string
+          description: Type of discount code
+          example: percentage
+          enum:
+          - amount
+          - percentage
+        duration:
+          type: object
+          description: Discount duration details
+          properties:
+            duration_reference:
+              type: string
+              description: 'Reference for applying offsets or selecting dates.
+
+                If `trip_start_date` is selected, the discount will be applied based on the start date of the trip. Either `start_offset_days` or `end_offset_days` must be provided.
+
+                If `absolute` is selected, the discount will be applied based on the absolute start and end dates provided. Either `start_date` or `end_date` must be provided.'
+              enum:
+              - trip_start_date
+              - absolute
+              example: absolute
+            start_date:
+              type: string
+              format: date
+              description: Start date of the discount.
+              example: '2025-08-01'
+            end_date:
+              type: string
+              format: date
+              description: End date of the discount
+              example: '2025-08-15'
+            start_offset_days:
+              type: integer
+              description: Number of days before the reference to start the discount
+              example: 30
+            end_offset_days:
+              type: integer
+              description: Number of days before the reference to end the discount
+              example: 20
+      description: Update Discount
     Discount:
       required:
       - amount

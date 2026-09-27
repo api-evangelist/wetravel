@@ -165,24 +165,6 @@ paths:
                     $ref: '#/components/schemas/Image'
 components:
   schemas:
-    UpdateImage:
-      type: object
-      properties:
-        url:
-          type: string
-          description: URL of the image
-          example: https://filestack/12345
-      description: Update Image
-    CreateImage:
-      required:
-      - url
-      type: object
-      properties:
-        url:
-          type: string
-          description: Allows you to set the URL of the image to upload
-          example: https://filestack/12345
-      description: Create Image
     Image:
       required:
       - trip_uuid
@@ -209,6 +191,24 @@ components:
           format: int32
           example: 1444543
       description: Image model
+    CreateImage:
+      required:
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+          description: Allows you to set the URL of the image to upload
+          example: https://filestack/12345
+      description: Create Image
+    UpdateImage:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL of the image
+          example: https://filestack/12345
+      description: Update Image
   securitySchemes:
     bearerAuth:
       type: http

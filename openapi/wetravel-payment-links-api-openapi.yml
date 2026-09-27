@@ -397,128 +397,6 @@ paths:
                     example: Payment Link {uuid} not found
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          description: Total number of leads
-          format: int32
-          example: 1
-        page:
-          type: integer
-          description: Current page number where the lead is found
-          format: int32
-          example: 1
-        per_page:
-          type: integer
-          description: 'How many lead are per page (default: 25)'
-          format: int32
-          example: 20
-        total_pages:
-          type: integer
-          description: Total number of pages
-          format: int32
-          example: 1
-        has_previous:
-          type: boolean
-          description: Whether the previous page is there or not
-          example: false
-        has_next:
-          type: boolean
-          description: Whether the next page is there or not
-          example: false
-      description: Pagination object
-    PaymentLink:
-      type: object
-      properties:
-        trip:
-          type: object
-          description: Trip information associated with the payment link
-          properties:
-            uuid:
-              type: string
-              description: UUID of the trip
-              example: '12345678'
-            title:
-              type: string
-              description: Title of the trip
-              example: Amazing London Adventure
-            trip_id:
-              type: string
-              description: Trip reference ID
-              example: TRIP20
-            url:
-              type: string
-              description: URL of the trip
-              example: https://example.com/trips/123456
-            defaultImageUrl:
-              type: string
-              description: Default image URL for the trip
-              example: https://example.com/trip-123.jpg
-            start_date:
-              type: string
-              description: Start date of the trip in ISO 8601 format
-              example: '2026-05-07'
-            end_date:
-              type: string
-              description: End date of the trip in ISO 8601 format
-              example: '2026-05-14'
-            currency:
-              type: string
-              description: Currency code (e.g., USD, EUR, GBP)
-              example: USD
-            participant_fees:
-              type: string
-              enum:
-              - credit_card
-              - service
-              - all
-              - none
-              description: "Allows you to choose how the payment fees are handled. The available options are:\n          “credit_card” - Bank account payments are free for the participant, but if they choose to pay by credit card, a card fee is added to the price\n          “service” - Service fees are paid by the participant. Payment method fees are covered by the organizer.\n          “all” - all fees are paid by the participant\n          “none” - all fees are paid by the organizer"
-              example: all
-        pricing:
-          type: object
-          description: Pricing information for the payment link
-          properties:
-            price:
-              type: number
-              format: double
-              description: Price of the trip
-              example: 800
-              minimum: 1
-              maximum: 1000000000
-            days_before_departure:
-              type: integer
-              description: "Whether this trip has a booking deadline. The deadline is defined in relation to the trip start date.\n        E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
-              format: int32
-              example: 0
-            payment_plan:
-              type: object
-              description: Payment plan
-              properties:
-                allow_auto_payment:
-                  type: boolean
-                  description: Participants will automatically be auto-billed to their default payment method when each payment is due.
-                  example: false
-                allow_partial_payment:
-                  type: boolean
-                  description: Allow participants to make partial payments
-                  example: false
-                deposit:
-                  type: number
-                  description: Deposit price of the package
-                  format: double
-                  example: 654
-                  minimum: 0
-                  maximum: 1000000000
-                installments:
-                  type: array
-                  description: Payment installments (max 18)
-                  maxItems: 18
-                  items:
-                    $ref: '#/components/schemas/Installment'
-      description: Payment Link model
     CreatePaymentLink:
       required:
       - trip
@@ -622,24 +500,6 @@ components:
             type: string
             description: Error message
             example: is missing
-    Installment:
-      required:
-      - days_before_departure
-      - price
-      type: object
-      properties:
-        price:
-          type: number
-          description: Amount of the installment
-          format: double
-          example: 145.99
-          minimum: 1
-          maximum: 1000000000
-        days_before_departure:
-          type: integer
-          description: "Defines the date on which the installment is due in relation to the trip start date.\n                  E.g. if this setting is set to “5” and the trip starts on January 15, then the installment due date will be January 10."
-          format: int32
-          example: 60
     UpdatePaymentLink:
       type: object
       properties:
@@ -723,6 +583,146 @@ components:
                   items:
                     $ref: '#/components/schemas/Installment'
       description: Update Payment Link request model
+    Installment:
+      required:
+      - days_before_departure
+      - price
+      type: object
+      properties:
+        price:
+          type: number
+          description: Amount of the installment
+          format: double
+          example: 145.99
+          minimum: 1
+          maximum: 1000000000
+        days_before_departure:
+          type: integer
+          description: "Defines the date on which the installment is due in relation to the trip start date.\n                  E.g. if this setting is set to “5” and the trip starts on January 15, then the installment due date will be January 10."
+          format: int32
+          example: 60
+    PaymentLink:
+      type: object
+      properties:
+        trip:
+          type: object
+          description: Trip information associated with the payment link
+          properties:
+            uuid:
+              type: string
+              description: UUID of the trip
+              example: '12345678'
+            title:
+              type: string
+              description: Title of the trip
+              example: Amazing London Adventure
+            trip_id:
+              type: string
+              description: Trip reference ID
+              example: TRIP20
+            url:
+              type: string
+              description: URL of the trip
+              example: https://example.com/trips/123456
+            defaultImageUrl:
+              type: string
+              description: Default image URL for the trip
+              example: https://example.com/trip-123.jpg
+            start_date:
+              type: string
+              description: Start date of the trip in ISO 8601 format
+              example: '2026-05-07'
+            end_date:
+              type: string
+              description: End date of the trip in ISO 8601 format
+              example: '2026-05-14'
+            currency:
+              type: string
+              description: Currency code (e.g., USD, EUR, GBP)
+              example: USD
+            participant_fees:
+              type: string
+              enum:
+              - credit_card
+              - service
+              - all
+              - none
+              description: "Allows you to choose how the payment fees are handled. The available options are:\n          “credit_card” - Bank account payments are free for the participant, but if they choose to pay by credit card, a card fee is added to the price\n          “service” - Service fees are paid by the participant. Payment method fees are covered by the organizer.\n          “all” - all fees are paid by the participant\n          “none” - all fees are paid by the organizer"
+              example: all
+        pricing:
+          type: object
+          description: Pricing information for the payment link
+          properties:
+            price:
+              type: number
+              format: double
+              description: Price of the trip
+              example: 800
+              minimum: 1
+              maximum: 1000000000
+            days_before_departure:
+              type: integer
+              description: "Whether this trip has a booking deadline. The deadline is defined in relation to the trip start date.\n        E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
+              format: int32
+              example: 0
+            payment_plan:
+              type: object
+              description: Payment plan
+              properties:
+                allow_auto_payment:
+                  type: boolean
+                  description: Participants will automatically be auto-billed to their default payment method when each payment is due.
+                  example: false
+                allow_partial_payment:
+                  type: boolean
+                  description: Allow participants to make partial payments
+                  example: false
+                deposit:
+                  type: number
+                  description: Deposit price of the package
+                  format: double
+                  example: 654
+                  minimum: 0
+                  maximum: 1000000000
+                installments:
+                  type: array
+                  description: Payment installments (max 18)
+                  maxItems: 18
+                  items:
+                    $ref: '#/components/schemas/Installment'
+      description: Payment Link model
+    Pagination:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of leads
+          format: int32
+          example: 1
+        page:
+          type: integer
+          description: Current page number where the lead is found
+          format: int32
+          example: 1
+        per_page:
+          type: integer
+          description: 'How many lead are per page (default: 25)'
+          format: int32
+          example: 20
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 1
+        has_previous:
+          type: boolean
+          description: Whether the previous page is there or not
+          example: false
+        has_next:
+          type: boolean
+          description: Whether the next page is there or not
+          example: false
+      description: Pagination object
   securitySchemes:
     bearerAuth:
       type: http

@@ -165,6 +165,18 @@ paths:
                     $ref: '#/components/schemas/Paragraph'
 components:
   schemas:
+    UpdateParagraph:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the paragraph.yml
+          example: About this trip
+        text:
+          type: string
+          description: Text of the paragraph.yml
+          example: This trip is going to be epic
+      description: Update Paragraph
     Paragraph:
       required:
       - text
@@ -197,18 +209,6 @@ components:
           format: int32
           example: 122234
       description: Paragraph model
-    UpdateParagraph:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Title of the paragraph.yml
-          example: About this trip
-        text:
-          type: string
-          description: Text of the paragraph.yml
-          example: This trip is going to be epic
-      description: Update Paragraph
     CreateParagraph:
       required:
       - text

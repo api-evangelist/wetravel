@@ -165,42 +165,6 @@ paths:
                     $ref: '#/components/schemas/Option'
 components:
   schemas:
-    UpdateOption:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the add-on option
-          example: Special Tour
-        description:
-          type: string
-          description: Description of the add-on option
-          example: Extra 1 day for hiking
-        price:
-          type: integer
-          description: Price of the add-on option
-          format: int32
-          example: 2000
-          minimum: 0
-          maximum: 1000000000
-        price_type:
-          type: string
-          description: Type of the add-on option, can be "option" or "personal_option"
-          example: personal_option
-        quantity:
-          type: integer
-          description: 'Quantity of the add-on option. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
-          format: int32
-          example: 5
-          minimum: 0
-          maximum: 999
-        days_before_departure:
-          type: integer
-          description: "Whether this add-on has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
-          format: int32
-          example: 0
-          default: 0
-      description: Update Add-on
     Option:
       required:
       - name
@@ -257,6 +221,42 @@ components:
           format: int32
           example: 155564
       description: Add-on model
+    UpdateOption:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the add-on option
+          example: Special Tour
+        description:
+          type: string
+          description: Description of the add-on option
+          example: Extra 1 day for hiking
+        price:
+          type: integer
+          description: Price of the add-on option
+          format: int32
+          example: 2000
+          minimum: 0
+          maximum: 1000000000
+        price_type:
+          type: string
+          description: Type of the add-on option, can be "option" or "personal_option"
+          example: personal_option
+        quantity:
+          type: integer
+          description: 'Quantity of the add-on option. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 5
+          minimum: 0
+          maximum: 999
+        days_before_departure:
+          type: integer
+          description: "Whether this add-on has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
+          format: int32
+          example: 0
+          default: 0
+      description: Update Add-on
     CreateOption:
       required:
       - name
