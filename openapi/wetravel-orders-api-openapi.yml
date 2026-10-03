@@ -285,76 +285,26 @@ paths:
                     type: array
 components:
   schemas:
-    Option:
-      required:
-      - name
-      - price
-      - trip_uuid
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID of the add-on option
-          example: '2510177931054358528'
-        trip_uuid:
-          type: string
-          description: Unique ID of the trip
-          example: '105544110'
-        name:
-          type: string
-          description: Name of the add-on option
-          example: Special Tour
-          default: Special Tour
-        description:
-          type: string
-          description: Description of the add-on option
-          example: Extra 1 day for hiking
-          default: Extra 1 day for hiking
-        price:
-          type: integer
-          description: Price of the add-on option
-          format: int32
-          example: 2000
-          minimum: 0
-          maximum: 1000000000
-        price_type:
-          type: string
-          description: Type of the add-on option, can be "option" or "personal_option"
-          example: personal_option
-          default: personal_option
-        quantity:
-          type: integer
-          description: 'Quantity of the add-on option. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
-          format: int32
-          example: 5
-          minimum: 0
-          maximum: 999
-        days_before_departure:
-          type: integer
-          description: "Whether this add-on has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
-          format: int32
-          example: 0
-          default: 0
-        created_at:
-          type: integer
-          description: Time at which the object was created. Measured in seconds since the Unix epoch.
-          format: int32
-          example: 155564
-      description: Add-on model
-    CustomPrice:
+    BatchCustomPrice:
       type: object
       required:
+      - order_id
       - option_id
       - price
       properties:
+        order_id:
+          type: string
+          description: Order ID
+          example: '1476668027184349184'
         option_id:
           type: integer
           format: int32
+          description: Unique ID of the option/package
           example: 1476668027184349200
         price:
           type: integer
-          format: int32
           description: Price of the option/package
+          format: int32
           example: 100000
         notification_message:
           type: string
@@ -527,6 +477,166 @@ components:
           items:
             $ref: '#/components/schemas/Installment'
       description: Order object
+    Pagination:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of leads
+          format: int32
+          example: 1
+        page:
+          type: integer
+          description: Current page number where the lead is found
+          format: int32
+          example: 1
+        per_page:
+          type: integer
+          description: 'How many lead are per page (default: 25)'
+          format: int32
+          example: 20
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 1
+        has_previous:
+          type: boolean
+          description: Whether the previous page is there or not
+          example: false
+        has_next:
+          type: boolean
+          description: Whether the next page is there or not
+          example: false
+      description: Pagination object
+    Donation:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique ID of the donation
+          example: 1476668027184349200
+        price:
+          type: integer
+          description: Price of the option/package
+          format: int32
+          example: 100000
+        name:
+          type: string
+          description: Name of the donation
+          example: Carbon Offset
+        type:
+          type: string
+          description: Type of the donation
+          example: Carbon Offset
+        active_count:
+          type: integer
+          description: Number of active participants per booking/order
+          format: int32
+          example: 1
+        amount:
+          type: integer
+          description: Amount for the donation
+          format: int32
+          example: 5000
+      description: Donation object
+    Buyer:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique ID of the buyer
+          format: int32
+          example: 1
+        email:
+          type: string
+          description: Email of the buyer
+          example: maksym+local@wetravel.com
+        full_name:
+          type: string
+          description: Full name of the buyer
+          example: Maks Local
+      description: Buyer object
+    EsignDocumentSummary:
+      type: object
+      properties:
+        document_id:
+          type: integer
+          description: Unique ID of the document
+          example: 3126680263958200300
+        signed_at:
+          type: string
+          format: date-time
+          description: Time at which the document was signed
+          example: '2021-07-30T09:55:46.000Z'
+      description: EsignDocument object
+    PaymentPlan:
+      type: object
+      properties:
+        allow_partial_payment:
+          type: boolean
+          description: Allow participants to make partial payments
+          example: true
+          default: true
+        enable_auto_payment:
+          type: boolean
+          description: Participants will automatically be auto-billed to their default payment method when each payment is due.
+          example: true
+          default: true
+        deposit:
+          type: integer
+          description: Deposit price of the package
+          format: int32
+          example: 150
+          minimum: 0
+          maximum: 1000000000
+        installments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Installment'
+      description: PaymentPlan model
+    SnowflakeId:
+      type: string
+      description: 64-bit Snowflake identifier encoded as a decimal string
+      pattern: ^[0-9]{1,20}$
+      example: '2354579505229986943'
+    CustomPrice:
+      type: object
+      required:
+      - option_id
+      - price
+      properties:
+        option_id:
+          type: integer
+          format: int32
+          example: 1476668027184349200
+        price:
+          type: integer
+          format: int32
+          description: Price of the option/package
+          example: 100000
+        notification_message:
+          type: string
+          description: Message to be sent to the participant
+          example: Hello, this is a notification message
+    Installment:
+      required:
+      - days_before_departure
+      - price
+      type: object
+      properties:
+        price:
+          type: number
+          description: Amount of the installment
+          format: double
+          example: 145.99
+          minimum: 1
+          maximum: 1000000000
+        days_before_departure:
+          type: integer
+          description: "Defines the date on which the installment is due in relation to the trip start date.\n                  E.g. if this setting is set to “5” and the trip starts on January 15, then the installment due date will be January 10."
+          format: int32
+          example: 60
     OrderSummary:
       type: object
       properties:
@@ -638,172 +748,62 @@ components:
         buyer:
           $ref: '#/components/schemas/Buyer'
       description: OrderSummary object
-    EsignDocumentSummary:
-      type: object
-      properties:
-        document_id:
-          type: integer
-          description: Unique ID of the document
-          example: 3126680263958200300
-        signed_at:
-          type: string
-          format: date-time
-          description: Time at which the document was signed
-          example: '2021-07-30T09:55:46.000Z'
-      description: EsignDocument object
-    BatchCustomPrice:
-      type: object
+    Option:
       required:
-      - order_id
-      - option_id
+      - name
       - price
-      properties:
-        order_id:
-          type: string
-          description: Order ID
-          example: '1476668027184349184'
-        option_id:
-          type: integer
-          format: int32
-          description: Unique ID of the option/package
-          example: 1476668027184349200
-        price:
-          type: integer
-          description: Price of the option/package
-          format: int32
-          example: 100000
-        notification_message:
-          type: string
-          description: Message to be sent to the participant
-          example: Hello, this is a notification message
-    Buyer:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique ID of the buyer
-          format: int32
-          example: 1
-        email:
-          type: string
-          description: Email of the buyer
-          example: maksym+local@wetravel.com
-        full_name:
-          type: string
-          description: Full name of the buyer
-          example: Maks Local
-      description: Buyer object
-    Donation:
+      - trip_uuid
       type: object
       properties:
         id:
           type: string
-          description: Unique ID of the donation
-          example: 1476668027184349200
-        price:
-          type: integer
-          description: Price of the option/package
-          format: int32
-          example: 100000
+          description: ID of the add-on option
+          example: '2510177931054358528'
+        trip_uuid:
+          type: string
+          description: Unique ID of the trip
+          example: '105544110'
         name:
           type: string
-          description: Name of the donation
-          example: Carbon Offset
-        type:
+          description: Name of the add-on option
+          example: Special Tour
+          default: Special Tour
+        description:
           type: string
-          description: Type of the donation
-          example: Carbon Offset
-        active_count:
+          description: Description of the add-on option
+          example: Extra 1 day for hiking
+          default: Extra 1 day for hiking
+        price:
           type: integer
-          description: Number of active participants per booking/order
+          description: Price of the add-on option
           format: int32
-          example: 1
-        amount:
-          type: integer
-          description: Amount for the donation
-          format: int32
-          example: 5000
-      description: Donation object
-    SnowflakeId:
-      type: string
-      description: 64-bit Snowflake identifier encoded as a decimal string
-      pattern: ^[0-9]{1,20}$
-      example: '2354579505229986943'
-    PaymentPlan:
-      type: object
-      properties:
-        allow_partial_payment:
-          type: boolean
-          description: Allow participants to make partial payments
-          example: true
-          default: true
-        enable_auto_payment:
-          type: boolean
-          description: Participants will automatically be auto-billed to their default payment method when each payment is due.
-          example: true
-          default: true
-        deposit:
-          type: integer
-          description: Deposit price of the package
-          format: int32
-          example: 150
+          example: 2000
           minimum: 0
           maximum: 1000000000
-        installments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Installment'
-      description: PaymentPlan model
-    Installment:
-      required:
-      - days_before_departure
-      - price
-      type: object
-      properties:
-        price:
-          type: number
-          description: Amount of the installment
-          format: double
-          example: 145.99
-          minimum: 1
-          maximum: 1000000000
+        price_type:
+          type: string
+          description: Type of the add-on option, can be "option" or "personal_option"
+          example: personal_option
+          default: personal_option
+        quantity:
+          type: integer
+          description: 'Quantity of the add-on option. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 5
+          minimum: 0
+          maximum: 999
         days_before_departure:
           type: integer
-          description: "Defines the date on which the installment is due in relation to the trip start date.\n                  E.g. if this setting is set to “5” and the trip starts on January 15, then the installment due date will be January 10."
+          description: "Whether this add-on has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
           format: int32
-          example: 60
-    Pagination:
-      type: object
-      properties:
-        total_count:
+          example: 0
+          default: 0
+        created_at:
           type: integer
-          description: Total number of leads
+          description: Time at which the object was created. Measured in seconds since the Unix epoch.
           format: int32
-          example: 1
-        page:
-          type: integer
-          description: Current page number where the lead is found
-          format: int32
-          example: 1
-        per_page:
-          type: integer
-          description: 'How many lead are per page (default: 25)'
-          format: int32
-          example: 20
-        total_pages:
-          type: integer
-          description: Total number of pages
-          format: int32
-          example: 1
-        has_previous:
-          type: boolean
-          description: Whether the previous page is there or not
-          example: false
-        has_next:
-          type: boolean
-          description: Whether the next page is there or not
-          example: false
-      description: Pagination object
+          example: 155564
+      description: Add-on model
   securitySchemes:
     bearerAuth:
       type: http

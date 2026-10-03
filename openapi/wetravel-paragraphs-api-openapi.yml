@@ -165,6 +165,21 @@ paths:
                     $ref: '#/components/schemas/Paragraph'
 components:
   schemas:
+    CreateParagraph:
+      required:
+      - text
+      - title
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the paragraph.yml
+          example: About this trip
+        text:
+          type: string
+          description: Text of the paragraph.yml
+          example: This trip is going to be epic
+      description: Create Paragraph
     UpdateParagraph:
       type: object
       properties:
@@ -209,21 +224,6 @@ components:
           format: int32
           example: 122234
       description: Paragraph model
-    CreateParagraph:
-      required:
-      - text
-      - title
-      type: object
-      properties:
-        title:
-          type: string
-          description: Title of the paragraph.yml
-          example: About this trip
-        text:
-          type: string
-          description: Text of the paragraph.yml
-          example: This trip is going to be epic
-      description: Create Paragraph
   securitySchemes:
     bearerAuth:
       type: http

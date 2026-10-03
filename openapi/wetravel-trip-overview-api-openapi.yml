@@ -200,6 +200,26 @@ components:
           example: https://filestack/123456
           default: https://filestack/123456
       description: Itinerary model
+    UpdateItinerary:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the overview event
+          example: Day 1
+        name:
+          type: string
+          description: Name of the overview event
+          example: Day 1 - Arrival
+        description:
+          type: string
+          description: Description of the overview event
+          example: Tour of city
+        photo_url:
+          type: string
+          description: Image url of the overview event
+          example: https://filestack/123456
+      description: Update Overview Event
     CreateItinerary:
       required:
       - name
@@ -224,26 +244,6 @@ components:
           description: Allows you to set the image URL of the itinerary event
           example: https://filestack/123456
       description: Create Overview Event
-    UpdateItinerary:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Title of the overview event
-          example: Day 1
-        name:
-          type: string
-          description: Name of the overview event
-          example: Day 1 - Arrival
-        description:
-          type: string
-          description: Description of the overview event
-          example: Tour of city
-        photo_url:
-          type: string
-          description: Image url of the overview event
-          example: https://filestack/123456
-      description: Update Overview Event
   securitySchemes:
     bearerAuth:
       type: http

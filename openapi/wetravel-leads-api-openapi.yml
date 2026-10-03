@@ -70,19 +70,61 @@ paths:
                     $ref: '#/components/schemas/Pagination'
 components:
   schemas:
-    Question:
+    Pagination:
       type: object
       properties:
-        content:
-          description: Question content
-          type: string
-          example: What is your name?
-        created_at:
-          description: Question created at
-          type: string
-          format: date-time
-          example: '2017-01-01 00:00:00'
-      description: Question object
+        total_count:
+          type: integer
+          description: Total number of leads
+          format: int32
+          example: 1
+        page:
+          type: integer
+          description: Current page number where the lead is found
+          format: int32
+          example: 1
+        per_page:
+          type: integer
+          description: 'How many lead are per page (default: 25)'
+          format: int32
+          example: 20
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 1
+        has_previous:
+          type: boolean
+          description: Whether the previous page is there or not
+          example: false
+        has_next:
+          type: boolean
+          description: Whether the next page is there or not
+          example: false
+      description: Pagination object
+    CarbonOffset:
+      required:
+      - enabled
+      - percentage
+      - paid_by_participant
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Carbon Offset Contribution offered for the trip
+          example: true
+          default: false
+        percentage:
+          type: number
+          description: Carbon Offset Contribution amount as a selected percentage of the trip price
+          example: 2.5
+          default: 1
+        paid_by_participant:
+          type: boolean
+          description: Carbon Offset Contribution is paid by participant
+          example: true
+          default: true
+      description: Carbon Offset Contribution
     GetLeads:
       type: object
       properties:
@@ -184,29 +226,19 @@ components:
           $ref: '#/components/schemas/Trip'
           description: Trip data
       description: Lead object
-    CarbonOffset:
-      required:
-      - enabled
-      - percentage
-      - paid_by_participant
+    Question:
       type: object
       properties:
-        enabled:
-          type: boolean
-          description: Carbon Offset Contribution offered for the trip
-          example: true
-          default: false
-        percentage:
-          type: number
-          description: Carbon Offset Contribution amount as a selected percentage of the trip price
-          example: 2.5
-          default: 1
-        paid_by_participant:
-          type: boolean
-          description: Carbon Offset Contribution is paid by participant
-          example: true
-          default: true
-      description: Carbon Offset Contribution
+        content:
+          description: Question content
+          type: string
+          example: What is your name?
+        created_at:
+          description: Question created at
+          type: string
+          format: date-time
+          example: '2017-01-01 00:00:00'
+      description: Question object
     Trip:
       required:
       - can_contribute
@@ -324,38 +356,6 @@ components:
         carbon_offset:
           $ref: '#/components/schemas/CarbonOffset'
       description: Trip model
-    Pagination:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          description: Total number of leads
-          format: int32
-          example: 1
-        page:
-          type: integer
-          description: Current page number where the lead is found
-          format: int32
-          example: 1
-        per_page:
-          type: integer
-          description: 'How many lead are per page (default: 25)'
-          format: int32
-          example: 20
-        total_pages:
-          type: integer
-          description: Total number of pages
-          format: int32
-          example: 1
-        has_previous:
-          type: boolean
-          description: Whether the previous page is there or not
-          example: false
-        has_next:
-          type: boolean
-          description: Whether the next page is there or not
-          example: false
-      description: Pagination object
   securitySchemes:
     bearerAuth:
       type: http

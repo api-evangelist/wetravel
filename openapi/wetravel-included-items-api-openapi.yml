@@ -162,6 +162,20 @@ paths:
                 $ref: '#/components/schemas/Included'
 components:
   schemas:
+    CreateIncluded:
+      required:
+      - title
+      type: object
+      properties:
+        title:
+          type: string
+          description: Allows you to set the title of the included item
+          example: Private yoga lesson
+        description:
+          type: string
+          description: Allows you to set the description of the included item. This field allows HTML tags(b, i, a) for better formatting.
+          example: Private yoga lessons are not included
+      description: Create Included
     UpdateIncluded:
       type: object
       properties:
@@ -205,20 +219,6 @@ components:
           format: int32
           example: 144434
       description: Included model
-    CreateIncluded:
-      required:
-      - title
-      type: object
-      properties:
-        title:
-          type: string
-          description: Allows you to set the title of the included item
-          example: Private yoga lesson
-        description:
-          type: string
-          description: Allows you to set the description of the included item. This field allows HTML tags(b, i, a) for better formatting.
-          example: Private yoga lessons are not included
-      description: Create Included
   securitySchemes:
     bearerAuth:
       type: http
