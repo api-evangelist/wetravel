@@ -162,44 +162,6 @@ paths:
                 $ref: '#/components/schemas/Itinerary'
 components:
   schemas:
-    Itinerary:
-      required:
-      - name
-      - photo_url
-      - title
-      - trip_uuid
-      type: object
-      properties:
-        id:
-          type: integer
-          description: ID of the itinerary event
-          format: int32
-          example: 78
-        trip_uuid:
-          type: string
-          description: Unique ID of the trip
-          example: '12345678'
-        title:
-          type: string
-          description: Title of the itinerary event
-          example: Day 1
-          default: Day 1
-        name:
-          type: string
-          description: Name of the itinerary event
-          example: Day 1 itinerary
-          default: Day 1 itinerary
-        description:
-          type: string
-          description: Description of the itinerary event
-          example: Tour of city
-          default: Tour of city
-        photo_url:
-          type: string
-          description: Image url of the itinerary event
-          example: https://filestack/123456
-          default: https://filestack/123456
-      description: Itinerary model
     UpdateItinerary:
       type: object
       properties:
@@ -244,6 +206,44 @@ components:
           description: Allows you to set the image URL of the itinerary event
           example: https://filestack/123456
       description: Create Overview Event
+    Itinerary:
+      required:
+      - name
+      - photo_url
+      - title
+      - trip_uuid
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of the itinerary event
+          format: int32
+          example: 78
+        trip_uuid:
+          type: string
+          description: Unique ID of the trip
+          example: '12345678'
+        title:
+          type: string
+          description: Title of the itinerary event
+          example: Day 1
+          default: Day 1
+        name:
+          type: string
+          description: Name of the itinerary event
+          example: Day 1 itinerary
+          default: Day 1 itinerary
+        description:
+          type: string
+          description: Description of the itinerary event
+          example: Tour of city
+          default: Tour of city
+        photo_url:
+          type: string
+          description: Image url of the itinerary event
+          example: https://filestack/123456
+          default: https://filestack/123456
+      description: Itinerary model
   securitySchemes:
     bearerAuth:
       type: http

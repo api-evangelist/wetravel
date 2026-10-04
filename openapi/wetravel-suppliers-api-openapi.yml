@@ -75,30 +75,6 @@ paths:
                     $ref: '#/components/schemas/Pagination'
 components:
   schemas:
-    Supplier:
-      type: object
-      properties:
-        uuid:
-          type: string
-          description: Unique ID of supplier
-          example: ve-a4183a5c-c838-419b-a520-b1b4d1e2e426
-        supplier_id:
-          type: integer
-          description: ID of supplier. It's a reference created once a supplier accepts the invitation
-          example: 12345
-        name:
-          type: string
-          description: Name of the supplier
-          example: John Doe
-        email:
-          type: string
-          description: Email of the supplier
-          example: john.doe@wetravel.com
-        verified:
-          type: boolean
-          description: Whether the supplier is verified or not
-          example: true
-      description: Supplier object
     Pagination:
       type: object
       properties:
@@ -131,6 +107,30 @@ components:
           description: Whether the next page is there or not
           example: false
       description: Pagination object
+    Supplier:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique ID of supplier
+          example: ve-a4183a5c-c838-419b-a520-b1b4d1e2e426
+        supplier_id:
+          type: integer
+          description: ID of supplier. It's a reference created once a supplier accepts the invitation
+          example: 12345
+        name:
+          type: string
+          description: Name of the supplier
+          example: John Doe
+        email:
+          type: string
+          description: Email of the supplier
+          example: john.doe@wetravel.com
+        verified:
+          type: boolean
+          description: Whether the supplier is verified or not
+          example: true
+      description: Supplier object
   securitySchemes:
     bearerAuth:
       type: http

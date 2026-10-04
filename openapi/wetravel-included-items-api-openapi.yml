@@ -162,6 +162,18 @@ paths:
                 $ref: '#/components/schemas/Included'
 components:
   schemas:
+    UpdateIncluded:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the included item
+          example: Private yoga lesson
+        description:
+          type: string
+          description: Description of the included item
+          example: Private yoga lessons are not included
+      description: Update Included
     CreateIncluded:
       required:
       - title
@@ -176,18 +188,6 @@ components:
           description: Allows you to set the description of the included item. This field allows HTML tags(b, i, a) for better formatting.
           example: Private yoga lessons are not included
       description: Create Included
-    UpdateIncluded:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Title of the included item
-          example: Private yoga lesson
-        description:
-          type: string
-          description: Description of the included item
-          example: Private yoga lessons are not included
-      description: Update Included
     Included:
       required:
       - title

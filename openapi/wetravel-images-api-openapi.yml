@@ -165,16 +165,6 @@ paths:
                     $ref: '#/components/schemas/Image'
 components:
   schemas:
-    CreateImage:
-      required:
-      - url
-      type: object
-      properties:
-        url:
-          type: string
-          description: Allows you to set the URL of the image to upload
-          example: https://filestack/12345
-      description: Create Image
     Image:
       required:
       - trip_uuid
@@ -209,6 +199,16 @@ components:
           description: URL of the image
           example: https://filestack/12345
       description: Update Image
+    CreateImage:
+      required:
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+          description: Allows you to set the URL of the image to upload
+          example: https://filestack/12345
+      description: Create Image
   securitySchemes:
     bearerAuth:
       type: http
