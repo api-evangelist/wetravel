@@ -46,7 +46,7 @@ x-tier: profiled
 x-tier-reason: enriched-from-developer-hub
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-10-06'
 tags:
 - Company
 - Business Applications
@@ -312,6 +312,8 @@ apis:
   - type: APIReference
     url: https://developer.wetravel.com/reference
 common:
+- url: https://academy.wetravel.com/rss.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/wetravel-capability-edges.yml
   name: WeTravel Business Capability Map
