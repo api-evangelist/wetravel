@@ -70,38 +70,92 @@ paths:
                     $ref: '#/components/schemas/Pagination'
 components:
   schemas:
-    Pagination:
+    GetTransactions:
       type: object
       properties:
-        total_count:
-          type: integer
-          description: Total number of leads
-          format: int32
-          example: 1
         page:
           type: integer
-          description: Current page number where the lead is found
+          description: Page number
           format: int32
           example: 1
         per_page:
           type: integer
-          description: 'How many lead are per page (default: 25)'
+          description: Transactions per page, max. 1000
           format: int32
           example: 20
-        total_pages:
-          type: integer
-          description: Total number of pages
-          format: int32
-          example: 1
-        has_previous:
+        filters:
+          type: object
+          description: Filters out transactions
+          properties:
+            trip_uuids:
+              type: array
+              items:
+                type: string
+                description: The unique global ID of the trip
+                example: '94030501'
+            order_id:
+              type: integer
+              description: The order ID
+              format: int64
+              example: 94030501
+            currency:
+              type: string
+              description: The currency of the transaction
+              example: usd
+              enum:
+              - usd
+              - eur
+              - cad
+              - zar
+              - gbp
+              - aud
+              - nzd
+              - chf
+              - sek
+              - nok
+              - dkk
+              - pln
+              - hkd
+              - mxn
+            transaction_type:
+              type: string
+              description: The type of the transaction
+              example: trip
+              enum:
+              - payment
+              - refund
+              - dispute
+              - transfer
+              - payout
+              - instant_payout
+              - wire
+              - card_transfer
+              - adjustment
+              - top_up
+      description: Get Transactions Body
+    CarbonOffset:
+      required:
+      - enabled
+      - percentage
+      - paid_by_participant
+      type: object
+      properties:
+        enabled:
           type: boolean
-          description: Whether the previous page is there or not
-          example: false
-        has_next:
+          description: Carbon Offset Contribution offered for the trip
+          example: true
+          default: false
+        percentage:
+          type: number
+          description: Carbon Offset Contribution amount as a selected percentage of the trip price
+          example: 2.5
+          default: 1
+        paid_by_participant:
           type: boolean
-          description: Whether the next page is there or not
-          example: false
-      description: Pagination object
+          description: Carbon Offset Contribution is paid by participant
+          example: true
+          default: true
+      description: Carbon Offset Contribution
     Survey:
       required:
       - question
@@ -157,6 +211,93 @@ components:
           format: int32
           example: 123133
       description: Participant Question model
+    Pagination:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of leads
+          format: int32
+          example: 1
+        page:
+          type: integer
+          description: Current page number where the lead is found
+          format: int32
+          example: 1
+        per_page:
+          type: integer
+          description: 'How many lead are per page (default: 25)'
+          format: int32
+          example: 20
+        total_pages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 1
+        has_previous:
+          type: boolean
+          description: Whether the previous page is there or not
+          example: false
+        has_next:
+          type: boolean
+          description: Whether the next page is there or not
+          example: false
+      description: Pagination object
+    Package:
+      required:
+      - description
+      - name
+      - price
+      - trip_uuid
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the package
+          example: '2510177931054358528'
+        trip_uuid:
+          type: string
+          description: Unique ID of the trip
+          example: '105544110'
+        name:
+          type: string
+          description: Name of the package
+          example: Early bird
+        deposit:
+          type: integer
+          description: Deposit price of the package, please use the payment plan field instead
+          format: int32
+          example: 150
+          deprecated: true
+        price:
+          type: integer
+          description: Price of the package
+          format: int32
+          example: 450
+          minimum: 0
+          maximum: 1000000000
+        quantity:
+          type: integer
+          description: 'Max available quantity of the package. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
+          format: int32
+          example: 7
+          minimum: 0
+          maximum: 9999
+        description:
+          type: string
+          description: Description of the package
+          example: Early bird package
+        days_before_departure:
+          type: integer
+          description: "Whether this package has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
+          format: int32
+          example: 0
+        created_at:
+          type: integer
+          description: Time at which the object was created. Measured in seconds since the Unix epoch.
+          format: int32
+          example: 144445
+      description: Package model
     Trip:
       required:
       - can_contribute
@@ -274,6 +415,23 @@ components:
         carbon_offset:
           $ref: '#/components/schemas/CarbonOffset'
       description: Trip model
+    Buyer:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique ID of the buyer
+          format: int32
+          example: 1
+        email:
+          type: string
+          description: Email of the buyer
+          example: maksym+local@wetravel.com
+        full_name:
+          type: string
+          description: Full name of the buyer
+          example: Maks Local
+      description: Buyer object
     Participant:
       type: object
       properties:
@@ -302,29 +460,6 @@ components:
           items:
             $ref: '#/components/schemas/Survey'
       description: Participant object
-    CarbonOffset:
-      required:
-      - enabled
-      - percentage
-      - paid_by_participant
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          description: Carbon Offset Contribution offered for the trip
-          example: true
-          default: false
-        percentage:
-          type: number
-          description: Carbon Offset Contribution amount as a selected percentage of the trip price
-          example: 2.5
-          default: 1
-        paid_by_participant:
-          type: boolean
-          description: Carbon Offset Contribution is paid by participant
-          example: true
-          default: true
-      description: Carbon Offset Contribution
     Transaction:
       type: object
       properties:
@@ -495,141 +630,6 @@ components:
           description: Reference filled in by the user who initiated the transaction
           example: Sample-Reference-1234
       description: Transaction object
-    Package:
-      required:
-      - description
-      - name
-      - price
-      - trip_uuid
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID of the package
-          example: '2510177931054358528'
-        trip_uuid:
-          type: string
-          description: Unique ID of the trip
-          example: '105544110'
-        name:
-          type: string
-          description: Name of the package
-          example: Early bird
-        deposit:
-          type: integer
-          description: Deposit price of the package, please use the payment plan field instead
-          format: int32
-          example: 150
-          deprecated: true
-        price:
-          type: integer
-          description: Price of the package
-          format: int32
-          example: 450
-          minimum: 0
-          maximum: 1000000000
-        quantity:
-          type: integer
-          description: 'Max available quantity of the package. You can set it to null for "unlimited" value. (NOTE: setting "null" value is not possible in this editor)'
-          format: int32
-          example: 7
-          minimum: 0
-          maximum: 9999
-        description:
-          type: string
-          description: Description of the package
-          example: Early bird package
-        days_before_departure:
-          type: integer
-          description: "Whether this package has a booking deadline. The deadline is defined in relation to the trip start date.\n            E.g. if this setting is set to “5” and the trip starts on January 15, then the booking deadline will be January 10."
-          format: int32
-          example: 0
-        created_at:
-          type: integer
-          description: Time at which the object was created. Measured in seconds since the Unix epoch.
-          format: int32
-          example: 144445
-      description: Package model
-    GetTransactions:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Page number
-          format: int32
-          example: 1
-        per_page:
-          type: integer
-          description: Transactions per page, max. 1000
-          format: int32
-          example: 20
-        filters:
-          type: object
-          description: Filters out transactions
-          properties:
-            trip_uuids:
-              type: array
-              items:
-                type: string
-                description: The unique global ID of the trip
-                example: '94030501'
-            order_id:
-              type: integer
-              description: The order ID
-              format: int64
-              example: 94030501
-            currency:
-              type: string
-              description: The currency of the transaction
-              example: usd
-              enum:
-              - usd
-              - eur
-              - cad
-              - zar
-              - gbp
-              - aud
-              - nzd
-              - chf
-              - sek
-              - nok
-              - dkk
-              - pln
-              - hkd
-              - mxn
-            transaction_type:
-              type: string
-              description: The type of the transaction
-              example: trip
-              enum:
-              - payment
-              - refund
-              - dispute
-              - transfer
-              - payout
-              - instant_payout
-              - wire
-              - card_transfer
-              - adjustment
-              - top_up
-      description: Get Transactions Body
-    Buyer:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique ID of the buyer
-          format: int32
-          example: 1
-        email:
-          type: string
-          description: Email of the buyer
-          example: maksym+local@wetravel.com
-        full_name:
-          type: string
-          description: Full name of the buyer
-          example: Maks Local
-      description: Buyer object
   securitySchemes:
     bearerAuth:
       type: http

@@ -223,24 +223,6 @@ components:
           items:
             $ref: '#/components/schemas/Installment'
       description: Create PaymentPlan
-    Installment:
-      required:
-      - days_before_departure
-      - price
-      type: object
-      properties:
-        price:
-          type: number
-          description: Amount of the installment
-          format: double
-          example: 145.99
-          minimum: 1
-          maximum: 1000000000
-        days_before_departure:
-          type: integer
-          description: "Defines the date on which the installment is due in relation to the trip start date.\n                  E.g. if this setting is set to “5” and the trip starts on January 15, then the installment due date will be January 10."
-          format: int32
-          example: 60
     PaymentPlan:
       type: object
       properties:
@@ -292,6 +274,24 @@ components:
           items:
             $ref: '#/components/schemas/Installment'
       description: Create PaymentPlan
+    Installment:
+      required:
+      - days_before_departure
+      - price
+      type: object
+      properties:
+        price:
+          type: number
+          description: Amount of the installment
+          format: double
+          example: 145.99
+          minimum: 1
+          maximum: 1000000000
+        days_before_departure:
+          type: integer
+          description: "Defines the date on which the installment is due in relation to the trip start date.\n                  E.g. if this setting is set to “5” and the trip starts on January 15, then the installment due date will be January 10."
+          format: int32
+          example: 60
   securitySchemes:
     bearerAuth:
       type: http

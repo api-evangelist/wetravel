@@ -177,6 +177,20 @@ components:
           description: Description of the not included item
           example: Flight tickets included for this trip
       description: Update NotIncluded
+    CreateNotIncluded:
+      required:
+      - title
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the not included item
+          example: Flight tickets
+        description:
+          type: string
+          description: Description of the not included item
+          example: Flight tickets included for this trip
+      description: Create NotIncluded
     NotIncluded:
       required:
       - title
@@ -208,20 +222,6 @@ components:
           format: int32
           example: 134543
       description: NotIncluded model
-    CreateNotIncluded:
-      required:
-      - title
-      type: object
-      properties:
-        title:
-          type: string
-          description: Title of the not included item
-          example: Flight tickets
-        description:
-          type: string
-          description: Description of the not included item
-          example: Flight tickets included for this trip
-      description: Create NotIncluded
   securitySchemes:
     bearerAuth:
       type: http
