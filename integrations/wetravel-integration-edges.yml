@@ -73,6 +73,33 @@ edges:
       lapsed: null
   detected_by: sweep-stripe-app-marketplace.py
   first_seen: '2026-10-21'
+- partner_name: Index Ventures
+  partner: index-ventures
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.indexventures.com/companies/wetravel/
+  category: vc portfolio participation
+  contract_reference:
+    register: Index Ventures companies (indexventures.com/companies/)
+    standard: null
+    spec_file: null
+    role: vc-portfolio-company
+    registered_name: WeTravel
+    register_id: https://www.indexventures.com/companies/wetravel/
+    register_country: europe
+    register_website: https://www.wetravel.com/
+    matched_domain: wetravel.com
+    matched_by: domain
+    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-vc-portfolios.py
+    detected: '2026-10-21'
+    sector: business-applications
+  detected_by: sweep-vc-portfolios.py
+  first_seen: '2026-10-21'
 method: searched
 checked:
 - https://zapier.com/api/v4/apps/
@@ -83,5 +110,11 @@ checked:
 - https://stripe.com/partners/directory
 - https://stripe.com/partners/verified-partners
 - https://stripe.partners/sitemap.xml
+- https://a16z.com/portfolio/
+- https://www.battery.com/company/
+- https://www.battery.com/wp-admin/admin-ajax.php
+- https://www.indexventures.com/companies/
+- https://www.sequoiacap.com/our-companies/
+- https://www.sequoiacap.com/sitemap.xml
 source:
 - https://zapier.com/api/v4/apps/
